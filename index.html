@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="client-final-line-pulse-20261013">
+  <meta name="1111space-build" content="client-final-directional-line-20261013">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1483,8 +1483,17 @@
       });
     }
 
+    let flowDirection=1; // 1 = down, -1 = up
+    let lastFlowScrollY=window.scrollY;
+
     function drawFlow(){
       flowQueued=false;
+
+      const currentY=window.scrollY;
+      if(currentY>lastFlowScrollY+0.5) flowDirection=1;
+      else if(currentY<lastFlowScrollY-0.5) flowDirection=-1;
+      lastFlowScrollY=currentY;
+
       const {visibility,position}=scrollState();
       updatePortalParallax(position);
       fctx.clearRect(0,0,FW,FH);
@@ -1492,32 +1501,27 @@
 
       const pts=wavePoints(position);
 
-      // Autonomous light pulse: the ribbon softly fills with light and fades away.
-      const t=performance.now()*0.00062;
-      const pulseRaw=(Math.sin(t)+1)*0.5;
-      const pulse=0.03 + Math.pow(pulseRaw,1.9)*0.97;
-      const liveVisibility=visibility*pulse;
-
-      // Premium two-color ribbon: turquoise + lilac only.
+      // Two-colour light core only.
       const grad=fctx.createLinearGradient(0,FH*.10,0,FH*.91);
       grad.addColorStop(0.00,'rgba(102,232,220,0)');
-      grad.addColorStop(0.10,'rgba(102,232,220,0)');
-      grad.addColorStop(0.23,'rgba(102,232,220,.28)');
-      grad.addColorStop(0.40,'rgba(112,218,226,.68)');
-      grad.addColorStop(0.55,'rgba(149,188,239,.88)');
-      grad.addColorStop(0.70,'rgba(178,156,255,.72)');
-      grad.addColorStop(0.83,'rgba(178,156,255,.30)');
-      grad.addColorStop(0.93,'rgba(178,156,255,0)');
+      grad.addColorStop(0.12,'rgba(102,232,220,.30)');
+      grad.addColorStop(0.40,'rgba(112,218,226,.82)');
+      grad.addColorStop(0.57,'rgba(149,188,239,.96)');
+      grad.addColorStop(0.73,'rgba(178,156,255,.80)');
+      grad.addColorStop(0.90,'rgba(178,156,255,.28)');
       grad.addColorStop(1.00,'rgba(178,156,255,0)');
+
+      // Very gentle breathing, never creating extra bands.
+      const pulse=.84 + Math.sin(performance.now()*.00072)*.16;
+      const lineAlpha=visibility*pulse;
 
       fctx.globalCompositeOperation='lighter';
 
-      // Soft centered aura first: the glow grows out from the line itself,
-      // without a bright outline on the two edges.
+      // ONE blurred halo, centered on the exact same path.
       fctx.save();
-      fctx.globalAlpha=visibility*.22;
-      fctx.filter='blur(16px)';
-      fctx.lineWidth=24;
+      fctx.globalAlpha=lineAlpha*.34;
+      fctx.filter='blur(15px)';
+      fctx.lineWidth=20;
       fctx.lineCap='round';
       fctx.lineJoin='round';
       fctx.strokeStyle=grad;
@@ -1525,34 +1529,62 @@
       fctx.stroke();
       fctx.restore();
 
+      // ONE clean luminous core.
       fctx.save();
-      fctx.globalAlpha=visibility*.10;
-      fctx.filter='blur(29px)';
-      fctx.lineWidth=44;
+      fctx.globalAlpha=lineAlpha;
+      fctx.lineWidth=2.65;
       fctx.lineCap='round';
       fctx.lineJoin='round';
       fctx.strokeStyle=grad;
+      fctx.shadowColor='rgba(143,202,229,.48)';
+      fctx.shadowBlur=12;
       traceSmooth(pts);
       fctx.stroke();
       fctx.restore();
 
-      // Clean luminous core, deliberately thin so it reads as light rather than a bordered ribbon.
-      fctx.save();
-      fctx.globalAlpha=liveVisibility;
-      fctx.lineWidth=2.55;
-      fctx.lineCap='round';
-      fctx.lineJoin='round';
-      fctx.strokeStyle=grad;
-      fctx.shadowColor='rgba(145,200,231,.60)';
-      fctx.shadowBlur=10 + pulse*16;
-      traceSmooth(pts);
-      fctx.stroke();
-      fctx.restore();
+      // Directional soft wipe tied directly to scroll position.
+      // Down: line disappears from top -> bottom.
+      // Up: line disappears from bottom -> top.
+      const stageRect=stage.getBoundingClientRect();
+      const stageTop=window.scrollY+stageRect.top;
+      const viewportProbe=window.scrollY+innerHeight*.58;
+      const raw=clamp((viewportProbe-stageTop)/Math.max(1,stage.offsetHeight),0,1);
+      const wipe=smoothstep(raw);
+
+      fctx.globalCompositeOperation='destination-in';
+
+      const feather=Math.max(70,FH*.085);
+      let mask;
+
+      if(flowDirection>=0){
+        // Visible below the moving boundary.
+        const edge=FH*wipe;
+        mask=fctx.createLinearGradient(0,0,0,FH);
+        const a=clamp((edge-feather)/FH,0,1);
+        const b=clamp((edge+feather)/FH,0,1);
+        mask.addColorStop(0,'rgba(0,0,0,0)');
+        mask.addColorStop(a,'rgba(0,0,0,0)');
+        mask.addColorStop(b,'rgba(0,0,0,1)');
+        mask.addColorStop(1,'rgba(0,0,0,1)');
+      }else{
+        // Visible above the moving boundary.
+        const edge=FH*wipe;
+        mask=fctx.createLinearGradient(0,0,0,FH);
+        const a=clamp((edge-feather)/FH,0,1);
+        const b=clamp((edge+feather)/FH,0,1);
+        mask.addColorStop(0,'rgba(0,0,0,1)');
+        mask.addColorStop(a,'rgba(0,0,0,1)');
+        mask.addColorStop(b,'rgba(0,0,0,0)');
+        mask.addColorStop(1,'rgba(0,0,0,0)');
+      }
+
+      fctx.fillStyle=mask;
+      fctx.fillRect(0,0,FW,FH);
 
       fctx.globalAlpha=1;
+      fctx.filter='none';
       fctx.globalCompositeOperation='source-over';
     }
-
     function queueFlow(){
       if(flowQueued)return;
       flowQueued=true;
@@ -1560,7 +1592,9 @@
     }
 
     function animateFlow(){
-      queueFlow();
+      const r=stage.getBoundingClientRect();
+      const near=r.bottom>-80 && r.top<innerHeight+80;
+      if(near) queueFlow();
       requestAnimationFrame(animateFlow);
     }
 
