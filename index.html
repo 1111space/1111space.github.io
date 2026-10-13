@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
+  <meta name="1111space-build" content="client-final-glow-nebula-20261013">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -41,28 +42,36 @@
       overflow:hidden;
       pointer-events:none;
       background:
-        radial-gradient(ellipse at 8% 34%, rgba(20,142,219,.16), transparent 31%),
-        radial-gradient(ellipse at 92% 25%, rgba(255,76,191,.13), transparent 30%),
-        radial-gradient(ellipse at 76% 82%, rgba(85,75,255,.14), transparent 32%),
-        radial-gradient(ellipse at 26% 78%, rgba(51,225,207,.09), transparent 30%),
-        linear-gradient(180deg,#02050a 0%,#030711 48%,#01040a 100%);
+        radial-gradient(ellipse at 14% 28%, rgba(45,108,148,.095), transparent 34%),
+        radial-gradient(ellipse at 84% 20%, rgba(104,86,158,.075), transparent 32%),
+        radial-gradient(ellipse at 72% 78%, rgba(42,93,128,.075), transparent 36%),
+        radial-gradient(ellipse at 30% 82%, rgba(52,119,117,.050), transparent 32%),
+        linear-gradient(180deg,#01040a 0%,#030813 44%,#02060e 72%,#010309 100%);
     }
     #starfield{position:absolute;inset:0;width:100%;height:100%}
     .mist,.mist::before,.mist::after{position:absolute;content:"";border-radius:50%;mix-blend-mode:screen;filter:blur(80px);will-change:transform,opacity}
     .mist{inset:-20%;}
     .mist::before{
-      width:60vw;height:34vw;min-width:560px;min-height:320px;
-      left:-4%;top:18%;
-      background:radial-gradient(ellipse,rgba(56,216,255,.19) 0%,rgba(87,100,255,.10) 36%,transparent 72%);
-      animation:mistA 22s ease-in-out infinite alternate;
+      width:112vw;height:28vw;min-width:900px;min-height:220px;
+      left:-18%;top:23%;
+      border-radius:48%;
+      background:
+        radial-gradient(ellipse at 50% 50%,rgba(151,202,218,.10) 0%,rgba(82,120,170,.065) 30%,rgba(103,81,154,.035) 52%,transparent 76%);
+      filter:blur(54px);
+      transform:rotate(-17deg);
+      animation:mistA 30s ease-in-out infinite alternate;
     }
     .mist::after{
-      width:68vw;height:38vw;min-width:620px;min-height:350px;
-      right:-10%;top:44%;
-      background:radial-gradient(ellipse,rgba(255,83,197,.16) 0%,rgba(137,84,255,.11) 34%,rgba(37,226,210,.05) 58%,transparent 74%);
-      animation:mistB 28s ease-in-out infinite alternate;
+      width:92vw;height:20vw;min-width:760px;min-height:170px;
+      right:-10%;top:57%;
+      border-radius:50%;
+      background:
+        radial-gradient(ellipse at 48% 52%,rgba(79,165,165,.055) 0%,rgba(103,90,160,.045) 38%,transparent 73%);
+      filter:blur(68px);
+      transform:rotate(12deg);
+      animation:mistB 36s ease-in-out infinite alternate;
     }
-    .side-dust{position:absolute;inset:0;opacity:.5;mix-blend-mode:screen;background:
+    .side-dust{position:absolute;inset:0;opacity:.28;mix-blend-mode:screen;background:
       radial-gradient(circle at 2% 24%,rgba(125,244,255,.22) 0 1px,transparent 1.5px),
       radial-gradient(circle at 98% 16%,rgba(255,162,226,.20) 0 1px,transparent 1.5px),
       radial-gradient(circle at 3% 54%,rgba(157,154,255,.17) 0 1px,transparent 1.3px),
@@ -224,7 +233,7 @@
     .tagline span{
       display:block;
       color:transparent;
-      background:linear-gradient(100deg,#f9fdff 0%,#d8fbff 22%,#f5f8ff 38%,#ddd4ff 56%,#ffc4e8 74%,#f9fdff 100%);
+      background:linear-gradient(100deg,#f9fdff 0%,#d8fbff 26%,#f6fbff 43%,#ddd7ff 70%,#f9fdff 100%);
       background-size:240% 100%;
       -webkit-background-clip:text;
       background-clip:text;
@@ -303,7 +312,7 @@
       text-transform:uppercase;
       letter-spacing:.18em;
       color:#041016;
-      background:linear-gradient(100deg,#80f9ff 0%,#3be9df 32%,#4f93ff 67%,#ff7dd6 100%);
+      background:linear-gradient(110deg,#66e8dc 0%,#76d9e8 40%,#b29cff 100%);
       background-size:220% 220%;
       box-shadow:0 0 24px rgba(71,235,255,.25),0 0 74px rgba(103,98,255,.18);
       animation:ctaFlow 8s ease-in-out infinite;
@@ -317,14 +326,14 @@
     .worlds{
       width:min(1120px,100%);
       margin:0 auto;
-      padding:34px 18px 70px;
+      padding:34px 18px 20px;
       position:relative;
     }
     .worlds-intro{text-align:center;margin:0 auto 10px}
     .worlds-kicker{margin:0;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(225,247,255,.42)}
     .worlds-stage{
       position:relative;
-      height:1250px;
+      height:1360px;
       width:100%;
       margin-top:10px;
     }
@@ -370,7 +379,7 @@
         rgba(255,255,255,.015) 44%,
         transparent 72%);
       filter:blur(12px);
-      opacity:.60;
+      opacity:.50;
       animation:satelliteAuraLife 18s ease-in-out infinite alternate;
     }
     .satellite.starlet::before{
@@ -385,9 +394,9 @@
       filter:blur(.1px);
     }
     .satellite.starlet::after{inset:-210%;filter:blur(14px);opacity:.52}
-    .satellite.pink{--core:#ffd9f3;--mid:#ff7bd0;--glow:rgba(255,112,201,.34)}
+    .satellite.pink{--core:#eee4ff;--mid:#b8a5e8;--glow:rgba(180,158,232,.27)}
     .satellite.violet{--core:#eadcff;--mid:#9d83ff;--glow:rgba(151,111,255,.35)}
-    .satellite.gold{--core:#fff5d7;--mid:#ffc675;--glow:rgba(255,187,91,.31)}
+    .satellite.gold{--core:#eff8f6;--mid:#90c8c0;--glow:rgba(119,198,187,.24)}
     .satellite.cyan{--core:#e2ffff;--mid:#6cebf5;--glow:rgba(88,233,255,.34)}
     .satellite.blue{--core:#f1f6ff;--mid:#759fff;--glow:rgba(93,138,255,.32)}
     .satellite.white{--core:#ffffff;--mid:#e9f1ff;--glow:rgba(226,243,255,.28)}
@@ -501,11 +510,11 @@
     .portal-label{position:absolute;width:136%;height:136%;left:-18%;top:-18%;overflow:visible;pointer-events:none;opacity:.78;transition:opacity .35s ease}
     .portal-node:hover .portal-label,.portal-node:focus-visible .portal-label{opacity:1}
     .portal-label text{fill:rgba(240,251,255,.83);font-family:"Jost",sans-serif;font-weight:300;font-size:11px;letter-spacing:6px}
-    .p1{left:36%;top:23%;--speed:54s;--orbit:24s;--orbit-delay:-4s;--ox:7px;--oy:-6px}
-    .p2{left:57%;top:29%;--speed:60s;width:clamp(122px,15.5vw,170px);--orbit:28s;--orbit-delay:-11s;--ox:-8px;--oy:7px}
-    .p3{left:47%;top:43%;--speed:66s;width:clamp(126px,16vw,178px);--orbit:31s;--orbit-delay:-18s;--ox:6px;--oy:8px}
-    .p4{left:36%;top:57%;--speed:62s;width:clamp(120px,15.4vw,168px);--orbit:27s;--orbit-delay:-8s;--ox:-7px;--oy:-6px}
-    .p5{left:58%;top:66%;--speed:70s;width:clamp(122px,15.6vw,172px);--orbit:33s;--orbit-delay:-20s;--ox:8px;--oy:-7px}
+    .p1{left:30%;top:20%;width:clamp(112px,13.5vw,148px);--speed:58s;--orbit:28s;--orbit-delay:-4s;--ox:7px;--oy:-6px}
+    .p2{left:68%;top:29%;width:clamp(142px,17vw,190px);--speed:64s;--orbit:31s;--orbit-delay:-11s;--ox:-8px;--oy:7px}
+    .p3{left:43%;top:44%;width:clamp(170px,20vw,222px);--speed:72s;--orbit:35s;--orbit-delay:-18s;--ox:6px;--oy:8px}
+    .p4{left:27%;top:63%;width:clamp(126px,14.5vw,160px);--speed:66s;--orbit:30s;--orbit-delay:-8s;--ox:-7px;--oy:-6px}
+    .p5{left:69%;top:73%;width:clamp(154px,18.2vw,204px);--speed:76s;--orbit:37s;--orbit-delay:-20s;--ox:8px;--oy:-7px}
     @keyframes portalOrbit{
       0%{transform:translate(-50%,-50%) translate3d(calc(var(--sx) + var(--px) - var(--ox)),calc(var(--sy) + var(--py) + var(--oy)),0)}
       50%{transform:translate(-50%,-50%) translate3d(calc(var(--sx) + var(--px) + var(--ox)),calc(var(--sy) + var(--py) - var(--oy)),0)}
@@ -567,18 +576,50 @@
     }
     .end-copy{
       max-width:720px;
-      margin:-12px auto 0;
-      padding:0 20px 80px;
+      margin:-20px auto 0;
+      padding:0 20px 34px;
       text-align:center;
       font-family:"Crimson Text",serif;
       font-style:italic;
       font-size:clamp(25px,4vw,40px);
       line-height:1.12;
       color:transparent;
-      background:linear-gradient(105deg,#f9fdff 0%,#bff8ff 25%,#d8d0ff 56%,#ffbde5 78%,#f9fdff 100%);
+      background:linear-gradient(105deg,#f9fdff 0%,#bff4f1 28%,#d6d4ff 66%,#f9fdff 100%);
       -webkit-background-clip:text;
       background-clip:text;
+      position:relative;
+
+      isolation:isolate;
+
       filter:drop-shadow(0 0 12px rgba(111,232,255,.06));
+
+      animation:endCopyBreath 7.8s ease-in-out infinite;
+    }
+    .end-copy::before{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      left:50%;
+      top:54%;
+      width:min(720px,92vw);
+      height:150px;
+      transform:translate(-50%,-50%) rotate(-3deg);
+      background:
+        radial-gradient(ellipse at 42% 50%,rgba(77,205,198,.095) 0%,rgba(96,178,203,.055) 30%,transparent 70%),
+        radial-gradient(ellipse at 64% 48%,rgba(168,147,223,.09) 0%,rgba(135,157,213,.045) 34%,transparent 72%);
+      filter:blur(24px);
+      opacity:.62;
+      animation:endNebulaBreath 10.5s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes endCopyBreath{
+      0%,100%{opacity:.68;filter:drop-shadow(0 0 6px rgba(105,225,221,.035)) brightness(.97)}
+      50%{opacity:1;filter:drop-shadow(0 0 16px rgba(112,222,220,.11)) drop-shadow(0 0 22px rgba(174,153,230,.075)) brightness(1.10)}
+    }
+    @keyframes endNebulaBreath{
+      0%{opacity:.30;transform:translate(-50%,-50%) rotate(-4deg) scale(.96)}
+      55%{opacity:.72;transform:translate(-50%,-50%) rotate(-2deg) scale(1.04)}
+      100%{opacity:.45;transform:translate(-50%,-50%) rotate(-5deg) scale(1)}
     }
     footer{
       width:min(1020px,calc(100% - 36px));
@@ -817,12 +858,12 @@
       .counter-value{font-size:clamp(28px,10vw,41px)}
       .counter-label{font-size:7px;letter-spacing:.14em}
       .worlds{padding-left:8px;padding-right:8px}
-      .worlds-stage{height:860px}
-      .p1{left:35%;top:22%}
-      .p2{left:62%;top:29%;width:120px}
-      .p3{left:48%;top:43%;width:126px}
-      .p4{left:35%;top:57%;width:118px}
-      .p5{left:62%;top:66%;width:120px}
+      .worlds-stage{height:1040px}
+      .p1{left:28%;top:18%;width:108px}
+      .p2{left:72%;top:30%;width:132px}
+      .p3{left:45%;top:46%;width:150px}
+      .p4{left:27%;top:63%;width:112px}
+      .p5{left:72%;top:76%;width:138px}
       .portal-label text{font-size:10px;letter-spacing:4px}
 
       .satellite{transform:scale(.84)}
@@ -830,6 +871,8 @@
       .s5{left:78%;top:36%}.s6{left:24%;top:47%}.s7{left:71%;top:48%}.s8{left:17%;top:58%}
       .s9{left:80%;top:60%}.s10{left:47%;top:69%}.s11{left:20%;top:74%}.s12{left:78%;top:77%}
       .s13{left:54%;top:83%}.s14{left:36%;top:88%}.s15{left:69%;top:91%}.s16{left:87%;top:45%}
+      .worlds{padding-bottom:14px}
+      .end-copy{margin-top:-18px;padding-bottom:28px}
       footer{flex-direction:column;text-align:center;align-items:center;line-height:1.5}
       .footer-links{align-items:center}
     }
@@ -855,29 +898,155 @@
     .countdown > div{width:100%;text-align:center}
     .countdown .cta{
       margin:30px auto 0;
-      border:1px solid rgba(232,255,255,.24);
+      border:1px solid rgba(226,248,255,.24);
       box-shadow:
-        0 0 10px rgba(92,239,255,.16),
-        0 0 28px rgba(88,212,255,.13),
-        0 0 54px rgba(107,116,255,.08),
-        0 0 76px rgba(255,117,210,.05),
-        inset 0 1px 0 rgba(255,255,255,.30);
+        0 0 12px rgba(98,232,220,.18),
+        0 0 34px rgba(100,215,226,.14),
+        0 0 64px rgba(176,156,255,.10),
+        inset 0 1px 0 rgba(255,255,255,.28);
     }
     .countdown .cta::before{
       content:"";
       position:absolute;
-      inset:-28px -38px;
+      inset:-30px -42px;
       z-index:-1;
       border-radius:999px;
       background:radial-gradient(ellipse at center,
-        rgba(91,240,255,.20) 0%,
-        rgba(91,184,255,.10) 38%,
-        rgba(255,118,210,.055) 58%,
-        transparent 78%);
-      filter:blur(15px);
-      opacity:.78;
-      animation:ctaGlowBreath 7.8s ease-in-out infinite alternate;
+        rgba(98,232,220,.20) 0%,
+        rgba(112,210,225,.105) 36%,
+        rgba(178,157,255,.075) 58%,
+        transparent 80%);
+      filter:blur(16px);
+      opacity:.80;
+      animation:ctaGlowBreath 8.6s ease-in-out infinite alternate;
       pointer-events:none;
+    }
+
+  
+    /* ===== Scroll-driven deep-space atmosphere ===== */
+    .scroll-nebula,
+    .scroll-cluster{
+      position:absolute;
+      inset:-8%;
+      pointer-events:none;
+      opacity:var(--atmo,0);
+      transition:opacity .10s linear;
+      will-change:opacity,transform;
+      mix-blend-mode:screen;
+    }
+
+    .scroll-nebula{
+      transform:
+        translate3d(0,var(--atmoY,0px),0)
+        rotate(var(--atmoR,-8deg))
+        scale(1.02);
+      filter:blur(18px);
+    }
+    .scroll-nebula::before,
+    .scroll-nebula::after{
+      content:"";
+      position:absolute;
+      pointer-events:none;
+      border-radius:50%;
+    }
+    .scroll-nebula::before{
+      width:74vw;
+      height:15vw;
+      min-width:640px;
+      min-height:145px;
+      left:-2vw;
+      top:24%;
+      background:
+        linear-gradient(101deg,
+          transparent 0%,
+          rgba(72,215,203,0) 8%,
+          rgba(72,215,203,.13) 20%,
+          rgba(91,189,214,.20) 34%,
+          rgba(133,158,223,.22) 49%,
+          rgba(177,148,228,.19) 62%,
+          rgba(107,177,207,.11) 76%,
+          transparent 93%);
+      filter:blur(12px);
+      transform:rotate(-9deg);
+      box-shadow:
+        0 0 22px rgba(78,213,202,.07),
+        0 0 46px rgba(122,177,221,.06),
+        0 0 74px rgba(174,148,226,.055);
+    }
+    .scroll-nebula::after{
+      width:64vw;
+      height:12vw;
+      min-width:560px;
+      min-height:120px;
+      right:-1vw;
+      top:57%;
+      background:
+        linear-gradient(88deg,
+          transparent 0%,
+          rgba(87,192,201,0) 10%,
+          rgba(87,192,201,.11) 25%,
+          rgba(122,161,218,.18) 45%,
+          rgba(172,149,225,.17) 63%,
+          rgba(105,184,197,.09) 78%,
+          transparent 94%);
+      filter:blur(13px);
+      transform:rotate(10deg);
+      box-shadow:
+        0 0 20px rgba(94,190,200,.06),
+        0 0 42px rgba(132,168,220,.055),
+        0 0 68px rgba(171,150,224,.05);
+    }
+
+    .scroll-cluster{
+      inset:0;
+      transform:
+        translate3d(var(--clusterX,0px),var(--clusterY,0px),0)
+        rotate(-12deg)
+        scale(1.07);
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:cover;
+      filter:none;
+      -webkit-mask-image:
+        radial-gradient(ellipse 78% 42% at 50% 49%,
+          rgba(0,0,0,.96) 0%,
+          rgba(0,0,0,.78) 38%,
+          rgba(0,0,0,.30) 67%,
+          transparent 88%);
+      mask-image:
+        radial-gradient(ellipse 78% 42% at 50% 49%,
+          rgba(0,0,0,.96) 0%,
+          rgba(0,0,0,.78) 38%,
+          rgba(0,0,0,.30) 67%,
+          transparent 88%);
+    }
+    .scroll-cluster::before,
+    .scroll-cluster::after{
+      content:"";
+      position:absolute;
+      pointer-events:none;
+      border-radius:50%;
+      mix-blend-mode:screen;
+    }
+    .scroll-cluster::before{
+      width:22vw;height:9vw;min-width:190px;min-height:76px;
+      left:8%;top:26%;
+      background:
+        radial-gradient(ellipse,
+          rgba(122,221,216,.14) 0%,
+          rgba(147,184,226,.09) 34%,
+          transparent 72%);
+      filter:blur(15px);
+    }
+    .scroll-cluster::after{
+      width:24vw;height:10vw;min-width:210px;min-height:84px;
+      right:7%;top:59%;
+      background:
+        radial-gradient(ellipse,
+          rgba(196,176,240,.13) 0%,
+          rgba(139,188,214,.08) 35%,
+          transparent 73%);
+      filter:blur(16px);
     }
 
   </style>
@@ -886,6 +1055,8 @@
   <div class="cosmos" aria-hidden="true">
     <canvas id="starfield"></canvas>
     <div class="mist"></div>
+    <div class="scroll-nebula" id="scrollNebula"></div>
+    <div class="scroll-cluster" id="scrollCluster"></div>
     <div class="side-dust"></div>
     <div id="meteors"></div>
     <div class="vignette"></div>
@@ -1047,9 +1218,9 @@
       DPR=Math.min(devicePixelRatio||1,1.8);SW=innerWidth;SH=innerHeight;
       starCanvas.width=SW*DPR;starCanvas.height=SH*DPR;starCanvas.style.width=SW+'px';starCanvas.style.height=SH+'px';
       sctx.setTransform(DPR,0,0,DPR,0,0);
-      const count=Math.min(1180,Math.max(360,Math.floor((SW*SH)/1350)));
+      const count=Math.min(SW<700?620:820,Math.max(280,Math.floor((SW*SH)/1850)));
       const bandAngle = .32;
-      const clusters = Array.from({length:6},()=>({x:Math.random()*SW,y:Math.random()*SH*.9,r:70+Math.random()*140}));
+      const clusters = Array.from({length:7},()=>({x:Math.random()*SW,y:Math.random()*SH*.9,r:55+Math.random()*115}));
       stars=Array.from({length:count},()=>{
         const edgeBias=Math.random();
         let x=Math.random()*SW, y=Math.random()*SH;
@@ -1064,7 +1235,7 @@
           x=c.x + Math.cos(a)*rr; y=c.y + Math.sin(a)*rr;
         }
         const tone=Math.random();
-        return {x,y,r:Math.random()<.09?1.45+Math.random()*1.4:.25+Math.random()*.82,a:.14+Math.random()*.80,p:Math.random()*Math.PI*2,tw:.6+Math.random()*3.4,z:.2+Math.random()*.9,tone:tone<.17?1:tone<.29?2:0};
+        return {x,y,r:Math.random()<.035?.72+Math.random()*.62:.12+Math.random()*.48,a:.12+Math.random()*.66,p:Math.random()*Math.PI*2,tw:.5+Math.random()*2.6,z:.2+Math.random()*.82,tone:tone<.11?1:tone<.18?2:0};
       });
     }
     function drawStars(t){
@@ -1074,13 +1245,13 @@
         const pulse=reduceMotion?1:.7+.3*Math.sin(t*.001*s.tw+s.p);
         const a=Math.max(.05,s.a*pulse);
         const x=s.x+easedX*s.z*8,y=s.y+easedY*s.z*6;
-        const size=s.r>1.25?s.r*14:s.r*7;
-        sctx.globalAlpha=a*(s.r>1.25?.9:.48);
+        const size=s.r>.70?s.r*13:s.r*6.5;
+        sctx.globalAlpha=a*(s.r>.70?.78:.38);
         sctx.drawImage(glows[s.tone],x-size/2,y-size/2,size,size);
         sctx.globalAlpha=a;
         sctx.fillStyle=s.tone===1?'#9dfff1':s.tone===2?'#ffc4e7':'#ffffff';
         sctx.beginPath();sctx.arc(x,y,s.r,0,Math.PI*2);sctx.fill();
-        if(s.r>1.25){sctx.globalAlpha=a*.17;sctx.fillRect(x-s.r*4,y-.3,s.r*8,.6);sctx.fillRect(x-.3,y-s.r*4,.6,s.r*8)}
+        if(s.r>.86){sctx.globalAlpha=a*.10;sctx.fillRect(x-s.r*3.3,y-.22,s.r*6.6,.44);sctx.fillRect(x-.22,y-s.r*3.3,.44,s.r*6.6)}
       }
       sctx.globalAlpha=1;requestAnimationFrame(drawStars);
     }
@@ -1115,6 +1286,163 @@
     const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
     const smoothstep=v=>v*v*(3-2*v);
 
+    // --- scroll-driven nebulae and star clusters ----------------------------
+    const scrollNebula=document.getElementById('scrollNebula');
+    const scrollCluster=document.getElementById('scrollCluster');
+
+
+    function buildNebulaClusterTexture(){
+      if(!scrollCluster)return;
+
+      const mobile=innerWidth<700;
+      const w=Math.max(720,Math.min(1600,Math.round(innerWidth*1.25)));
+      const h=Math.max(900,Math.min(1700,Math.round(innerHeight*1.85)));
+      const c=document.createElement('canvas');
+      c.width=w;
+      c.height=h;
+      const x=c.getContext('2d');
+
+      // Deterministic-ish pseudo-random generator per viewport size for stability.
+      let seed=(w*73856093 ^ h*19349663)>>>0;
+      const rnd=()=>{
+        seed=(seed*1664525+1013904223)>>>0;
+        return seed/4294967296;
+      };
+
+      // Elongated, irregular "Milky Way" density band.
+      const count=mobile?430:720;
+      for(let i=0;i<count;i++){
+        let px,py;
+
+        // Mix band stars, local clumps and sparse field.
+        const mode=rnd();
+        if(mode<.62){
+          const t=rnd();
+          px=w*(.08+t*.84);
+          const center=h*(.31+t*.28+Math.sin(t*6.1)*.035);
+          py=center+(rnd()-.5)*h*(.07+rnd()*.13);
+        }else if(mode<.87){
+          const centers=[
+            [.22,.35,.10,.07],
+            [.42,.44,.12,.08],
+            [.63,.55,.13,.09],
+            [.77,.64,.10,.07],
+            [.54,.33,.08,.055]
+          ];
+          const cc=centers[(rnd()*centers.length)|0];
+          const ang=rnd()*Math.PI*2;
+          const rr=Math.sqrt(rnd());
+          px=w*(cc[0]+Math.cos(ang)*cc[2]*rr);
+          py=h*(cc[1]+Math.sin(ang)*cc[3]*rr);
+        }else{
+          px=rnd()*w;
+          py=h*(.18+rnd()*.64);
+        }
+
+        const bright=rnd();
+        const radius=bright>.985 ? 1.9+rnd()*1.2 :
+                     bright>.92  ? .9+rnd()*.9 :
+                                   .24+rnd()*.58;
+
+        const alpha=bright>.985 ? .96 :
+                    bright>.92  ? .68+rnd()*.22 :
+                                  .18+rnd()*.46;
+
+        const tone=rnd();
+        const core=tone<.60 ? '255,255,255' : tone<.82 ? '182,234,235' : '213,202,247';
+
+        // A few selected stars get thicker, layered local glow.
+        if(bright>.94){
+          const halo=bright>.985 ? 18+rnd()*13 : 8+rnd()*9;
+          const g=x.createRadialGradient(px,py,0,px,py,halo);
+          if(tone<.65){
+            g.addColorStop(0,`rgba(255,255,255,${alpha*.74})`);
+            g.addColorStop(.08,`rgba(174,240,235,${alpha*.46})`);
+            g.addColorStop(.30,`rgba(102,217,209,${alpha*.17})`);
+          }else{
+            g.addColorStop(0,`rgba(255,255,255,${alpha*.72})`);
+            g.addColorStop(.09,`rgba(218,205,255,${alpha*.42})`);
+            g.addColorStop(.32,`rgba(176,153,230,${alpha*.15})`);
+          }
+          g.addColorStop(.68,'rgba(140,190,225,.035)');
+          g.addColorStop(1,'rgba(0,0,0,0)');
+          x.fillStyle=g;
+          x.beginPath();
+          x.arc(px,py,halo,0,Math.PI*2);
+          x.fill();
+        }
+
+        x.fillStyle=`rgba(${core},${alpha})`;
+        x.beginPath();
+        x.arc(px,py,radius,0,Math.PI*2);
+        x.fill();
+
+        if(bright>.992){
+          x.strokeStyle=`rgba(${core},${alpha*.22})`;
+          x.lineWidth=.55;
+          x.beginPath();
+          x.moveTo(px-radius*7,py);
+          x.lineTo(px+radius*7,py);
+          x.moveTo(px,py-radius*7);
+          x.lineTo(px,py+radius*7);
+          x.stroke();
+        }
+      }
+
+      // A few semi-transparent dust clouds for depth.
+      const clouds=[
+        [.26,.36,.20,.08,'rgba(103,199,201,.060)'],
+        [.48,.47,.26,.10,'rgba(124,167,218,.055)'],
+        [.68,.57,.24,.09,'rgba(174,151,224,.050)']
+      ];
+      for(const [cx,cy,rx,ry,col] of clouds){
+        x.save();
+        x.translate(w*cx,h*cy);
+        x.scale(1,ry/rx);
+        const rg=x.createRadialGradient(0,0,0,0,0,w*rx);
+        rg.addColorStop(0,col);
+        rg.addColorStop(.45,col.replace(/[\d.]+\)$/,'0.024)'));
+        rg.addColorStop(1,'rgba(0,0,0,0)');
+        x.fillStyle=rg;
+        x.beginPath();
+        x.arc(0,0,w*rx,0,Math.PI*2);
+        x.fill();
+        x.restore();
+      }
+
+      scrollCluster.style.backgroundImage=`url(${c.toDataURL('image/png')})`;
+    }
+
+    function atmosphereState(){
+      const r=stage.getBoundingClientRect();
+      const stageTop=window.scrollY+r.top;
+      const y=window.scrollY;
+
+      const enterStart=Math.max(0,stageTop-innerHeight*.78);
+      const enterEnd=stageTop-innerHeight*.08;
+
+      const exitStart=stageTop+stage.offsetHeight*.48;
+      const exitEnd=stageTop+stage.offsetHeight*.90;
+
+      const enter=smoothstep(clamp((y-enterStart)/Math.max(1,enterEnd-enterStart),0,1));
+      const exit=1-smoothstep(clamp((y-exitStart)/Math.max(1,exitEnd-exitStart),0,1));
+
+      return clamp(enter*exit,0,1);
+    }
+
+    function updateAtmosphere(){
+      const a=atmosphereState();
+      const r=stage.getBoundingClientRect();
+      const stageTop=window.scrollY+r.top;
+      const progress=clamp((window.scrollY-(stageTop-innerHeight*.75))/Math.max(1,stage.offsetHeight+innerHeight*.4),0,1);
+
+      document.documentElement.style.setProperty('--atmo',(Math.min(1,a*1.06)).toFixed(3));
+      document.documentElement.style.setProperty('--atmoY',((progress-.5)*36).toFixed(1)+'px');
+      document.documentElement.style.setProperty('--atmoR',(-10+progress*6).toFixed(2)+'deg');
+      document.documentElement.style.setProperty('--clusterX',((progress-.5)*18).toFixed(1)+'px');
+      document.documentElement.style.setProperty('--clusterY',((progress-.5)*28).toFixed(1)+'px');
+    }
+
     function resizeFlow(){
       const r=stage.getBoundingClientRect();
       FDPR=Math.min(devicePixelRatio||1,innerWidth<700?1.18:1.4);
@@ -1146,13 +1474,12 @@
     }
 
     function wavePoints(position){
-      // Compact, elegant S; endpoints stay well inside the constellation.
-      const drift=(position-.5)*.020;
+      const drift=(position-.5)*.018;
       return [
-        [FW*(.50+drift*.15), FH*.24],
-        [FW*(.31+drift),     FH*.37],
-        [FW*(.69-drift),     FH*.59],
-        [FW*(.50-drift*.15), FH*.74]
+        [FW*(.50+drift*.10), FH*.13],
+        [FW*(.25+drift),     FH*.33],
+        [FW*(.75-drift),     FH*.64],
+        [FW*(.50-drift*.10), FH*.88]
       ];
     }
 
@@ -1184,43 +1511,54 @@
       if(visibility<=.001)return;
 
       const pts=wavePoints(position);
-      const hue=position*58;
 
-      // Long fade from total transparency -> brightest center -> total transparency.
-      const grad=fctx.createLinearGradient(0,FH*.20,0,FH*.79);
-      grad.addColorStop(0.00,`hsla(${190+hue*.18},96%,72%,0)`);
-      grad.addColorStop(0.10,`hsla(${190+hue*.18},96%,72%,0)`);
-      grad.addColorStop(0.22,`hsla(${194+hue*.22},96%,72%,.18)`);
-      grad.addColorStop(0.37,`hsla(${220+hue*.28},97%,72%,.52)`);
-      grad.addColorStop(0.50,`hsla(${270+hue*.36},96%,74%,.86)`);
-      grad.addColorStop(0.63,`hsla(${314-hue*.12},96%,74%,.58)`);
-      grad.addColorStop(0.78,`hsla(${186+hue*.14},95%,72%,.20)`);
-      grad.addColorStop(0.90,`hsla(${186+hue*.14},95%,72%,0)`);
-      grad.addColorStop(1.00,`hsla(${186+hue*.14},95%,72%,0)`);
+      // Premium two-color ribbon: turquoise + lilac only.
+      const grad=fctx.createLinearGradient(0,FH*.10,0,FH*.91);
+      grad.addColorStop(0.00,'rgba(102,232,220,0)');
+      grad.addColorStop(0.10,'rgba(102,232,220,0)');
+      grad.addColorStop(0.23,'rgba(102,232,220,.28)');
+      grad.addColorStop(0.40,'rgba(112,218,226,.68)');
+      grad.addColorStop(0.55,'rgba(149,188,239,.88)');
+      grad.addColorStop(0.70,'rgba(178,156,255,.72)');
+      grad.addColorStop(0.83,'rgba(178,156,255,.30)');
+      grad.addColorStop(0.93,'rgba(178,156,255,0)');
+      grad.addColorStop(1.00,'rgba(178,156,255,0)');
 
       fctx.globalCompositeOperation='lighter';
 
-      // One visible path. Glow comes from shadow/blur, not parallel stripes.
+      // Soft centered aura first: the glow grows out from the line itself,
+      // without a bright outline on the two edges.
       fctx.save();
-      fctx.globalAlpha=visibility;
-      fctx.lineWidth=2.7;
+      fctx.globalAlpha=visibility*.22;
+      fctx.filter='blur(16px)';
+      fctx.lineWidth=24;
       fctx.lineCap='round';
       fctx.lineJoin='round';
       fctx.strokeStyle=grad;
-      fctx.shadowColor=`hsla(${240+hue*.22},96%,72%,.78)`;
-      fctx.shadowBlur=30;
       traceSmooth(pts);
       fctx.stroke();
       fctx.restore();
 
-      // Soft volumetric aura on exactly the same path.
       fctx.save();
       fctx.globalAlpha=visibility*.10;
-      fctx.filter='blur(20px)';
-      fctx.lineWidth=26;
+      fctx.filter='blur(29px)';
+      fctx.lineWidth=44;
       fctx.lineCap='round';
       fctx.lineJoin='round';
       fctx.strokeStyle=grad;
+      traceSmooth(pts);
+      fctx.stroke();
+      fctx.restore();
+
+      // Clean luminous core, deliberately thin so it reads as light rather than a bordered ribbon.
+      fctx.save();
+      fctx.globalAlpha=visibility;
+      fctx.lineWidth=2.55;
+      fctx.lineCap='round';
+      fctx.lineJoin='round';
+      fctx.strokeStyle=grad;
+      fctx.shadowColor='rgba(145,200,231,.60)';
+      fctx.shadowBlur=18;
       traceSmooth(pts);
       fctx.stroke();
       fctx.restore();
@@ -1257,9 +1595,17 @@
       portalNodes.forEach(node=>{node.style.setProperty('--px','0px');node.style.setProperty('--py','0px')});
     },{passive:true});
 
-    addEventListener('scroll',queueFlow,{passive:true});
-    addEventListener('resize',resizeFlow,{passive:true});
+    addEventListener('scroll',()=>{queueFlow();updateAtmosphere()},{passive:true});
+    addEventListener('resize',()=>{resizeFlow();updateAtmosphere()},{passive:true});
     resizeFlow();
+    buildNebulaClusterTexture();
+    updateAtmosphere();
+    requestAnimationFrame(updateAtmosphere);
+    let clusterResizeTimer;
+    addEventListener('resize',()=>{
+      clearTimeout(clusterResizeTimer);
+      clusterResizeTimer=setTimeout(buildNebulaClusterTexture,220);
+    },{passive:true});
     requestAnimationFrame(queueFlow);
     setTimeout(queueFlow,120);
     window.addEventListener('pageshow',queueFlow,{passive:true});
