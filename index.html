@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="client-final-glow-nebula-20261013">
+  <meta name="1111space-build" content="client-final-line-pulse-20261013">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -974,27 +974,7 @@
         0 0 74px rgba(174,148,226,.055);
     }
     .scroll-nebula::after{
-      width:64vw;
-      height:12vw;
-      min-width:560px;
-      min-height:120px;
-      right:-1vw;
-      top:57%;
-      background:
-        linear-gradient(88deg,
-          transparent 0%,
-          rgba(87,192,201,0) 10%,
-          rgba(87,192,201,.11) 25%,
-          rgba(122,161,218,.18) 45%,
-          rgba(172,149,225,.17) 63%,
-          rgba(105,184,197,.09) 78%,
-          transparent 94%);
-      filter:blur(13px);
-      transform:rotate(10deg);
-      box-shadow:
-        0 0 20px rgba(94,190,200,.06),
-        0 0 42px rgba(132,168,220,.055),
-        0 0 68px rgba(171,150,224,.05);
+      display:none;
     }
 
     .scroll-cluster{
@@ -1512,6 +1492,12 @@
 
       const pts=wavePoints(position);
 
+      // Autonomous light pulse: the ribbon softly fills with light and fades away.
+      const t=performance.now()*0.00062;
+      const pulseRaw=(Math.sin(t)+1)*0.5;
+      const pulse=0.03 + Math.pow(pulseRaw,1.9)*0.97;
+      const liveVisibility=visibility*pulse;
+
       // Premium two-color ribbon: turquoise + lilac only.
       const grad=fctx.createLinearGradient(0,FH*.10,0,FH*.91);
       grad.addColorStop(0.00,'rgba(102,232,220,0)');
@@ -1552,13 +1538,13 @@
 
       // Clean luminous core, deliberately thin so it reads as light rather than a bordered ribbon.
       fctx.save();
-      fctx.globalAlpha=visibility;
+      fctx.globalAlpha=liveVisibility;
       fctx.lineWidth=2.55;
       fctx.lineCap='round';
       fctx.lineJoin='round';
       fctx.strokeStyle=grad;
       fctx.shadowColor='rgba(145,200,231,.60)';
-      fctx.shadowBlur=18;
+      fctx.shadowBlur=10 + pulse*16;
       traceSmooth(pts);
       fctx.stroke();
       fctx.restore();
@@ -1571,6 +1557,11 @@
       if(flowQueued)return;
       flowQueued=true;
       requestAnimationFrame(drawFlow);
+    }
+
+    function animateFlow(){
+      queueFlow();
+      requestAnimationFrame(animateFlow);
     }
 
     // Tiny pointer parallax on desktop; CSS transforms only, no canvas redraw loop.
@@ -1607,6 +1598,7 @@
       clusterResizeTimer=setTimeout(buildNebulaClusterTexture,220);
     },{passive:true});
     requestAnimationFrame(queueFlow);
+    requestAnimationFrame(animateFlow);
     setTimeout(queueFlow,120);
     window.addEventListener('pageshow',queueFlow,{passive:true});
 
