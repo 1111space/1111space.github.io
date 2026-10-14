@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="client-final-lowercase-slogans-20261014">
+  <meta name="1111space-build" content="client-identical-slogans-20261014">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -657,6 +657,9 @@
       100%{opacity:.84;transform:translate(calc(-50% - 2px),calc(-50% + 3px)) scale(.94) rotate(14deg);filter:brightness(1.04)}
     }
     .end-copy{
+      --tagX:0px;
+      --tagY:0px;
+      position:relative;
       max-width:720px;
       margin:-20px auto 0;
       padding:0 20px 34px;
@@ -664,46 +667,37 @@
       font-family:"Manrope",sans-serif;
       font-style:normal;
       font-weight:600;
-      font-size:clamp(22px,3.35vw,34px);
-      line-height:1.12;
-      color:transparent;
-      background:linear-gradient(105deg,#f9fdff 0%,#bff4f1 28%,#d6d4ff 66%,#f9fdff 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      position:relative;
-
-      isolation:isolate;
-
-      filter:drop-shadow(0 0 12px rgba(111,232,255,.06));
-
-      animation:endCopyBreath 7.8s ease-in-out infinite;
+      font-size:clamp(21px,3.45vw,37px);
+      line-height:1.10;
+      text-wrap:balance;
+      transform:translate3d(var(--tagX),var(--tagY),0);
+      transition:transform .55s cubic-bezier(.2,.7,.2,1);
+      animation:taglineReveal 1.7s cubic-bezier(.18,.75,.23,1) both;
     }
     .end-copy::before{
       content:"";
       position:absolute;
+      inset:-34% -12%;
       z-index:-1;
-      left:50%;
-      top:54%;
-      width:min(720px,92vw);
-      height:150px;
-      transform:translate(-50%,-50%) rotate(-3deg);
-      background:
-        radial-gradient(ellipse at 42% 50%,rgba(77,205,198,.095) 0%,rgba(96,178,203,.055) 30%,transparent 70%),
-        radial-gradient(ellipse at 64% 48%,rgba(168,147,223,.09) 0%,rgba(135,157,213,.045) 34%,transparent 72%);
+      background:radial-gradient(ellipse at center,rgba(96,236,255,.07) 0%,rgba(125,104,255,.04) 34%,rgba(255,110,205,.035) 52%,transparent 72%);
       filter:blur(24px);
-      opacity:.62;
-      animation:endNebulaBreath 10.5s ease-in-out infinite alternate;
+      opacity:.78;
+      animation:taglineAura 8s ease-in-out infinite alternate;
       pointer-events:none;
     }
-    @keyframes endCopyBreath{
-      0%,100%{opacity:.68;filter:drop-shadow(0 0 6px rgba(105,225,221,.035)) brightness(.97)}
-      50%{opacity:1;filter:drop-shadow(0 0 16px rgba(112,222,220,.11)) drop-shadow(0 0 22px rgba(174,153,230,.075)) brightness(1.10)}
+    .end-copy span{
+      display:block;
+      padding-bottom:.06em;
+      color:transparent;
+      background:linear-gradient(100deg,#f9fdff 0%,#d8fbff 26%,#f6fbff 43%,#ddd7ff 70%,#f9fdff 100%);
+      background-size:240% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      filter:drop-shadow(0 0 0 rgba(111,232,255,0));
+      animation:taglineColor 10.5s ease-in-out infinite,taglineBreath 6.4s ease-in-out infinite;
     }
-    @keyframes endNebulaBreath{
-      0%{opacity:.30;transform:translate(-50%,-50%) rotate(-4deg) scale(.96)}
-      55%{opacity:.72;transform:translate(-50%,-50%) rotate(-2deg) scale(1.04)}
-      100%{opacity:.45;transform:translate(-50%,-50%) rotate(-5deg) scale(1)}
-    }
+    .end-copy span:nth-child(2){animation-delay:-4.2s,0s}
+
     footer{
       width:min(1020px,calc(100% - 36px));
       margin:0 auto;
@@ -1398,7 +1392,7 @@
       </div>
     </section>
 
-    <p class="end-copy"><span id="end1">different worlds</span><br><span id="end2">one living space</span></p>
+    <p class="end-copy"><span id="end1">different worlds</span><span id="end2">one living space</span></p>
 
     <footer>
       <span class="address-lines">
