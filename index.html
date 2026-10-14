@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="client-identical-slogans-20261014">
+  <meta name="1111space-build" content="client-mobile-x-lock-20261014">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1276,6 +1276,42 @@
     }
 
   
+
+  
+    /* ===== Mobile horizontal stability ===== */
+    html,
+    body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      overscroll-behavior-x:none;
+    }
+    body{
+      position:relative;
+      touch-action:pan-y pinch-zoom;
+    }
+    .page{
+      width:100%;
+      max-width:100%;
+      overflow-x:clip;
+    }
+    .hero,
+    .worlds,
+    .worlds-stage,
+    .end-copy,
+    footer{
+      max-width:100%;
+    }
+    #starfield,
+    #flowCanvas{
+      max-width:100%;
+    }
+    @supports (overflow:clip){
+      html,
+      body{
+        overflow-x:clip;
+      }
+    }
 
   </style>
 </head>
