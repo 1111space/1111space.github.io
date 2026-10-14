@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="client-final-directional-line-20261013">
+  <meta name="1111space-build" content="client-final-label-spacing-20261014">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
       --ink:#f8fcff;
@@ -89,17 +89,57 @@
       height:1.2px;
       border-radius:999px;
       opacity:0;
+      --tail1:rgba(226,234,255,0);
+      --tail2:rgba(216,228,255,.10);
+      --tail3:rgba(186,236,255,.34);
+      --tail4:rgba(235,251,255,.92);
+      --headGlow:rgba(149,226,255,.46);
+      --headColor:#edfdff;
+      --rot:34deg;
+      --dx:94px;
+      --dy:63px;
       background:linear-gradient(
         90deg,
-        rgba(226,234,255,0) 0%,
-        rgba(216,228,255,.10) 35%,
-        rgba(186,236,255,.34) 70%,
-        rgba(235,251,255,.92) 100%
+        var(--tail1) 0%,
+        var(--tail2) 35%,
+        var(--tail3) 70%,
+        var(--tail4) 100%
       );
-      filter:drop-shadow(0 0 3px rgba(149,226,255,.46));
-      transform:translate3d(0,0,0) rotate(34deg);
+      filter:drop-shadow(0 0 3px var(--headGlow));
+      transform:translate3d(0,0,0) rotate(var(--rot));
       transform-origin:right center;
       will-change:transform,opacity;
+    }
+    .meteor.rev{
+      --rot:-34deg;
+      --dx:-94px;
+      --dy:63px;
+      background:linear-gradient(
+        270deg,
+        var(--tail1) 0%,
+        var(--tail2) 35%,
+        var(--tail3) 70%,
+        var(--tail4) 100%
+      );
+      transform-origin:left center;
+    }
+    .meteor.rev::after{
+      left:-1px;
+      right:auto;
+    }
+    .meteor.tint-cyan{
+      --tail2:rgba(102,232,220,.10);
+      --tail3:rgba(112,230,255,.44);
+      --tail4:rgba(194,255,251,.95);
+      --headGlow:rgba(100,236,225,.55);
+      --headColor:#d8fff9;
+    }
+    .meteor.tint-violet{
+      --tail2:rgba(170,154,255,.10);
+      --tail3:rgba(176,156,255,.42);
+      --tail4:rgba(236,232,255,.96);
+      --headGlow:rgba(179,156,255,.55);
+      --headColor:#f6f2ff;
     }
     .meteor::after{
       content:"";
@@ -109,8 +149,8 @@
       width:3px;
       height:3px;
       border-radius:50%;
-      background:#edfdff;
-      box-shadow:0 0 5px rgba(210,249,255,.92),0 0 10px rgba(106,211,255,.42);
+      background:var(--headColor);
+      box-shadow:0 0 5px rgba(210,249,255,.92),0 0 10px var(--headGlow);
       transform:translateY(-50%);
     }
     .meteor.fly{animation:meteorDown 2.45s linear forwards}
@@ -119,10 +159,10 @@
     @keyframes mistB{from{transform:translate3d(4%,-4%,0) scale(1.02) rotate(6deg);opacity:.62}to{transform:translate3d(-8%,7%,0) scale(1.18) rotate(-8deg);opacity:.94}}
     @keyframes dustSlide{to{background-position:34px 68px,-41px 82px,94px -47px,-106px 53px}}
     @keyframes meteorDown{
-      0%{opacity:0;transform:translate3d(0,0,0) rotate(34deg)}
+      0%{opacity:0;transform:translate3d(0,0,0) rotate(var(--rot))}
       10%{opacity:.82}
       74%{opacity:.62}
-      100%{opacity:0;transform:translate3d(94px,63px,0) rotate(34deg)}
+      100%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) rotate(var(--rot))}
     }
 
     .page{position:relative;z-index:2;isolation:isolate}
@@ -130,7 +170,7 @@
       min-height:100svh;
       width:min(1100px,100%);
       margin:0 auto;
-      padding:clamp(34px,5vw,64px) 22px 54px;
+      padding:clamp(30px,4.4vw,52px) 22px 28px;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -209,11 +249,13 @@
       --tagX:0px;
       --tagY:0px;
       position:relative;
-      margin:clamp(42px,7vh,76px) 0 clamp(42px,7vh,74px);
-      font-family:"Crimson Text",serif;
-      font-style:italic;
-      font-size:clamp(32px,5.29vw,58.5px);
-      line-height:1.06;
+      margin:clamp(18px,3.4vh,30px) 0 clamp(24px,4vh,34px);
+      padding-bottom:.10em;
+      font-family:"Manrope",sans-serif;
+      font-style:normal;
+      font-weight:600;
+      font-size:clamp(21px,3.45vw,37px);
+      line-height:1.10;
       text-wrap:balance;
       transform:translate3d(var(--tagX),var(--tagY),0);
       transition:transform .55s cubic-bezier(.2,.7,.2,1);
@@ -232,6 +274,7 @@
     }
     .tagline span{
       display:block;
+      padding-bottom:.06em;
       color:transparent;
       background:linear-gradient(100deg,#f9fdff 0%,#d8fbff 26%,#f6fbff 43%,#ddd7ff 70%,#f9fdff 100%);
       background-size:240% 100%;
@@ -259,7 +302,7 @@
       50%{
         transform:scale(1.018);
         filter:drop-shadow(0 0 12px rgba(111,232,255,.15)) drop-shadow(0 0 22px rgba(255,108,206,.08));
-        letter-spacing:.005em;
+        letter-spacing:.003em;
       }
       100%{
         transform:scale(.985);
@@ -281,20 +324,21 @@
     .description{
       max-width:800px;
       margin:0 auto;
-      font-family:"Crimson Text",serif;
-      font-size:clamp(18px,2.5vw,25px);
-      line-height:1.45;
+      font-family:"Manrope",sans-serif;
+      font-weight:500;
+      font-size:clamp(17px,2.18vw,23px);
+      line-height:1.24;
       color:var(--soft);
       text-wrap:balance;
     }
     .description .line{display:block}
-    .countdown{width:min(830px,100%);margin-top:clamp(47px,7vh,78px)}
+    .countdown{width:min(830px,100%);margin-top:clamp(34px,5.2vh,48px);padding-bottom:54px}
     .count-kicker{margin:0 0 14px;font-size:10px;letter-spacing:.29em;text-transform:uppercase;color:rgba(255,255,255,.94);text-shadow:0 0 14px rgba(140,235,255,.10)}
     .counter{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,4vw,58px)}
     .counter-unit{text-align:center}
     .counter-value{display:block;font-size:clamp(34px,6vw,66px);font-weight:300;line-height:1;letter-spacing:-.045em}
     .counter-label{display:block;margin-top:9px;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:rgba(221,246,255,.48)}
-    .open{display:none;font-family:"Crimson Text",serif;font-size:28px}
+    .open{display:none;font-family:"Manrope",sans-serif;font-size:28px}
     .date{margin:22px 0 0;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(225,246,255,.56)}
     .cta{
       margin-top:30px;
@@ -320,22 +364,22 @@
     .cta::before{content:"";position:absolute;inset:-140% -20%;background:linear-gradient(112deg,transparent 43%,rgba(255,255,255,.58) 50%,transparent 57%);transform:translateX(-70%);animation:shine 5.5s ease-in-out infinite}
     @keyframes ctaFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
     @keyframes shine{0%,65%{transform:translateX(-70%)}86%,100%{transform:translateX(70%)}}
-    .belong{margin:10px 0 0;font-family:"Crimson Text",serif;font-style:italic;font-size:14px;color:rgba(231,249,255,.48)}
-    .scroll-note{position:absolute;bottom:23px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(223,247,255,.42);white-space:nowrap}
+    .belong{margin:12px 0 0;font-family:"Manrope",sans-serif;font-style:normal;font-size:14px;color:rgba(231,249,255,.48)}
+    .scroll-note{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(223,247,255,.42);white-space:nowrap}
 
     .worlds{
       width:min(1120px,100%);
       margin:0 auto;
-      padding:34px 18px 20px;
+      padding:20px 18px 20px;
       position:relative;
     }
-    .worlds-intro{text-align:center;margin:0 auto 10px}
+    .worlds-intro{text-align:center;margin:0 auto 4px}
     .worlds-kicker{margin:0;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(225,247,255,.42)}
     .worlds-stage{
       position:relative;
       height:1360px;
       width:100%;
-      margin-top:10px;
+      margin-top:-8px;
     }
     #flowCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;mix-blend-mode:screen}
 
@@ -403,18 +447,18 @@
     .s1{left:26%;top:18%;--size:22px;--dur:31s;--pulse:9.5s}
     .s2{left:45%;top:13%;--size:13px;--dur:36s;--pulse:8.8s}
     .s3{left:69%;top:19%;--size:26px;--dur:34s;--pulse:10.6s}
-    .s4{left:29%;top:33%;--size:11px;--dur:38s;--pulse:8.2s}
+     .s4{left:18%;top:31%;--size:11px;--dur:38s;--pulse:8.2s}
     .s5{left:66%;top:36%;--size:18px;--dur:30s;--pulse:9.4s}
-    .s6{left:37%;top:44%;--size:28px;--dur:41s;--pulse:11.2s}
-    .s7{left:60%;top:48%;--size:10px;--dur:33s;--pulse:8.4s}
+     .s6{left:24%;top:43%;--size:28px;--dur:41s;--pulse:11.2s}
+     .s7{left:73%;top:46%;--size:10px;--dur:33s;--pulse:8.4s}
     .s8{left:25%;top:55%;--size:17px;--dur:35s;--pulse:9.8s}
     .s9{left:70%;top:57%;--size:24px;--dur:39s;--pulse:10.1s}
-    .s10{left:44%;top:64%;--size:9px;--dur:31s;--pulse:8.1s}
-    .s11{left:28%;top:71%;--size:20px;--dur:40s;--pulse:10.8s}
-    .s12{left:69%;top:73%;--size:13px;--dur:34s;--pulse:8.9s}
-    .s13{left:52%;top:77%;--size:30px;--dur:44s;--pulse:11.5s;--alpha:.60}
-    .s14{left:39%;top:82%;--size:10px;--dur:30s;--pulse:8s}
-    .s15{left:61%;top:86%;--size:18px;--dur:37s;--pulse:10s}
+     .s10{left:58%;top:62%;--size:9px;--dur:31s;--pulse:8.1s}
+     .s11{left:16%;top:69%;--size:20px;--dur:40s;--pulse:10.8s}
+     .s12{left:81%;top:72%;--size:13px;--dur:34s;--pulse:8.9s}
+     .s13{left:39%;top:76%;--size:30px;--dur:44s;--pulse:11.5s;--alpha:.60}
+     .s14{left:28%;top:82%;--size:10px;--dur:30s;--pulse:8s}
+     .s15{left:74%;top:84%;--size:18px;--dur:37s;--pulse:10s}
     .s16{left:76%;top:43%;--size:8px;--dur:32s;--pulse:7.9s}
     @keyframes satelliteFloat{
       0%{transform:translate3d(-5px,6px,0) scale(.985)}
@@ -507,14 +551,52 @@
     .portal-node.crystal{--bg:radial-gradient(circle at 46% 34%, rgba(255,221,255,.95) 0%, rgba(214,138,255,.86) 15%, rgba(112,70,255,.54) 34%, rgba(44,28,96,.60) 56%, rgba(11,10,28,.22) 72%, transparent 94%);--overlay:conic-gradient(from 0deg, rgba(255,255,255,.00) 0 12%, rgba(238,195,255,.16) 14% 19%, transparent 22% 34%, rgba(255,255,255,.16) 36% 40%, transparent 43% 58%, rgba(212,171,255,.14) 62% 67%, transparent 70% 100%), radial-gradient(circle at 50% 54%, rgba(255,255,255,.18), transparent 26%);--glow1:rgba(222,125,255,.32);--glow2:rgba(129,92,255,.12)}
     .portal-node.social{--bg:radial-gradient(circle at 42% 40%, rgba(255,231,200,.94) 0%, rgba(255,154,192,.78) 18%, rgba(255,111,206,.42) 37%, rgba(77,40,92,.56) 58%, rgba(14,12,24,.22) 72%, transparent 94%);--overlay:radial-gradient(circle at 30% 32%, rgba(255,246,223,.22), transparent 18%), radial-gradient(circle at 65% 60%, rgba(255,182,228,.16), transparent 24%), radial-gradient(circle at 50% 56%, rgba(255,255,255,.11), transparent 44%);--glow1:rgba(255,163,209,.30);--glow2:rgba(255,211,133,.10)}
     .portal-node.cosmic{--bg:radial-gradient(circle at 40% 36%, rgba(225,255,255,.92) 0%, rgba(130,246,255,.76) 15%, rgba(255,120,220,.46) 33%, rgba(89,94,255,.44) 52%, rgba(12,14,33,.22) 72%, transparent 94%);--overlay:conic-gradient(from 12deg, rgba(255,255,255,.00) 0 10%, rgba(189,255,255,.15) 15% 20%, transparent 22% 46%, rgba(255,174,239,.14) 50% 54%, transparent 58% 100%), radial-gradient(circle at 52% 56%, rgba(255,255,255,.15), transparent 28%);--glow1:rgba(123,246,255,.32);--glow2:rgba(255,125,226,.12)}
-    .portal-label{position:absolute;width:136%;height:136%;left:-18%;top:-18%;overflow:visible;pointer-events:none;opacity:.78;transition:opacity .35s ease}
+    .portal-label{position:absolute;width:calc(100% + 74px);height:calc(100% + 74px);left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible;pointer-events:none;opacity:.82;transition:opacity .35s ease}
     .portal-node:hover .portal-label,.portal-node:focus-visible .portal-label{opacity:1}
-    .portal-label text{fill:rgba(240,251,255,.83);font-family:"Jost",sans-serif;font-weight:300;font-size:11px;letter-spacing:6px}
-    .p1{left:30%;top:20%;width:clamp(112px,13.5vw,148px);--speed:58s;--orbit:28s;--orbit-delay:-4s;--ox:7px;--oy:-6px}
-    .p2{left:68%;top:29%;width:clamp(142px,17vw,190px);--speed:64s;--orbit:31s;--orbit-delay:-11s;--ox:-8px;--oy:7px}
-    .p3{left:43%;top:44%;width:clamp(170px,20vw,222px);--speed:72s;--orbit:35s;--orbit-delay:-18s;--ox:6px;--oy:8px}
-    .p4{left:27%;top:63%;width:clamp(126px,14.5vw,160px);--speed:66s;--orbit:30s;--orbit-delay:-8s;--ox:-7px;--oy:-6px}
-    .p5{left:69%;top:73%;width:clamp(154px,18.2vw,204px);--speed:76s;--orbit:37s;--orbit-delay:-20s;--ox:8px;--oy:-7px}
+    .portal-label text{fill:rgba(240,251,255,.92);font-family:"Jost",sans-serif;font-weight:400;font-size:16px;letter-spacing:4.4px}
+    .p1{left:30%;top:18%;width:clamp(104px,12.5vw,138px);--speed:58s;--orbit:28s;--orbit-delay:-4s;--ox:7px;--oy:-6px}
+    .p2{left:68%;top:27%;width:clamp(132px,15.8vw,176px);--speed:64s;--orbit:31s;--orbit-delay:-11s;--ox:-8px;--oy:7px}
+    .p3{left:38.5%;top:42%;width:clamp(156px,18.5vw,204px);--speed:72s;--orbit:35s;--orbit-delay:-18s;--ox:6px;--oy:8px}
+    .p4{left:27%;top:61%;width:clamp(116px,13.3vw,148px);--speed:66s;--orbit:30s;--orbit-delay:-8s;--ox:-7px;--oy:-6px}
+    .p5{left:69%;top:66%;width:clamp(140px,16.8vw,188px);--speed:76s;--orbit:37s;--orbit-delay:-20s;--ox:8px;--oy:-7px}
+
+    .p6{left:50%;top:83%;width:clamp(88px,10.5vw,112px);--speed:54s;--orbit:26s;--orbit-delay:-12s;--ox:5px;--oy:4px}
+    .portal-node.promo{
+      --bg:radial-gradient(circle at 44% 34%, rgba(255,242,198,.98) 0%, rgba(255,188,81,.90) 18%, rgba(255,112,74,.62) 40%, rgba(126,42,12,.54) 62%, rgba(19,10,7,.22) 76%, transparent 96%);
+      --overlay:conic-gradient(from 16deg, rgba(255,255,255,.0) 0 8%, rgba(255,239,183,.18) 12% 20%, transparent 23% 48%, rgba(255,171,93,.14) 54% 62%, transparent 68% 100%), radial-gradient(circle at 50% 54%, rgba(255,255,255,.18), transparent 26%);
+      --glow1:rgba(255,174,70,.34);
+      --glow2:rgba(255,92,65,.12);
+    }
+
+    .promo-icon{
+      position:absolute;
+      left:50%;top:50%;
+      width:42%;
+      height:42%;
+      transform:translate(-50%,-50%);
+      z-index:4;
+      pointer-events:none;
+      overflow:visible;
+      filter:drop-shadow(0 0 10px rgba(255,216,149,.26)) drop-shadow(0 0 22px rgba(255,120,87,.10));
+    }
+    .promo-icon .badge-ring{
+      fill:rgba(255,255,255,.035);
+      stroke:rgba(255,244,225,.68);
+      stroke-width:3.2;
+    }
+    .promo-icon .badge-tick{
+      stroke:rgba(255,244,225,.46);
+      stroke-width:3;
+      stroke-linecap:round;
+    }
+    .promo-icon .pct{
+      stroke:rgba(255,251,242,.96);
+      stroke-width:7;
+      stroke-linecap:round;
+      fill:none;
+    }
+
+
     @keyframes portalOrbit{
       0%{transform:translate(-50%,-50%) translate3d(calc(var(--sx) + var(--px) - var(--ox)),calc(var(--sy) + var(--py) + var(--oy)),0)}
       50%{transform:translate(-50%,-50%) translate3d(calc(var(--sx) + var(--px) + var(--ox)),calc(var(--sy) + var(--py) - var(--oy)),0)}
@@ -579,9 +661,10 @@
       margin:-20px auto 0;
       padding:0 20px 34px;
       text-align:center;
-      font-family:"Crimson Text",serif;
-      font-style:italic;
-      font-size:clamp(25px,4vw,40px);
+      font-family:"Manrope",sans-serif;
+      font-style:normal;
+      font-weight:600;
+      font-size:clamp(22px,3.35vw,34px);
       line-height:1.12;
       color:transparent;
       background:linear-gradient(105deg,#f9fdff 0%,#bff4f1 28%,#d6d4ff 66%,#f9fdff 100%);
@@ -664,7 +747,7 @@
     .world-inner{max-width:760px}
     .world-number{font-size:10px;letter-spacing:.30em;text-transform:uppercase;color:rgba(226,247,255,.48)}
     .world-title{margin:20px 0 16px;font-size:clamp(42px,8vw,88px);font-weight:300;letter-spacing:.08em}
-    .world-copy{margin:0 auto;max-width:620px;font-family:"Crimson Text",serif;font-size:clamp(19px,2.4vw,25px);line-height:1.5;color:var(--soft)}
+    .world-copy{margin:0 auto;max-width:620px;font-family:"Manrope",sans-serif;font-size:clamp(19px,2.4vw,25px);line-height:1.5;color:var(--soft)}
     .world-back{margin-top:36px;border:1px solid rgba(174,235,255,.20);background:rgba(255,255,255,.03);color:#fff;border-radius:999px;padding:13px 24px;letter-spacing:.18em;text-transform:uppercase;font-size:10px;cursor:pointer}
 
 
@@ -833,7 +916,7 @@
       letter-spacing:.08em;
       font-size:clamp(28px,5vw,48px);
     }
-    .privacy-card p{font-family:"Crimson Text",serif;font-size:18px;line-height:1.52;margin:0 0 14px}
+    .privacy-card p{font-family:"Manrope",sans-serif;font-size:18px;line-height:1.52;margin:0 0 14px}
     .privacy-card a{color:#9df7ff}
     .privacy-close{
       position:absolute;
@@ -853,18 +936,19 @@
       .numbers{font-size:clamp(64px,21vw,92px);gap:10px;letter-spacing:.08em;padding-left:.08em}
       .signal{height:clamp(74px,22vw,96px);width:24px}
       .space-word{gap:16px;letter-spacing:.44em;padding-left:.44em}
-      .tagline{margin-top:38px;margin-bottom:38px}
+      .tagline{margin-top:24px;margin-bottom:26px}
       .counter{gap:12px}
       .counter-value{font-size:clamp(28px,10vw,41px)}
       .counter-label{font-size:7px;letter-spacing:.14em}
       .worlds{padding-left:8px;padding-right:8px}
       .worlds-stage{height:1040px}
-      .p1{left:28%;top:18%;width:108px}
-      .p2{left:72%;top:30%;width:132px}
-      .p3{left:45%;top:46%;width:150px}
-      .p4{left:27%;top:63%;width:112px}
-      .p5{left:72%;top:76%;width:138px}
-      .portal-label text{font-size:10px;letter-spacing:4px}
+      .p1{left:28%;top:16%;width:100px}
+      .p2{left:72%;top:28%;width:122px}
+      .p3{left:39%;top:43%;width:138px}
+      .p4{left:27%;top:60%;width:104px}
+      .p5{left:72%;top:68%;width:126px}
+      .portal-label{width:calc(100% + 94px);height:calc(100% + 94px)}
+      .portal-label text{font-size:14px;letter-spacing:4px}
 
       .satellite{transform:scale(.84)}
       .s1{left:20%;top:16%}.s2{left:48%;top:12%}.s3{left:78%;top:21%}.s4{left:18%;top:34%}
@@ -873,6 +957,7 @@
       .s13{left:54%;top:83%}.s14{left:36%;top:88%}.s15{left:69%;top:91%}.s16{left:87%;top:45%}
       .worlds{padding-bottom:14px}
       .end-copy{margin-top:-18px;padding-bottom:28px}
+      .p6{left:50%;top:84%;width:94px}
       footer{flex-direction:column;text-align:center;align-items:center;line-height:1.5}
       .footer-links{align-items:center}
     }
@@ -1029,6 +1114,175 @@
       filter:blur(16px);
     }
 
+  
+    /* ===== Early booking / personal data form ===== */
+    .booking-modal{
+      position:fixed;
+      inset:0;
+      z-index:45;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(1,4,10,.86);
+      backdrop-filter:blur(18px);
+    }
+    .booking-modal.open{display:flex}
+    .booking-card{
+      position:relative;
+      width:min(720px,100%);
+      max-height:min(88vh,820px);
+      overflow:auto;
+      padding:clamp(24px,4.8vw,46px);
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 18% 0%,rgba(102,232,220,.10),transparent 32%),
+        radial-gradient(circle at 92% 20%,rgba(178,156,255,.09),transparent 34%),
+        rgba(3,8,17,.96);
+      border:1px solid rgba(180,232,255,.11);
+      box-shadow:0 30px 100px rgba(0,0,0,.48),0 0 60px rgba(105,136,255,.06);
+      color:rgba(235,248,255,.82);
+    }
+    .booking-close{
+      position:absolute;
+      top:14px;right:14px;
+      width:40px;height:40px;
+      border-radius:50%;
+      border:1px solid rgba(190,235,255,.12);
+      background:rgba(255,255,255,.035);
+      color:#fff;
+      cursor:pointer;
+      font-size:20px;
+      line-height:1;
+    }
+    .booking-eyebrow{
+      margin:0 0 10px;
+      font-size:9px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:rgba(214,242,255,.48);
+    }
+    .booking-card h2{
+      margin:0 0 12px;
+      font-size:clamp(30px,5vw,48px);
+      line-height:1.02;
+      font-weight:300;
+      letter-spacing:.02em;
+      color:#fff;
+    }
+    .booking-lead{
+      margin:0 0 24px;
+      max-width:580px;
+      font-family:"Manrope",sans-serif;
+      font-size:16px;
+      line-height:1.45;
+      color:rgba(230,247,255,.66);
+    }
+    .booking-form{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .form-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+    .form-field.full{grid-column:1/-1}
+    .form-field label{
+      font-size:9px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(224,245,255,.52);
+    }
+    .form-field input,
+    .form-field select{
+      width:100%;
+      min-height:48px;
+      border:1px solid rgba(189,231,255,.13);
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      color:#f7fcff;
+      padding:0 14px;
+      outline:none;
+      font-family:"Jost",sans-serif;
+      font-size:16px;
+      transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
+    }
+    .form-field select{appearance:none}
+    .form-field input:focus,
+    .form-field select:focus{
+      border-color:rgba(111,230,224,.42);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 0 0 3px rgba(111,230,224,.05);
+    }
+    .consent-box{
+      grid-column:1/-1;
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:12px;
+      line-height:1.45;
+      color:rgba(225,244,255,.64);
+    }
+    .consent-box input{
+      flex:0 0 auto;
+      margin:3px 0 0;
+      width:16px;height:16px;
+      accent-color:#72dfdc;
+    }
+    .consent-box a,
+    .mini-privacy button{color:#9cf4ef}
+    .mini-privacy{
+      grid-column:1/-1;
+      margin-top:2px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.025);
+      border:1px solid rgba(185,231,255,.08);
+      font-size:11px;
+      line-height:1.5;
+      color:rgba(221,242,255,.54);
+    }
+    .mini-privacy strong{color:rgba(244,251,255,.80);font-weight:400}
+    .mini-privacy button{
+      border:0;
+      padding:0;
+      margin:0;
+      background:none;
+      font:inherit;
+      cursor:pointer;
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+    .booking-submit{
+      grid-column:1/-1;
+      margin-top:4px;
+      min-height:52px;
+      border:0;
+      border-radius:999px;
+      cursor:pointer;
+      font-family:"Jost",sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#061014;
+      background:linear-gradient(110deg,#66e8dc 0%,#82d9e8 48%,#b29cff 100%);
+      box-shadow:0 0 28px rgba(102,232,220,.12),0 0 56px rgba(178,156,255,.08);
+    }
+    .booking-submit:disabled{opacity:.45;cursor:not-allowed}
+    .booking-status{
+      grid-column:1/-1;
+      min-height:18px;
+      margin:0;
+      font-size:11px;
+      color:rgba(212,244,255,.66);
+    }
+    @media(max-width:700px){
+      .booking-form{grid-template-columns:1fr}
+      .form-field.full,.consent-box,.mini-privacy,.booking-submit,.booking-status{grid-column:1}
+      .booking-card{padding:26px 18px 22px;border-radius:22px}
+    }
+
+  
+
   </style>
 </head>
 <body>
@@ -1053,7 +1307,7 @@
         <div class="space-word" aria-hidden="true"><span>S</span><span>P</span><span>A</span><span>C</span><span>E</span></div>
       </div>
 
-      <p class="tagline"><span id="tag1">feel everything.</span><span id="tag2">fear nothing.</span></p>
+      <p class="tagline"><span id="tag1">feel everything</span><span id="tag2">fear nothing</span></p>
       <p class="kind" id="kindText">Wellness social club · Playa del Carmen</p>
       <p class="description">
         <span class="line" id="desc1">Built around contrast therapy, ritual and real connection.</span>
@@ -1105,32 +1359,46 @@
 
         <button class="portal-node sauna p1" type="button" data-world="1" aria-label="Open Name 1">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc1" d="M 30 148 A 84 84 0 0 0 190 148"/></defs><text><textPath href="#arc1" startOffset="50%" text-anchor="middle">NAME 1</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc1" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc1" startOffset="50%" text-anchor="middle">NAME 1</textPath></text></svg>
         </button>
 
         <button class="portal-node water p2" type="button" data-world="2" aria-label="Open Name 2">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc2" d="M 30 148 A 84 84 0 0 0 190 148"/></defs><text><textPath href="#arc2" startOffset="50%" text-anchor="middle">NAME 2</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc2" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc2" startOffset="50%" text-anchor="middle">NAME 2</textPath></text></svg>
         </button>
 
         <button class="portal-node crystal p3" type="button" data-world="3" aria-label="Open Name 3">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc3" d="M 30 148 A 84 84 0 0 0 190 148"/></defs><text><textPath href="#arc3" startOffset="50%" text-anchor="middle">NAME 3</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc3" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc3" startOffset="50%" text-anchor="middle">NAME 3</textPath></text></svg>
         </button>
 
         <button class="portal-node social p4" type="button" data-world="4" aria-label="Open Name 4">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc4" d="M 30 148 A 84 84 0 0 0 190 148"/></defs><text><textPath href="#arc4" startOffset="50%" text-anchor="middle">NAME 4</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc4" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc4" startOffset="50%" text-anchor="middle">NAME 4</textPath></text></svg>
         </button>
 
         <button class="portal-node cosmic p5" type="button" data-world="5" aria-label="Open Name 5">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc5" d="M 30 148 A 84 84 0 0 0 190 148"/></defs><text><textPath href="#arc5" startOffset="50%" text-anchor="middle">NAME 5</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc5" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc5" startOffset="50%" text-anchor="middle">NAME 5</textPath></text></svg>
+        </button>
+        <button class="portal-node promo p6" type="button" data-world="6" aria-label="Open Early booking">
+          <span class="portal-core"><span class="inner"></span></span>
+          <svg class="promo-icon" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="badge-ring" cx="60" cy="60" r="42"></circle>
+            <line class="badge-tick" x1="60" y1="8" x2="60" y2="18"></line>
+            <line class="badge-tick" x1="60" y1="102" x2="60" y2="112"></line>
+            <line class="badge-tick" x1="8" y1="60" x2="18" y2="60"></line>
+            <line class="badge-tick" x1="102" y1="60" x2="112" y2="60"></line>
+            <line class="pct" x1="42" y1="78" x2="78" y2="42"></line>
+            <circle class="pct" cx="43" cy="43" r="9"></circle>
+            <circle class="pct" cx="77" cy="77" r="9"></circle>
+          </svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc6" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="promoArcText" href="#arc6" startOffset="50%" text-anchor="middle">EARLY BOOKING</textPath></text></svg>
         </button>
       </div>
     </section>
 
-    <p class="end-copy"><span id="end1">Different worlds.</span><br><span id="end2">One living space.</span></p>
+    <p class="end-copy"><span id="end1">Different worlds</span><br><span id="end2">One living space</span></p>
 
     <footer>
       <span class="address-lines">
@@ -1146,16 +1414,75 @@
   </div>
 
 
+
+  <!-- LEGAL TODO before launch: replace the trade name "11·11 SPACE" in the Privacy Notice with the exact legal name of the data controller if different. -->
+  <section class="booking-modal" id="bookingModal" aria-hidden="true">
+    <div class="booking-card" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <button class="booking-close" id="bookingClose" type="button" aria-label="Close">×</button>
+      <p class="booking-eyebrow" id="bookingEyebrow">EARLY ACCESS</p>
+      <h2 id="bookingTitle">Reserve your place</h2>
+      <p class="booking-lead" id="bookingLead">Leave your contact details and we’ll get back to you about early booking and opening access.</p>
+
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-field">
+          <label for="bookingName" id="bookingNameLabel">Full name *</label>
+          <input id="bookingName" name="name" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="form-field">
+          <label for="bookingEmail" id="bookingEmailLabel">Email *</label>
+          <input id="bookingEmail" name="email" type="email" autocomplete="email" maxlength="160" required>
+        </div>
+        <div class="form-field">
+          <label for="bookingPhone" id="bookingPhoneLabel">WhatsApp / phone</label>
+          <input id="bookingPhone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+        </div>
+        <div class="form-field">
+          <label for="bookingLanguage" id="bookingLanguageLabel">Preferred language</label>
+          <select id="bookingLanguage" name="language">
+            <option value="English">English</option>
+            <option value="Español">Español</option>
+          </select>
+        </div>
+
+        <label class="consent-box">
+          <input id="bookingAge" type="checkbox" required>
+          <span id="bookingAgeText">I confirm that I am 18 years or older.</span>
+        </label>
+
+        <label class="consent-box">
+          <input id="bookingConsent" type="checkbox" required>
+          <span id="bookingConsentText">I have read the Privacy Notice and consent to the processing of my personal data to manage my request and early booking.</span>
+        </label>
+
+        <label class="consent-box">
+          <input id="bookingMarketing" type="checkbox">
+          <span id="bookingMarketingText">I would also like to receive news, offers and event updates from 11·11 SPACE. This is optional and I can withdraw it at any time.</span>
+        </label>
+
+        <div class="mini-privacy" id="miniPrivacy">
+          <strong>Privacy notice:</strong> 11·11 SPACE, Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México, will process your name, email, optional phone number, preferred language and consent choices to answer your request and manage early booking. Marketing communications are optional. You can limit use or exercise ARCO rights by writing to <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>. <button type="button" id="bookingPrivacyOpen">Read the full Privacy Notice.</button>
+        </div>
+
+        <button class="booking-submit" id="bookingSubmit" type="submit">Continue by email</button>
+        <p class="booking-status" id="bookingStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <section class="privacy-modal" id="privacyModal" aria-hidden="true">
     <div class="privacy-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
       <button class="privacy-close" id="privacyClose" type="button" aria-label="Close">×</button>
       <h2 id="privacyTitle">Privacy policy</h2>
       <div id="privacyBody">
-        <p>This is a preliminary privacy notice for the 11·11 SPACE website.</p>
-        <p>When you contact us or request a reservation by email, we may receive the information you choose to provide, such as your name, contact details and message. We use this information only to answer your request, manage reservations and communicate with you about 11·11 SPACE.</p>
-        <p>We do not sell personal information. Website and email infrastructure providers may process limited technical data as necessary to operate these services.</p>
-        <p>You may request access, correction or deletion of information you have provided by contacting <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.</p>
-        <p>This notice may be updated as the project develops and before the space opens to the public.</p>
+        <p>11·11 SPACE is the controller responsible for the personal data collected through this website. Address: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contact for privacy matters and ARCO rights: <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.</p>
+        <p>Data we may collect: full name, email address, optional WhatsApp/telephone number, preferred language, consent choices, and the content of messages you choose to send us. We do not request health, biometric, financial, political, religious, sexual-orientation or other sensitive personal data through this form.</p>
+        <p>Primary purposes: to respond to your request, manage early-booking or pre-sale interest, communicate availability and opening information, and maintain a record of your request. These purposes are necessary to process your request.</p>
+        <p>Secondary purpose: if you separately opt in, we may send news, promotions, offers and event updates. You can refuse or withdraw this optional consent at any time by emailing us.</p>
+        <p>We do not sell personal data. Service providers used to operate email, hosting or cloud infrastructure may process data on our behalf under their service terms. We may disclose information where required by applicable law or competent authority.</p>
+        <p>To limit the use or disclosure of your data, or to exercise your rights of Access, Rectification, Cancellation or Opposition (ARCO), email iz1111space@gmail.com with the subject “ARCO Request” and enough information to identify you and the data/request concerned. We may request reasonable proof of identity before acting on the request.</p>
+        <p>We will communicate our determination on an ARCO request within the periods established by the applicable Mexican data-protection law. Where the request is granted, we will implement it within the corresponding legal period.</p>
+        <p>We retain personal data only for as long as reasonably necessary for the stated purposes and applicable legal obligations, after which it will be deleted or securely blocked as required.</p>
+        <p>Changes to this Privacy Notice will be published on this website. The current version will always be available through the “Privacy policy” link in the footer.</p>
       </div>
     </div>
   </section>
@@ -1246,13 +1573,27 @@
     const meteorBox=document.getElementById('meteors');
     function shoot(){
       if(reduceMotion)return;
-      const el=document.createElement('span');el.className='meteor';
-      el.style.left=(4+Math.random()*88)+'vw';
-      el.style.top=(6+Math.random()*78)+'vh';
+      const el=document.createElement('span');
+      const reverse=Math.random()<.28;
+      let cls='meteor'+(reverse?' rev':'');
+      const accent=Math.random();
+      if(accent<.14) cls+=' tint-cyan';
+      else if(accent<.26) cls+=' tint-violet';
+      el.className=cls;
+
+      // Separate lanes to avoid visible path crossings.
+      if(reverse){
+        el.style.left=(60+Math.random()*34)+'vw';
+        el.style.top=(8+Math.random()*30)+'vh';
+      }else{
+        el.style.left=(6+Math.random()*34)+'vw';
+        el.style.top=(28+Math.random()*38)+'vh';
+      }
+
       meteorBox.appendChild(el);
       requestAnimationFrame(()=>el.classList.add('fly'));
       setTimeout(()=>el.remove(),2700);
-      setTimeout(shoot,1000+Math.random()*1800);
+      setTimeout(shoot,900+Math.random()*1700);
     }
     setTimeout(shoot,1200);
 
@@ -1639,40 +1980,45 @@
     // --- language -----------------------------------------------------------
     const translations={
       en:{
-        tag1:'feel everything.',tag2:'fear nothing.',kind:'Wellness social club · Playa del Carmen',
+        tag1:'feel everything',tag2:'fear nothing',kind:'Wellness social club · Playa del Carmen',
         desc1:'Built around contrast therapy, ritual and real connection.',
         desc2:'A home for a community, and a place where you come together and leave changed.',
         count:'Doors open in',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',open:'We are open.',
         date:'09 · 02 · 2027  at  11:11',reserve:'Reserve your place',belong:'press here to belong',scroll:'scroll to explore',
-        worlds:'enter the worlds',end1:'Different worlds.',end2:'One living space.',country:'México',privacy:'Privacy policy',close:'Close',
+        worlds:'enter the worlds',end1:'Different worlds',end2:'One living space',promo:'EARLY BOOKING',country:'México',privacy:'Privacy policy',close:'Close',
         back:'Back to space',worldWord:'WORLD',
-        mailSubject:'11•11 Space pre-sale',mailBody:"Hi! I'd like to reserve my place at 11•11 Space.",
-        privacyTitle:'Privacy policy',
+        mailSubject:'11•11 Space pre-sale',mailBody:"Hi! I'd like to reserve my place at 11•11 Space.",titles:{1:'NAME 1',2:'NAME 2',3:'NAME 3',4:'NAME 4',5:'NAME 5',6:'EARLY BOOKING'},
+        privacyTitle:'Privacy Notice',bookingEyebrow:'EARLY ACCESS',bookingTitle:'Reserve your place',bookingLead:'Leave your contact details and we’ll get back to you about early booking and opening access.',bookingName:'Full name *',bookingEmail:'Email *',bookingPhone:'WhatsApp / phone',bookingLanguage:'Preferred language',bookingAge:'I confirm that I am 18 years or older.',bookingConsent:'I have read the Privacy Notice and consent to the processing of my personal data to manage my request and early booking.',bookingMarketing:'I would also like to receive news, offers and event updates from 11·11 SPACE. This is optional and I can withdraw it at any time.',bookingSubmit:'Continue by email',bookingInvalid:'Please complete the required fields and consent boxes.',bookingReady:'Your email app will open with your request pre-filled. Please send the message to complete your request.',
         privacyBody:[
-          'This is a preliminary privacy notice for the 11·11 SPACE website.',
-          'When you contact us or request a reservation by email, we may receive the information you choose to provide, such as your name, contact details and message. We use this information only to answer your request, manage reservations and communicate with you about 11·11 SPACE.',
-          'We do not sell personal information. Website and email infrastructure providers may process limited technical data as necessary to operate these services.',
-          'You may request access, correction or deletion of information you have provided by contacting <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.',
-          'This notice may be updated as the project develops and before the space opens to the public.'
+          '11·11 SPACE es el responsable del tratamiento de los datos personales recabados a través de este sitio web. Domicilio: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contacto para privacidad y derechos ARCO: <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.',
+          'Datos que podemos recabar: nombre completo, correo electrónico, número opcional de WhatsApp/teléfono, idioma preferido, decisiones de consentimiento y el contenido de los mensajes que decidas enviarnos. No solicitamos datos de salud, biométricos, financieros, políticos, religiosos, de orientación sexual ni otros datos personales sensibles mediante este formulario.',
+          'Finalidades primarias: responder a tu solicitud, gestionar el interés en reserva anticipada o preventa, comunicar disponibilidad e información de apertura y conservar un registro de tu solicitud. Estas finalidades son necesarias para atender tu solicitud.',
+          'Finalidad secundaria: si otorgas un consentimiento separado, podremos enviarte noticias, promociones, ofertas y novedades de eventos. Puedes negarte o retirar este consentimiento opcional en cualquier momento por correo electrónico.',
+          'No vendemos datos personales. Los proveedores utilizados para operar el correo electrónico, hosting o infraestructura en la nube pueden tratar datos por cuenta nuestra conforme a sus condiciones de servicio. Podremos comunicar información cuando lo exija la legislación aplicable o una autoridad competente.',
+          'Para limitar el uso o divulgación de tus datos, o ejercer tus derechos de Acceso, Rectificación, Cancelación u Oposición (ARCO), escribe a iz1111space@gmail.com con el asunto “Solicitud ARCO” e incluye información suficiente para identificarte y describir los datos o la solicitud. Podremos solicitar una acreditación razonable de identidad antes de atenderla.',
+          'Comunicaremos nuestra determinación sobre una solicitud ARCO dentro de los plazos previstos por la legislación mexicana aplicable y, cuando proceda, la haremos efectiva dentro del plazo legal correspondiente.',
+          'Conservamos los datos personales únicamente durante el tiempo razonablemente necesario para las finalidades indicadas y las obligaciones legales aplicables; posteriormente serán eliminados o bloqueados de forma segura cuando corresponda.',
+          'Las modificaciones a este Aviso de Privacidad se publicarán en este sitio web. La versión vigente estará disponible mediante el enlace “Política de privacidad” del pie de página.',
         ],
         worldsData:{
           1:'Warm steam, tropical leaves, soft heat and grounding ritual. This world can become the bath and tropical contrast universe.',
           2:'Ice, rain, water and clean recovery energy. This world can become the cold and rain ritual universe.',
           3:'Violet crystal energy for yoga, breathwork, meditation and sound healing. This world can become the practice universe.',
           4:'A social world of glow, gatherings, music and shared atmosphere.',
-          5:'A cosmic ritual world — mysterious, immersive and fluid, for future experiences and events.'
+          5:'A cosmic ritual world — mysterious, immersive and fluid, for future experiences and events.',
+          6:'Early booking access with a launch discount. Reserve your place in advance and be first inside the 11•11 Space universe.'
         }
       },
       es:{
-        tag1:'siéntelo todo.',tag2:'no temas nada.',kind:'Club social de bienestar · Playa del Carmen',
+        tag1:'siéntelo todo',tag2:'no temas nada',kind:'Club social de bienestar · Playa del Carmen',
         desc1:'Creado alrededor de la terapia de contraste, el ritual y la conexión real.',
         desc2:'Un hogar para una comunidad y un lugar donde te reúnes, te transformas y sales diferente.',
         count:'Abrimos en',days:'Días',hours:'Horas',minutes:'Minutos',seconds:'Segundos',open:'Ya estamos abiertos.',
         date:'09 · 02 · 2027  a las  11:11',reserve:'Reserva tu lugar',belong:'toca aquí para pertenecer',scroll:'desliza para explorar',
-        worlds:'entra en los mundos',end1:'Mundos distintos.',end2:'Un espacio vivo.',country:'México',privacy:'Política de privacidad',close:'Cerrar',
+        worlds:'entra en los mundos',end1:'Mundos distintos',end2:'Un espacio vivo',promo:'RESERVA ANTICIPADA',country:'México',privacy:'Política de privacidad',close:'Cerrar',
         back:'Volver al espacio',worldWord:'MUNDO',
-        mailSubject:'Preventa 11•11 Space',mailBody:'¡Hola! Me gustaría reservar mi lugar en 11•11 Space.',
-        privacyTitle:'Política de privacidad',
+        mailSubject:'Preventa 11•11 Space',mailBody:'¡Hola! Me gustaría reservar mi lugar en 11•11 Space.',titles:{1:'NAME 1',2:'NAME 2',3:'NAME 3',4:'NAME 4',5:'NAME 5',6:'RESERVA ANTICIPADA'},
+        privacyTitle:'Aviso de Privacidad',bookingEyebrow:'ACCESO ANTICIPADO',bookingTitle:'Reserva tu lugar',bookingLead:'Déjanos tus datos de contacto y te escribiremos sobre la reserva anticipada y el acceso de apertura.',bookingName:'Nombre completo *',bookingEmail:'Correo electrónico *',bookingPhone:'WhatsApp / teléfono',bookingLanguage:'Idioma preferido',bookingAge:'Confirmo que tengo 18 años o más.',bookingConsent:'He leído el Aviso de Privacidad y consiento el tratamiento de mis datos personales para gestionar mi solicitud y reserva anticipada.',bookingMarketing:'También deseo recibir noticias, ofertas y novedades de eventos de 11·11 SPACE. Es opcional y puedo retirar este consentimiento en cualquier momento.',bookingSubmit:'Continuar por correo',bookingInvalid:'Completa los campos obligatorios y las casillas de consentimiento.',bookingReady:'Se abrirá tu aplicación de correo con la solicitud preparada. Envía el mensaje para completar tu solicitud.',
         privacyBody:[
           'Este es un aviso de privacidad preliminar para el sitio web de 11·11 SPACE.',
           'Cuando nos contactas o solicitas una reserva por correo electrónico, podemos recibir la información que decidas proporcionar, como tu nombre, datos de contacto y mensaje. Utilizamos esta información únicamente para responder a tu solicitud, gestionar reservas y comunicarnos contigo sobre 11·11 SPACE.',
@@ -1685,7 +2031,8 @@
           2:'Hielo, lluvia, agua y energía limpia de recuperación. Este mundo puede convertirse en el universo de frío, lluvia y contraste.',
           3:'Energía de cristal violeta para yoga, respiración, meditación y sound healing. Este mundo puede convertirse en el universo de las prácticas.',
           4:'Un mundo social de luz, encuentros, música y atmósfera compartida.',
-          5:'Un mundo ritual cósmico — misterioso, inmersivo y fluido — para futuras experiencias y eventos.'
+          5:'Un mundo ritual cósmico — misterioso, inmersivo y fluido — para futuras experiencias y eventos.',
+          6:'Acceso de reserva anticipada con descuento de lanzamiento. Reserva tu lugar con antelación y sé de las primeras personas en entrar al universo de 11•11 Space.'
         }
       }
     };
@@ -1713,6 +2060,7 @@
       document.getElementById('worldsKicker').textContent=t.worlds;
       document.getElementById('end1').textContent=t.end1;
       document.getElementById('end2').textContent=t.end2;
+      const promoArcText=document.getElementById('promoArcText'); if(promoArcText) promoArcText.textContent=t.promo;
       document.getElementById('countryText').textContent=t.country;
       document.getElementById('privacyOpen').textContent=t.privacy;
       document.getElementById('privacyTitle').textContent=t.privacyTitle;
@@ -1721,12 +2069,38 @@
       document.getElementById('privacyBody').innerHTML=t.privacyBody.map(x=>'<p>'+x+'</p>').join('');
       document.querySelector('.countdown').setAttribute('aria-label',currentLang==='es'?'Cuenta atrás para la apertura':'Countdown to opening');
       document.querySelector('.worlds').setAttribute('aria-label',currentLang==='es'?'Mundos de 11•11':'11•11 worlds');
-      document.querySelectorAll('.portal-node').forEach(btn=>btn.setAttribute('aria-label',(currentLang==='es'?'Abrir ':'Open ')+'Name '+btn.dataset.world));
-      document.getElementById('reserveLink').href='mailto:iz1111space@gmail.com?subject='+encodeURIComponent(t.mailSubject)+'&body='+encodeURIComponent(t.mailBody);
+      document.querySelectorAll('.portal-node').forEach(btn=>{
+        const title=(t.titles&&t.titles[btn.dataset.world]) ? t.titles[btn.dataset.world] : ('NAME '+btn.dataset.world);
+        btn.setAttribute('aria-label',(currentLang==='es'?'Abrir ':'Open ')+title);
+      });
+
+      const bookingMap={
+        bookingEyebrow:'bookingEyebrow',
+        bookingTitle:'bookingTitle',
+        bookingLead:'bookingLead',
+        bookingNameLabel:'bookingName',
+        bookingEmailLabel:'bookingEmail',
+        bookingPhoneLabel:'bookingPhone',
+        bookingLanguageLabel:'bookingLanguage',
+        bookingAgeText:'bookingAge',
+        bookingConsentText:'bookingConsent',
+        bookingMarketingText:'bookingMarketing',
+        bookingSubmit:'bookingSubmit'
+      };
+      Object.entries(bookingMap).forEach(([id,key])=>{const el=document.getElementById(id);if(el&&t[key])el.textContent=t[key]});
+      const mini=document.getElementById('miniPrivacy');
+      if(mini){
+        mini.innerHTML=currentLang==='es'
+          ? '<strong>Aviso de privacidad:</strong> 11·11 SPACE, Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México, tratará tu nombre, correo, teléfono opcional, idioma preferido y decisiones de consentimiento para atender tu solicitud y gestionar la reserva anticipada. El marketing es opcional. Puedes limitar el uso o ejercer derechos ARCO escribiendo a <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>. <button type="button" id="bookingPrivacyOpen">Leer el Aviso de Privacidad integral.</button>'
+          : '<strong>Privacy notice:</strong> 11·11 SPACE, Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México, will process your name, email, optional phone number, preferred language and consent choices to answer your request and manage early booking. Marketing communications are optional. You can limit use or exercise ARCO rights by writing to <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>. <button type="button" id="bookingPrivacyOpen">Read the full Privacy Notice.</button>';
+        document.getElementById('bookingPrivacyOpen')?.addEventListener('click',openPrivacyFromBooking);
+      }
+
       document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===currentLang));
       if(panel.classList.contains('open')){
         const n=panel.dataset.world||'1';
         worldNumber.textContent=t.worldWord+' '+n;
+        worldTitle.textContent=(t.titles&&t.titles[n])?t.titles[n]:('NAME '+n);
         worldCopy.textContent=t.worldsData[n];
       }
     }
@@ -1737,6 +2111,88 @@
     function closePrivacy(){privacyModal.classList.remove('open');privacyModal.setAttribute('aria-hidden','true');if(!panel.classList.contains('open'))document.body.style.overflow=''}
     document.getElementById('privacyClose').addEventListener('click',closePrivacy);
     privacyModal.addEventListener('click',e=>{if(e.target===privacyModal)closePrivacy()});
+
+    // --- booking / personal data form ---------------------------------------
+    const bookingModal=document.getElementById('bookingModal');
+    const bookingForm=document.getElementById('bookingForm');
+    const bookingStatus=document.getElementById('bookingStatus');
+
+    function openBooking(){
+      bookingModal.classList.add('open');
+      bookingModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      setTimeout(()=>document.getElementById('bookingName')?.focus(),80);
+    }
+    function closeBooking(){
+      bookingModal.classList.remove('open');
+      bookingModal.setAttribute('aria-hidden','true');
+      if(!panel.classList.contains('open')&&!privacyModal.classList.contains('open')) document.body.style.overflow='';
+    }
+    function openPrivacyFromBooking(){
+      privacyModal.classList.add('open');
+      privacyModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+
+    document.getElementById('bookingClose').addEventListener('click',closeBooking);
+    bookingModal.addEventListener('click',e=>{if(e.target===bookingModal)closeBooking()});
+
+    const reserveLink=document.getElementById('reserveLink');
+    reserveLink.removeAttribute('href');
+    reserveLink.setAttribute('role','button');
+    reserveLink.setAttribute('tabindex','0');
+    reserveLink.addEventListener('click',e=>{e.preventDefault();openBooking()});
+    reserveLink.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBooking()}});
+
+    document.getElementById('bookingPrivacyOpen')?.addEventListener('click',openPrivacyFromBooking);
+
+    bookingForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const t=translations[currentLang];
+      if(!bookingForm.checkValidity()){
+        bookingStatus.textContent=t.bookingInvalid;
+        bookingForm.reportValidity();
+        return;
+      }
+
+      const name=document.getElementById('bookingName').value.trim();
+      const email=document.getElementById('bookingEmail').value.trim();
+      const phone=document.getElementById('bookingPhone').value.trim();
+      const language=document.getElementById('bookingLanguage').value;
+      const marketing=document.getElementById('bookingMarketing').checked;
+      const consentedAt=new Date().toISOString();
+
+      const subject=currentLang==='es'?'Reserva anticipada 11·11 SPACE':'11·11 SPACE early booking';
+      const lines=currentLang==='es'
+        ? [
+            'Solicitud de reserva anticipada 11·11 SPACE',
+            '',
+            'Nombre: '+name,
+            'Email: '+email,
+            'WhatsApp / teléfono: '+(phone||'—'),
+            'Idioma preferido: '+language,
+            'Marketing opcional: '+(marketing?'Sí':'No'),
+            'Consentimiento de privacidad: Sí',
+            'Confirmación 18+: Sí',
+            'Fecha/hora de consentimiento: '+consentedAt
+          ]
+        : [
+            '11·11 SPACE early booking request',
+            '',
+            'Name: '+name,
+            'Email: '+email,
+            'WhatsApp / phone: '+(phone||'—'),
+            'Preferred language: '+language,
+            'Optional marketing: '+(marketing?'Yes':'No'),
+            'Privacy consent: Yes',
+            '18+ confirmation: Yes',
+            'Consent timestamp: '+consentedAt
+          ];
+
+      bookingStatus.textContent=t.bookingReady;
+      window.location.href='mailto:iz1111space@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+    });
+
 
 
     // --- countdown ----------------------------------------------------------
@@ -1758,9 +2214,10 @@
     const worldCopy=document.getElementById('worldCopy');
     document.querySelectorAll('.portal-node').forEach(btn=>btn.addEventListener('click',()=>{
       const n=btn.dataset.world;
+      if(n==='6'){openBooking();return}
       const t=translations[currentLang];
       portal.classList.remove('active');void portal.offsetWidth;portal.classList.add('active');
-      setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent='NAME '+n;worldCopy.textContent=t.worldsData[n];panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
+      setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent=(t.titles&&t.titles[n])?t.titles[n]:('NAME '+n);worldCopy.textContent=t.worldsData[n];panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
     }));
     applyLanguage(currentLang);
     document.getElementById('worldBack').addEventListener('click',()=>{panel.classList.remove('open');panel.setAttribute('aria-hidden','true');panel.dataset.world='';document.body.style.overflow=''});
