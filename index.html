@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="main-3d-ice-terra-gift-20261015">
+  <meta name="1111space-build" content="main-3d-adaptive-all-devices-20261015">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1490,6 +1490,180 @@
     @media(max-width:370px){.gift-disc{width:min(318px,calc(100vw - 24px));}.gift-content{padding:38px 28px 14px;gap:7px}.gift-title{font-size:18px}.gift-close{right:18px;top:19px}}
     @media(prefers-reduced-motion:reduce){.gift-orb,.gift-backdrop,.gift-disc{transition:none!important}}
 
+  
+    /* ===== 11·11 SPACE / cross-platform responsive refinement =====
+       One adaptive layout for Safari/iPadOS/macOS, Chrome/Windows/Android and Firefox.
+       Original theme, content and interactions stay intact. */
+    :root{--safe-bottom:env(safe-area-inset-bottom, 0px)}
+    html{max-width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    body{max-width:100%;overflow-wrap:break-word}
+    .page{min-width:0;width:100%;}
+    .hero,.worlds{box-sizing:border-box;min-width:0;}
+    .description,.tagline,.end-copy{max-width:100%;}
+    .counter,.counter-unit{min-width:0;}
+    .cta,.booking-submit,.gift-action,.gift-whatsapp,.world-back{-webkit-tap-highlight-color:transparent}
+    .portal-node{touch-action:manipulation;}
+    .lang-btn,.privacy-link,.gift-close,.booking-close,.privacy-close{touch-action:manipulation;}
+    .lang-btn{min-width:40px;min-height:30px}
+    /* prevent system-font substitution from making labels unexpectedly wider */
+    .tagline,.end-copy,.description{font-family:"Manrope","Segoe UI","Helvetica Neue",Arial,sans-serif}
+    .worlds-kicker,.count-kicker,.counter-label,.scroll-note,.portal-label text{font-family:"Jost","Segoe UI","Helvetica Neue",Arial,sans-serif}
+
+    @media (min-width:701px){
+      .hero{width:min(1160px,100%)}
+      .worlds{width:min(1160px,100%)}
+      .description{max-width:700px}
+      .countdown{max-width:830px;margin-left:auto;margin-right:auto}
+      .counter{max-width:830px;margin-inline:auto}
+      .gift-orb{right:max(24px,env(safe-area-inset-right,0px));bottom:max(24px,var(--safe-bottom))}
+      .gift-disc{width:min(382px,calc(100vw - 52px),calc(100svh - 52px))}
+      .gift-title{font-size:clamp(21px,2vw,24px);max-width:300px}
+      .gift-sub{max-width:265px;font-size:12px}
+      .gift-content{padding:52px 38px 25px;gap:11px}
+      .gift-action{min-height:44px}
+    }
+
+    /* Tablet portrait + medium-size screens: centered editorial layout,
+       shorter constellation section and generous readable tap targets. */
+    @media (min-width:701px) and (max-width:1180px){
+      .hero{width:min(960px,100%);padding-left:clamp(20px,3vw,38px);padding-right:clamp(20px,3vw,38px)}
+      .description{max-width:min(680px,88%)}
+      .worlds-stage{height:clamp(1050px,101vw,1200px)}
+      .p1{left:28%;top:17%}
+      .p2{left:71%;top:28%}
+      .p3{left:38%;top:42%}
+      .p4{left:26%;top:60%}
+      .p5{left:72%;top:66%}
+      .p6{left:50%;top:83%}
+      .worlds{padding-bottom:18px}
+      footer{width:min(940px,calc(100% - 52px));gap:26px}
+      .gift-orb{width:58px;height:58px}
+    }
+
+    /* Widescreen and full-size monitors: rich, balanced but never overextended. */
+    @media (min-width:1181px){
+      .hero{max-width:1160px}
+      .worlds-stage{height:clamp(1140px,91vw,1300px)}
+      .worlds{padding:26px 22px 24px}
+      .worlds-intro{margin-bottom:13px}
+      .end-copy{margin-top:-18px;padding-bottom:42px}
+      footer{width:min(1080px,calc(100% - 72px));padding-top:22px;padding-bottom:32px}
+    }
+    @media (min-width:1660px){
+      .hero{max-width:1200px}
+      .cosmos::before{background-position:50% 43%}
+      .worlds-stage{height:1320px}
+      .gift-orb{width:62px;height:62px;right:30px;bottom:30px}
+      .description{max-width:750px}
+    }
+
+    /* iPad landscape, Windows laptops, MacBook windows and other short screens.
+       Keep Reserve your place, secondary line and scroll cue in the first view. */
+    @media (min-width:701px) and (max-height:850px){
+      .hero{padding-top:17px;padding-bottom:21px;min-height:100svh;justify-content:center}
+      .lang-switch{margin-bottom:clamp(11px,2vh,17px)}
+      .numbers{font-size:clamp(87px,9.0vw,122px);gap:clamp(14px,1.7vw,21px)}
+      .signal{height:clamp(79px,8.4vw,105px);width:clamp(22px,2.5vw,29px)}
+      .space-word{margin-top:11px;gap:clamp(12px,2.2vw,25px)}
+      .tagline{font-size:clamp(25px,2.85vw,34px);margin-top:17px;margin-bottom:18px;line-height:1.08}
+      .kind{font-size:clamp(10px,1.1vw,12px);margin-bottom:10px}
+      .description{font-size:clamp(16px,1.65vw,20px);line-height:1.26;max-width:680px}
+      .description .line + .line{margin-top:3px}
+      .countdown{margin-top:clamp(18px,3vh,25px);padding-bottom:20px}
+      .count-kicker{margin-bottom:9px}
+      .counter-value{font-size:clamp(38px,4vw,57px)}
+      .counter-label{margin-top:7px}
+      .date{margin-top:12px}
+      .countdown .cta{margin-top:15px;min-height:50px}
+      .belong{margin-top:9px;font-size:12px}
+      .scroll-note{bottom:11px}
+    }
+    @media (min-width:701px) and (max-height:650px){
+      /* Extreme short landscape/high-DPI scaling: allow natural scrolling,
+         preserving real text sizes and controls rather than clipping content. */
+      .hero{justify-content:flex-start;padding-top:13px;padding-bottom:42px}
+      .lang-switch{margin-bottom:9px}
+      .numbers{font-size:clamp(73px,8vw,103px)}
+      .signal{height:clamp(73px,7.8vw,94px)}
+      .tagline{font-size:clamp(23px,2.6vw,30px);margin-top:12px;margin-bottom:13px}
+      .description{font-size:16px}
+      .countdown{margin-top:14px;padding-bottom:12px}
+      .countdown .cta{margin-top:12px}
+    }
+    /* Portrait tablet (including iPad mini/Air/Pro): preserve the spacious hero. */
+    @media (min-width:701px) and (max-width:1180px) and (min-height:900px){
+      .hero{padding-top:clamp(30px,4.5vh,52px);padding-bottom:clamp(34px,5vh,58px)}
+      .tagline{margin-top:clamp(22px,3vh,33px);margin-bottom:clamp(24px,3.4vh,37px)}
+      .kind{margin-bottom:15px}
+      .countdown{margin-top:clamp(28px,3.9vh,44px)}
+      .description{font-size:clamp(19px,2.4vw,23px)}
+      .countdown .cta{min-width:min(355px,78vw)}
+    }
+    /* Mobile/small tablets keep the verified first-screen composition. */
+    @media (max-width:700px){
+      .hero{width:100%;padding-right:max(16px,env(safe-area-inset-right,0px));padding-left:max(16px,env(safe-area-inset-left,0px))}
+      .worlds{width:100%;}
+      .worlds-stage{min-width:0}
+      .gift-orb{right:max(16px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px))}
+      .gift-backdrop,.booking-modal,.privacy-modal{padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+      .booking-card,.privacy-card{max-height:min(88svh,800px);overscroll-behavior:contain}
+    }
+    @media (max-width:700px) and (orientation:landscape) and (max-height:480px){
+      .hero{min-height:540px;justify-content:flex-start;padding-top:12px;padding-bottom:44px}
+      .lang-switch{margin-bottom:9px}
+      .tagline{margin-top:9px;margin-bottom:10px}
+      .countdown{margin-top:13px;padding-bottom:18px}
+      .scroll-note{bottom:8px}
+      .gift-orb{width:46px;height:46px;bottom:14px;right:14px}
+    }
+    /* Readable legal and booking dialogs across iPad, Windows and macOS.
+       Keep the close button accessible even when browser zoom is increased. */
+    .booking-modal,.privacy-modal{box-sizing:border-box}
+    .booking-card,.privacy-card{max-width:calc(100vw - 40px);overscroll-behavior:contain}
+    .booking-close,.privacy-close,.gift-close{display:grid;place-items:center}
+    @media (min-width:701px) and (max-height:800px){
+      .booking-card{max-height:min(90svh,740px);padding:clamp(23px,3.4vh,34px)}
+      .booking-lead{margin-bottom:14px}
+      .booking-form{row-gap:10px}
+      .privacy-card{max-height:88svh}
+    }
+    @media (min-width:701px) and (max-width:900px){
+      footer{font-size:9px;letter-spacing:.10em}
+      .booking-card{width:min(700px,100%)}
+    }
+    .world-panel.open{overflow-y:auto}
+    .world-inner{max-width:min(760px,100%);margin:auto;}
+    @supports not (height:100svh){
+      .hero{min-height:100vh}
+      .booking-card{max-height:88vh}
+      .gift-disc{max-height:calc(100vh - 36px)}
+    }
+    @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+      .lang-switch{background:rgba(6,12,25,.92)}
+      .gift-backdrop{background:rgba(1,4,10,.93)}
+      .booking-modal,.privacy-modal{background:rgba(1,4,10,.95)}
+    }
+
+  
+    /* Centered default state also works when reduced-motion disables orbit animation. */
+    .portal-node{transform:translate(-50%,-50%)}
+    @media (forced-colors: active){
+      .tagline span,.end-copy span{color:CanvasText!important;-webkit-text-fill-color:CanvasText!important;background:none!important;filter:none!important}
+      .cta,.gift-action,.booking-submit{background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important}
+      .portal-label text{fill:CanvasText!important}
+      .gift-disc,.booking-card,.privacy-card{border:1px solid CanvasText!important}
+    }
+    @media (prefers-contrast: more){
+      .kind,.description,.count-kicker,.counter-label,.date,.belong,.scroll-note,.worlds-kicker{color:rgba(255,255,255,.88)}
+      footer,.footer-links,.address-lines,.privacy-link{color:rgba(240,249,255,.79)}
+    }
+
+  
+    /* Older Safari uses the prefixed blur property. */
+    .lang-switch{-webkit-backdrop-filter:blur(12px)}
+    .gift-backdrop{-webkit-backdrop-filter:blur(9px)}
+    .booking-modal,.privacy-modal{-webkit-backdrop-filter:blur(18px)}
+
   </style>
 </head>
 <body>
@@ -2506,6 +2680,7 @@
     const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
     const smooth=v=>v*v*(3-2*v);
     const mobile=()=>window.innerWidth<700;
+    const tablet=()=>window.innerWidth>=700&&window.innerWidth<1100;
     let W=1,H=1,DPR=1;
     let scrollTarget=0, depth=0;
     let mouseX=0,mouseY=0,easedMouseX=0,easedMouseY=0;
@@ -2533,13 +2708,13 @@
     }
     function resize(){
       W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);
-      DPR=Math.min(window.devicePixelRatio||1,mobile()?1.25:1.5);
+      DPR=Math.min(window.devicePixelRatio||1,mobile()?1.25:tablet()?1.30:window.innerWidth>1900?1.30:1.5);
       canvas.width=Math.round(W*DPR);
       canvas.height=Math.round(H*DPR);
       canvas.style.width=W+'px';canvas.style.height=H+'px';
       ctx.setTransform(DPR,0,0,DPR,0,0);
       seed=7331+W*7+H*3;
-      const n=mobile()?680:1150;
+      const n=mobile()?680:tablet()?930:1150;
       stars=Array.from({length:n},()=>{
         const band=rnd()<.64;
         const nx=(rnd()-.5)*3.0;
@@ -2615,7 +2790,7 @@
       const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js');
       const holder=document.getElementById('threeDepthHolder');
       const renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power'});
-      renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:1.45));
+      renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:innerWidth<1100?1.25:innerWidth>1900?1.3:1.45));
       renderer.setSize(innerWidth,innerHeight,false);
       renderer.setClearColor(0x000000,0);
       holder.appendChild(renderer.domElement);
@@ -2623,7 +2798,7 @@
       const camera=new THREE.PerspectiveCamera(68,innerWidth/innerHeight,.2,1200);
       camera.position.z=190;
       const mobile=innerWidth<700;
-      const n=mobile?1450:2400;
+      const n=mobile?1450:innerWidth<1100?2000:2400;
       const positions=new Float32Array(n*3);
       const colors=new Float32Array(n*3);
       const sizes=new Float32Array(n);
@@ -2723,7 +2898,7 @@
       const resize=()=>{
         camera.aspect=innerWidth/Math.max(1,innerHeight);
         camera.updateProjectionMatrix();
-        renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:1.45));
+        renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:innerWidth<1100?1.25:innerWidth>1900?1.3:1.45));
         renderer.setSize(innerWidth,innerHeight,false);
         material.uniforms.uPixelRatio.value=renderer.getPixelRatio();
       };
@@ -2830,6 +3005,37 @@
         if(!shown && !isAnyModalOpen() && document.visibilityState==='visible' && !modal.classList.contains('open'))openGift();
       },13000);
     }
+  })();
+  </script>
+
+
+  <script>
+  // Consistent optically sized curved world titles on every viewport.
+  (()=>{
+    'use strict';
+    const nodes=[...document.querySelectorAll('.portal-node')];
+    function fitArcLabels(){
+      const w=window.innerWidth;
+      const target=w<=700?14.3:w<=1180?15.8:17;
+      const tracking=w<=700?2.2:w<=1180?2.65:3;
+      for(const node of nodes){
+        const svg=node.querySelector('svg.portal-label');
+        const text=svg?.querySelector('text');
+        if(!svg||!text)continue;
+        const drawnWidth=svg.getBoundingClientRect().width;
+        if(drawnWidth<30)continue;
+        const unitScale=220/drawnWidth;
+        const isPromo=node.classList.contains('promo');
+        text.style.fontSize=(target*unitScale).toFixed(2)+'px';
+        text.style.letterSpacing=((isPromo?tracking*.57:tracking)*unitScale).toFixed(2)+'px';
+        text.style.fontWeight='400';
+      }
+    }
+    let frame=0;
+    const schedule=()=>{if(frame)cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{frame=0;fitArcLabels()})};
+    schedule();
+    addEventListener('resize',schedule,{passive:true});
+    addEventListener('pageshow',schedule,{passive:true});
   })();
   </script>
 
