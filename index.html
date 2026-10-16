@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="fire-original-six-glyphs-20261017">
+  <meta name="1111space-build" content="photo-orbs-7-20261017">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1932,6 +1932,78 @@
     @media (forced-colors:active){
       .portal-node .orb-icon{stroke:CanvasText!important;filter:none!important}
     }
+  
+    /* Photo orbs: lightweight WebP photos with a soft circular fade.
+       No animated media and no extra JavaScript render loop. */
+    .portal-node.photo-orb,
+    .portal-node{filter:none}
+    .portal-node .portal-core{animation:none}
+    .portal-node .orb-photo{
+      position:absolute;
+      inset:1%;
+      z-index:4;
+      display:block;
+      border-radius:50%;
+      pointer-events:none;
+      overflow:hidden;
+      background:var(--bg);
+      -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0 59%,rgba(0,0,0,.99) 66%,rgba(0,0,0,.88) 76%,rgba(0,0,0,.55) 87%,transparent 99%);
+      mask-image:radial-gradient(circle at 50% 50%,#000 0 59%,rgba(0,0,0,.99) 66%,rgba(0,0,0,.88) 76%,rgba(0,0,0,.55) 87%,transparent 99%);
+    }
+    .portal-node .orb-photo img{
+      display:block;
+      width:100%;height:100%;
+      object-fit:cover;
+      object-position:center;
+      border-radius:50%;
+    }
+    .portal-node .orb-photo::after{
+      content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+      background:radial-gradient(circle at 36% 24%,rgba(255,255,255,.13),transparent 31%),radial-gradient(circle at 50% 50%,transparent 44%,rgba(5,8,18,.18) 82%,rgba(5,8,18,.32) 99%);
+    }
+    .portal-node.promo .orb-photo::after{
+      background:radial-gradient(circle at 45% 33%,rgba(255,203,207,.10),transparent 34%),radial-gradient(circle at 50% 50%,transparent 45%,rgba(162,27,51,.17) 80%,rgba(114,22,38,.33) 99%);
+    }
+    .portal-node .orb-icon,.portal-node .promo-icon{display:none!important}
+    .portal-node::before{opacity:.68}
+    /* Keep the arched lettering just below the larger photographic surface. */
+    .portal-node .portal-label{top:calc(50% + 10px)}
+    .portal-node .portal-core{box-shadow:0 0 20px var(--glow1),0 0 42px var(--glow2)}
+
+    /* Larger, proportional orbs on desktops and tablets. Positions keep the
+       existing zig-zag constellation and its readable captions. */
+    .p1{width:clamp(148px,15.8vw,180px)}
+    .p2{width:clamp(160px,17.6vw,201px)}
+    .p3{width:clamp(149px,16.2vw,185px)}
+    .p4{width:clamp(161px,18.2vw,207px)}
+    .p5{width:clamp(154px,17.4vw,198px)}
+    .p6{width:clamp(165px,18.4vw,209px)}
+    .p7{width:clamp(122px,13.3vw,151px)}
+
+    @media (min-width:701px) and (max-width:1180px){
+      .p1{width:152px}.p2{width:171px}.p3{width:153px}
+      .p4{width:176px}.p5{width:163px}.p6{width:176px}.p7{width:126px}
+    }
+    @media (max-width:700px){
+      .worlds-stage{height:1450px}
+      .p1{width:124px;left:28%;top:11.8%}
+      .p2{width:137px;left:72%;top:24.1%}
+      .p3{width:128px;left:29%;top:36.6%}
+      .p4{width:144px;left:70%;top:49.0%}
+      .p5{width:129px;left:29%;top:61.6%}
+      .p6{width:140px;left:70%;top:74.3%}
+      .p7{width:117px;left:50%;top:88.5%}
+    }
+    @media (max-width:350px){
+      .p1{width:117px;left:26%}.p2{width:128px;left:73%}
+      .p3{width:121px;left:27%}.p4{width:133px;left:73%}
+      .p5{width:122px;left:27%}.p6{width:133px;left:73%}
+      .p7{width:112px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .portal-node .orb-photo{filter:none}
+    }
+
   </style>
 </head>
 <body>
@@ -2011,90 +2083,43 @@
         <span class="satellite starlet cyan s16"></span>
 
         <button class="portal-node fire p1" type="button" data-world="1" aria-label="Open FIRE · Banya & Sauna">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <path d="M61 16c3 17-14 26-13 42-7-4-9-10-9-16-18 18-17 39-2 53 13 12 31 14 45 3 18-14 21-36 7-52-8-9-16-13-18-23-2 9-6 13-10 17 1-8 2-15 0-24Z"/>
-            <path d="M60 62c-2 8-11 14-8 23 2 8 14 12 21 5 7-7 5-15-2-22-1 7-6 10-11 12"/>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-fire.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc1" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText1" href="#arc1" startOffset="50%" text-anchor="middle">FIRE</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub1">Banya & Sauna</span>
         </button>
 
         <button class="portal-node ice p2" type="button" data-world="2" aria-label="Open ICE · Cold Plunge">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M34 50 50 41 66 50 50 59Z"/>
-              <path d="M50 59V77"/>
-              <path d="M34 50v18l16 9 16-9V50"/>
-              <path d="M58 33 74 24 90 33 74 42Z"/>
-              <path d="M74 42V60"/>
-              <path d="M58 33v18l16 9 16-9V33"/>
-              <path d="M25 72 39 64 53 72 39 80Z"/>
-              <path d="M39 80v15"/>
-              <path d="M25 72v15l14 8 14-8V72"/>
-              <path d="M47 46 61 54" opacity=".65"/>
-              <path d="M42 67 55 60" opacity=".65"/>
-              <path d="M67 47 79 40" opacity=".65"/>
-            </g>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-ice.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc2" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText2" href="#arc2" startOffset="50%" text-anchor="middle">ICE</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub2">Cold Plunge</span>
         </button>
 
         <button class="portal-node air p3" type="button" data-world="3" aria-label="Open AIR · Breath">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <path d="M22 43h62c10 0 15-6 15-13s-6-12-13-12c-8 0-12 5-13 10"/>
-            <path d="M17 61h77c12 0 17 6 17 15 0 8-6 13-14 13-7 0-12-5-12-10"/>
-            <path d="M27 80h36c14 0 20 7 20 15s-6 12-13 12c-7 0-11-4-12-9"/>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-air.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc3" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText3" href="#arc3" startOffset="50%" text-anchor="middle">AIR</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub3">Breath</span>
         </button>
 
         <button class="portal-node earth p4" type="button" data-world="4" aria-label="Open EARTH · Body & Sound">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <path d="M60 20c-14 16-15 31-9 46 3 7 6 11 9 14 13-13 20-35 0-60Z"/>
-            <path d="M47 47C31 39 24 46 25 59c1 14 14 24 34 27M73 47c16-8 23-1 22 12-1 14-14 24-34 27"/>
-            <path d="M23 77c12 17 26 23 37 23s25-6 37-23M43 93c-3 0-10 2-15 3M77 93c3 0 10 2 15 3"/>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-earth.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc4" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText4" href="#arc4" startOffset="50%" text-anchor="middle">EARTH</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub4">Body & Sound</span>
         </button>
 
         <button class="portal-node spirit p5" type="button" data-world="5" aria-label="Open SPIRIT · Ceremony">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <path d="M25 65c3 20 18 30 35 30s32-10 35-30M25 65c18-8 52-8 70 0M60 94v8M43 104h34"/>
-            <path d="M43 49c-10-10 7-15 0-27M60 50c-10-11 8-16 0-31M77 49c-10-10 7-15 0-27"/>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-spirit.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc5" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText5" href="#arc5" startOffset="50%" text-anchor="middle">SPIRIT</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub5">Ceremony</span>
         </button>
 
         <button class="portal-node light p6" type="button" data-world="6" aria-label="Open LIGHT · Immersion">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="orb-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-            <path d="M59 17c5 24 13 33 35 40-22 7-30 16-35 45-5-29-13-38-35-45 22-7 30-16 35-40Z"/>
-            <path d="M26 19v19M16 28h20M92 81v21M82 91h20"/>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-light.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc6" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText6" href="#arc6" startOffset="50%" text-anchor="middle">LIGHT</textPath></text></svg>
           <span class="portal-subtitle" id="portalSub6">Immersion</span>
         </button>
 
         <button class="portal-node promo p7" type="button" data-world="7" aria-label="Open Early booking">
-          <span class="portal-core"><span class="inner"></span></span>
-          <svg class="promo-icon" viewBox="0 0 120 120" aria-hidden="true">
-            <rect class="gift-box gift-fill" x="26" y="49" width="68" height="40" rx="10" ry="10"></rect>
-            <rect class="gift-box" x="22" y="44" width="76" height="49" rx="10" ry="10"></rect>
-            <rect class="gift-box" x="24" y="34" width="72" height="18" rx="8" ry="8"></rect>
-            <path class="gift-bow" d="M60 34 C49 31, 42 23, 47 18 C52 13, 61 18, 60 34 Z"></path>
-            <path class="gift-bow" d="M60 34 C71 31, 78 23, 73 18 C68 13, 59 18, 60 34 Z"></path>
-            <line class="gift-ribbon" x1="60" y1="35" x2="60" y2="92"></line>
-            <line class="gift-ribbon" x1="26" y1="52" x2="94" y2="52"></line>
-          </svg>
+          <span class="portal-core"><span class="inner"></span><span class="orb-photo"><img src="assets/gallery/orb-gift.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy" decoding="async"></span></span>
           <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc7" d="M 15 98 A 95 95 0 0 0 205 98"/></defs><text><textPath id="promoArcText" href="#arc7" startOffset="50%" text-anchor="middle">EARLY BOOKING</textPath></text></svg>
         </button>
       </div>
