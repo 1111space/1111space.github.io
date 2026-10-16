@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="six-elemental-worlds-galleries-20261016">
+  <meta name="1111space-build" content="six-elemental-worlds-optimized-gallery-20261016">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1738,9 +1738,9 @@
     .world-title{font-family:"Jost",sans-serif;font-size:clamp(40px,8vw,75px);font-weight:300;line-height:1.06;letter-spacing:.14em;margin:18px 0 6px}
     .world-subtitle{margin:0 auto 24px;color:var(--world-accent);font:400 clamp(13px,1.6vw,17px)/1.35 "Jost",sans-serif;letter-spacing:.18em;text-transform:uppercase}
     .world-copy{margin:0 auto;max-width:720px;font:400 clamp(16px,2.05vw,21px)/1.65 "Manrope",sans-serif;color:rgba(232,245,251,.84);text-wrap:pretty}
-    .world-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;max-width:960px;width:min(100%,960px);margin:28px auto 0}
+    .world-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;max-width:610px;width:min(100%,610px);margin:28px auto 0}
     .world-gallery-card{margin:0;padding:12px;border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.10);box-shadow:0 18px 58px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-    .world-gallery-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:20px;box-shadow:0 10px 36px rgba(0,0,0,.34)}
+    .world-gallery-card img{display:block;width:100%;height:auto;aspect-ratio:1122/1402;object-fit:contain;border-radius:20px;box-shadow:0 10px 36px rgba(0,0,0,.34)}
     .world-gallery-card figcaption{margin-top:12px;text-align:left;color:rgba(234,245,250,.80);font:400 clamp(12px,1.35vw,14px)/1.55 "Manrope",sans-serif;letter-spacing:.02em}
     .world-back{margin-top:31px}
     @media (min-width:701px) and (max-width:1180px){
@@ -1769,11 +1769,10 @@
       .world-copy{font-size:clamp(15px,4vw,17px);line-height:1.6}
       .world-gallery{margin-top:22px;gap:14px}
       .world-gallery-card{padding:10px;border-radius:22px}
-      .world-gallery-card img{border-radius:16px;aspect-ratio:4/4.2}
+      .world-gallery-card img{border-radius:16px;aspect-ratio:1122/1402}
       .world-gallery-card figcaption{margin-top:10px;font-size:12px;line-height:1.5}
     }
       .world-back{margin-top:25px}
-    }
 
     /* Keep decorative miniature light-orbs away from world names. */
     .m1{left:54%;top:14.5%}
@@ -1787,6 +1786,15 @@
       .s13{left:16%;top:81%}
       .s15{left:86%;top:89%}
     }
+
+    /* Gallery panels stay scrollable and begin at the top on small screens. */
+    .world-panel.open{display:block;overflow-y:auto;overscroll-behavior:contain;padding:clamp(22px,5vh,44px) 18px 45px;-webkit-overflow-scrolling:touch}
+    .world-panel .world-inner{width:min(100%,790px);max-width:790px;margin:0 auto;padding:0 0 22px}
+    .world-panel-close{position:sticky;z-index:25;top:8px;left:100%;display:block;margin:0 0 -34px auto;width:38px;height:38px;border:1px solid rgba(190,235,255,.18);border-radius:50%;background:rgba(3,10,21,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font:400 24px/1 "Jost",sans-serif;cursor:pointer}
+    .world-panel-close:focus-visible{outline:2px solid #b7f5ff;outline-offset:3px}
+    .world-gallery-card img{background:#080b15}
+    .gallery-concept-tag{display:inline-block;margin-right:8px;padding:4px 7px;border-radius:8px;background:rgba(132,215,225,.08);border:1px solid rgba(150,221,236,.12);color:rgba(214,244,249,.70);font:400 9px/1.4 "Jost",sans-serif;letter-spacing:.09em;text-transform:uppercase;vertical-align:middle}
+    @media(max-width:700px){.world-panel.open{padding:18px 14px 30px}.world-panel .world-inner{padding-top:14px}.world-panel-close{top:6px}}
   </style>
 </head>
 <body>
@@ -2039,6 +2047,7 @@
 
   <div class="portal" id="portal" aria-hidden="true"></div>
   <section class="world-panel" id="worldPanel" data-world="1" aria-hidden="true">
+    <button class="world-panel-close" id="worldClose" type="button" aria-label="Close this world">×</button>
     <div class="world-inner">
       <div class="world-number" id="worldNumber">WORLD 1</div>
       <h2 class="world-title" id="worldTitle">FIRE</h2>
@@ -2553,12 +2562,12 @@
 
     // --- language -----------------------------------------------------------
     const worldGalleries={
-      "1":[{src:"assets/gallery/fire-banya.png",alt:{en:"Cedar banya and sauna interior with lush jungle outside and an immersive warm cosmic ceiling projection.",es:"Interior de banya y sauna de cedro con selva exuberante al exterior y una proyección inmersiva cálida de techo cósmico."},caption:{en:"Warm cedar banya and sauna with immersive sunset-cosmos projections and a lush jungle atmosphere.",es:"Banya y sauna de cedro con proyecciones inmersivas de atardecer cósmico y una atmósfera de selva exuberante."}}],
-      "2":[{src:"assets/gallery/ice-plunge.png",alt:{en:"Large communal cold plunge bath with overhead rain, shower area and immersive icy projections.",es:"Gran piscina compartida de inmersión fría con lluvia cenital, zona de duchas y proyecciones inmersivas de hielo."},caption:{en:"A communal contrast room with artificial rain, shower zone and a dramatic ice-world projection atmosphere.",es:"Una sala compartida de contraste con lluvia artificial, zona de duchas y una atmósfera de proyección tipo mundo de hielo."}}],
-      "3":[{src:"assets/gallery/air-breath.png",alt:{en:"Breathwork room in a calm immersive space with soft light, flowing textiles and sky-like projections.",es:"Sala de respiración en un espacio inmersivo sereno con luz suave, telas fluidas y proyecciones tipo cielo."},caption:{en:"Breath as the bridge: a serene guided space to slow down and find calm on purpose.",es:"La respiración como puente: un espacio sereno y guiado para bajar el ritmo y encontrar calma a voluntad."}}],
-      "4":[{src:"assets/gallery/earth-body-sound.png",alt:{en:"Yoga and sound room with grounded natural textures, candles and immersive forest-to-cosmos projections.",es:"Sala de yoga y sonido con texturas naturales, velas y proyecciones inmersivas de bosque hacia el cosmos."},caption:{en:"A grounded body-and-sound room where movement, release and stillness settle into place.",es:"Una sala de cuerpo y sonido donde el movimiento, la liberación y la quietud encuentran su lugar."}}],
-      "5":[{src:"assets/gallery/spirit-ceremony.png",alt:{en:"Ceremony circle with cacao and tea, candlelight and immersive twilight projections.",es:"Círculo de ceremonia con cacao y té, luz de velas y proyecciones inmersivas de crepúsculo."},caption:{en:"Cacao, tea and real listening in a shared ceremonial atmosphere that feels intimate and warm.",es:"Cacao, té y escucha real en una atmósfera ceremonial compartida, íntima y cálida."}}],
-      "6":[{src:"assets/gallery/light-immersion.png",alt:{en:"Immersive light and sound room with cosmic wall projections and a dreamlike reflective floor.",es:"Sala inmersiva de luz y sonido con proyecciones cósmicas y un suelo reflectante onírico."},caption:{en:"An immersive light-and-sound world where every ritual becomes a living landscape you step inside.",es:"Un mundo inmersivo de luz y sonido donde cada ritual se convierte en un paisaje vivo al que entras."}}]
+      "1":[{src:"assets/gallery/fire-banya.webp",alt:{en:"Cedar banya and sauna interior with lush jungle outside and an immersive warm cosmic ceiling projection.",es:"Interior de banya y sauna de cedro con selva exuberante al exterior y una proyección inmersiva cálida de techo cósmico."},caption:{en:"Warm cedar banya and sauna with immersive sunset-cosmos projections and a lush jungle atmosphere.",es:"Banya y sauna de cedro con proyecciones inmersivas de atardecer cósmico y una atmósfera de selva exuberante."}}],
+      "2":[{src:"assets/gallery/ice-plunge.webp",alt:{en:"Large communal cold plunge bath with overhead rain, shower area and immersive icy projections.",es:"Gran piscina compartida de inmersión fría con lluvia cenital, zona de duchas y proyecciones inmersivas de hielo."},caption:{en:"A communal contrast room with artificial rain, shower zone and a dramatic ice-world projection atmosphere.",es:"Una sala compartida de contraste con lluvia artificial, zona de duchas y una atmósfera de proyección tipo mundo de hielo."}}],
+      "3":[{src:"assets/gallery/air-breath.webp",alt:{en:"Breathwork room in a calm immersive space with soft light, flowing textiles and sky-like projections.",es:"Sala de respiración en un espacio inmersivo sereno con luz suave, telas fluidas y proyecciones tipo cielo."},caption:{en:"Breath as the bridge: a serene guided space to slow down and find calm on purpose.",es:"La respiración como puente: un espacio sereno y guiado para bajar el ritmo y encontrar calma a voluntad."}}],
+      "4":[{src:"assets/gallery/earth-body-sound.webp",alt:{en:"Yoga and sound room with grounded natural textures, candles and immersive forest-to-cosmos projections.",es:"Sala de yoga y sonido con texturas naturales, velas y proyecciones inmersivas de bosque hacia el cosmos."},caption:{en:"A grounded body-and-sound room where movement, release and stillness settle into place.",es:"Una sala de cuerpo y sonido donde el movimiento, la liberación y la quietud encuentran su lugar."}}],
+      "5":[{src:"assets/gallery/spirit-ceremony.webp",alt:{en:"Ceremony circle with cacao and tea, candlelight and immersive twilight projections.",es:"Círculo de ceremonia con cacao y té, luz de velas y proyecciones inmersivas de crepúsculo."},caption:{en:"Cacao, tea and real listening in a shared ceremonial atmosphere that feels intimate and warm.",es:"Cacao, té y escucha real en una atmósfera ceremonial compartida, íntima y cálida."}}],
+      "6":[{src:"assets/gallery/light-immersion.webp",alt:{en:"Immersive light and sound room with cosmic wall projections and a dreamlike reflective floor.",es:"Sala inmersiva de luz y sonido con proyecciones cósmicas y un suelo reflectante onírico."},caption:{en:"An immersive light-and-sound world where every ritual becomes a living landscape you step inside.",es:"Un mundo inmersivo de luz y sonido donde cada ritual se convierte en un paisaje vivo al que entras."}}]
     };
 
     const translations={
@@ -2662,6 +2671,7 @@
       document.getElementById('privacyTitle').textContent=t.privacyTitle;
       document.getElementById('privacyClose').setAttribute('aria-label',t.close);
       document.getElementById('worldBack').textContent=t.back;
+      document.getElementById('worldClose').setAttribute('aria-label',currentLang==='es'?'Cerrar este mundo':'Close this world');
       document.getElementById('privacyBody').innerHTML=t.privacyBody.map(x=>'<p>'+x+'</p>').join('');
       document.querySelector('.countdown').setAttribute('aria-label',currentLang==='es'?'Cuenta atrás para la apertura':'Countdown to opening');
       document.querySelector('.worlds').setAttribute('aria-label',currentLang==='es'?'Mundos de 11•11':'11•11 worlds');
@@ -2826,7 +2836,8 @@
       worldGallery.innerHTML=items.map(item=>{
         const alt=(item.alt&&item.alt[currentLang])||'';
         const caption=(item.caption&&item.caption[currentLang])||'';
-        return `<figure class="world-gallery-card"><img src="${item.src}" alt="${alt}" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
+        const concept=currentLang==='es'?'Visualización conceptual':'Concept visual';
+        return `<figure class="world-gallery-card"><img src="${item.src}" alt="${alt}" loading="eager" decoding="async" width="1122" height="1402"><figcaption><span class="gallery-concept-tag">${concept}</span>${caption}</figcaption></figure>`;
       }).join('');
     }
     document.querySelectorAll('.portal-node').forEach(btn=>btn.addEventListener('click',()=>{
@@ -2837,7 +2848,10 @@
       setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent=t.elements[n];worldSubtitle.textContent=t.subtitles[n];worldCopy.textContent=t.worldsData[n];renderWorldGallery(n);panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
     }));
     applyLanguage(currentLang);
-    document.getElementById('worldBack').addEventListener('click',()=>{panel.classList.remove('open');panel.setAttribute('aria-hidden','true');panel.dataset.world='';document.body.style.overflow=''});
+    function closeWorld(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true');panel.dataset.world='';document.body.style.overflow='';worldGallery.innerHTML=''}
+    document.getElementById('worldBack').addEventListener('click',closeWorld);
+    document.getElementById('worldClose').addEventListener('click',closeWorld);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))closeWorld()});
   </script>
 
   <script>
