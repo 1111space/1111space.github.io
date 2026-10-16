@@ -6,10 +6,11 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="six-elemental-worlds-optimized-gallery-20261016">
+  <meta name="1111space-build" content="fast-stable-latest-gallery-20261016">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <style>
     :root{
       --ink:#f8fcff;
@@ -1771,8 +1772,8 @@
       .world-gallery-card{padding:10px;border-radius:22px}
       .world-gallery-card img{border-radius:16px;aspect-ratio:1122/1402}
       .world-gallery-card figcaption{margin-top:10px;font-size:12px;line-height:1.5}
-    }
       .world-back{margin-top:25px}
+    }
 
     /* Keep decorative miniature light-orbs away from world names. */
     .m1{left:54%;top:14.5%}
@@ -1795,13 +1796,37 @@
     .world-gallery-card img{background:#080b15}
     .gallery-concept-tag{display:inline-block;margin-right:8px;padding:4px 7px;border-radius:8px;background:rgba(132,215,225,.08);border:1px solid rgba(150,221,236,.12);color:rgba(214,244,249,.70);font:400 9px/1.4 "Jost",sans-serif;letter-spacing:.09em;text-transform:uppercase;vertical-align:middle}
     @media(max-width:700px){.world-panel.open{padding:18px 14px 30px}.world-panel .world-inner{padding-top:14px}.world-panel-close{top:6px}}
+  
+    /* Performance and stability: photo-led 2.5D, animated only when needed */
+    #starfield{display:none!important}
+    #threeDepthHolder{display:none!important}
+    #depthCanvas{z-index:1;opacity:.67;pointer-events:none;animation:nearStarsBreath 12s ease-in-out infinite}
+    @keyframes nearStarsBreath{0%,100%{opacity:.34}50%{opacity:.68}}
+    #flowCanvas{animation:lightFlowBreath 11s ease-in-out infinite}
+    @keyframes lightFlowBreath{0%,100%{opacity:.18}52%{opacity:.95}}
+    .cosmos::before{transition:transform .20s linear;will-change:auto}
+    @media(max-width:800px){
+      .scroll-nebula,.scroll-cluster,.side-dust{display:none!important}
+      .mist{display:none!important}
+      .portal-node{filter:none!important}
+      .portal-node::before{filter:blur(12px)!important}
+      .portal-node .portal-core{box-shadow:none!important}
+      .world-gallery-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    }
+    /* Floating invitation stays behind full-screen worlds and contact/privacy dialogs. */
+    body:has(.world-panel.open) #giftOrb,
+    body:has(.booking-modal.open) #giftOrb,
+    body:has(.privacy-modal.open) #giftOrb{visibility:hidden!important;pointer-events:none!important}
+    @media(prefers-reduced-motion:reduce){
+      #flowCanvas,#depthCanvas{animation:none!important}
+    }
+
   </style>
 </head>
 <body>
   <div class="cosmos" aria-hidden="true">
     <canvas id="starfield"></canvas>
     <canvas id="depthCanvas" aria-hidden="true"></canvas>
-    <div id="threeDepthHolder" aria-hidden="true"></div>
     <div class="mist"></div>
     <div class="scroll-nebula" id="scrollNebula"></div>
     <div class="scroll-cluster" id="scrollCluster"></div>
@@ -2154,7 +2179,7 @@
       const tag=document.querySelector('.tagline');
       if(tag){tag.style.setProperty('--tagX',(pointerX*5).toFixed(2)+'px');tag.style.setProperty('--tagY',(pointerY*3).toFixed(2)+'px')}
     },{passive:true});
-    addEventListener('resize',resizeStars,{passive:true});resizeStars();requestAnimationFrame(drawStars);
+    addEventListener('resize',resizeStars,{passive:true});resizeStars(); // photo already contains a real star field; don't run duplicate 60fps animation
 
     // --- falling stars: the bright head leads DOWN along the tail ----------
     const meteorBox=document.getElementById('meteors');
@@ -2515,12 +2540,7 @@
       requestAnimationFrame(drawFlow);
     }
 
-    function animateFlow(){
-      const r=stage.getBoundingClientRect();
-      const near=r.bottom>-80 && r.top<innerHeight+80;
-      if(near) queueFlow();
-      requestAnimationFrame(animateFlow);
-    }
+    // The light ribbon is redrawn on scroll, not continuously.
 
     // Tiny pointer parallax on desktop; CSS transforms only, no canvas redraw loop.
     let pointerQueued=false,lastPX=0,lastPY=0;
@@ -2547,16 +2567,15 @@
     addEventListener('scroll',()=>{queueFlow();updateAtmosphere()},{passive:true});
     addEventListener('resize',()=>{resizeFlow();updateAtmosphere()},{passive:true});
     resizeFlow();
-    buildNebulaClusterTexture();
+    if(innerWidth>=800 && !reduceMotion) buildNebulaClusterTexture();
     updateAtmosphere();
     requestAnimationFrame(updateAtmosphere);
     let clusterResizeTimer;
     addEventListener('resize',()=>{
       clearTimeout(clusterResizeTimer);
-      clusterResizeTimer=setTimeout(buildNebulaClusterTexture,220);
+      clusterResizeTimer=setTimeout(()=>{if(innerWidth>=800&&!reduceMotion)buildNebulaClusterTexture()},400);
     },{passive:true});
     requestAnimationFrame(queueFlow);
-    requestAnimationFrame(animateFlow);
     setTimeout(queueFlow,120);
     window.addEventListener('pageshow',queueFlow,{passive:true});
 
@@ -2857,253 +2876,85 @@
   <script>
   (() => {
     'use strict';
+    // Stable 2.5D cosmic depth: no remote libraries, GPU-heavy WebGL or permanent drawing loops.
     const root=document.documentElement;
     const canvas=document.getElementById('depthCanvas');
-    const holder=document.getElementById('threeDepthHolder');
     const hero=document.querySelector('.hero');
-    const worldStage=document.getElementById('worldsStage');
-    if(!canvas || !holder || !hero || !worldStage) return;
+    const stage=document.getElementById('worldsStage');
+    if(!canvas||!hero||!stage)return;
     const ctx=canvas.getContext('2d',{alpha:true});
-    if(!ctx) return;
+    if(!ctx)return;
     const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+    const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
     const smooth=v=>v*v*(3-2*v);
-    const mobile=()=>window.innerWidth<700;
-    const tablet=()=>window.innerWidth>=700&&window.innerWidth<1100;
-    let W=1,H=1,DPR=1;
-    let scrollTarget=0, depth=0;
-    let mouseX=0,mouseY=0,easedMouseX=0,easedMouseY=0;
-    let webglReady=false,stars=[];
-    let lastFrame=0;
-    let active=true;
-    let seed=7331;
-    const rnd=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
-    function randomNormal(){return (rnd()+rnd()+rnd()+rnd()-2)*.50}
+    let W=0,H=0,DPR=1,points=[],pending=false;
+    let lastDraw=-1;
+    let scrollProgress=0;
+    let pointerX=0,pointerY=0;
+    let seed=31111;
+    const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
 
-    // Camera trajectory follows real document scrolling (not elapsed time).
-    function scrollDepth(){
-      const y=Math.max(0,window.scrollY||window.pageYOffset||0);
-      const begin=hero.offsetHeight*.30;
-      const finish=hero.offsetHeight+worldStage.offsetHeight*.56;
-      const p=clamp((y-begin)/Math.max(1,finish-begin),0,1);
-      return reduceMotion?0:smooth(p);
-    }
-    function syncScroll(){ scrollTarget=scrollDepth(); depth=scrollTarget; syncPhoto(); }
-    function syncPhoto(){
-      const scale=1.025+depth*.34;
-      root.style.setProperty('--photoZoom',scale.toFixed(4));
-      root.style.setProperty('--photoShiftX',(-depth*W*.025+easedMouseX*W*.005).toFixed(1)+'px');
-      root.style.setProperty('--photoShiftY',(-depth*H*.048+easedMouseY*H*.005).toFixed(1)+'px');
-    }
     function resize(){
       W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);
-      DPR=Math.min(window.devicePixelRatio||1,mobile()?1.25:tablet()?1.30:window.innerWidth>1900?1.30:1.5);
+      DPR=Math.min(devicePixelRatio||1,W<=700?1.1:1.35);
       canvas.width=Math.round(W*DPR);
       canvas.height=Math.round(H*DPR);
       canvas.style.width=W+'px';canvas.style.height=H+'px';
       ctx.setTransform(DPR,0,0,DPR,0,0);
-      seed=7331+W*7+H*3;
-      const n=mobile()?680:tablet()?930:1150;
-      stars=Array.from({length:n},()=>{
-        const band=rnd()<.64;
-        const nx=(rnd()-.5)*3.0;
-        const ny=band ? (-nx*.62+randomNormal()*.38) : (rnd()-.5)*2.5;
-        return {x:nx,y:ny,z:.30+rnd()*2.1,r:rnd()<.038?1.1+rnd()*.6:.24+rnd()*.43,
-          tint:rnd(),alpha:.3+rnd()*.57,phase:rnd()*Math.PI*2,rate:.75+rnd()*1.15};
+      seed=31111+W*3+H*7;
+      // A few close particles are enough: the background photo supplies thousands of distant stars.
+      const count=W<=700?155:W<=1100?220:270;
+      points=Array.from({length:count},()=>{
+        const t=rand(),band=rand()<.56;
+        const bx=t,by=.16+t*.64+(rand()-.5)*.19;
+        return {x:band?bx:rand(),y:band?by:rand(),z:.18+rand()*.8,
+                r:.16+rand()*.47,a:.14+rand()*.32,tint:rand()};
       });
-      syncScroll();
+      lastDraw=-1;
+      schedule();
     }
-    function renderFallback(time){
+    function render(time){
+      pending=false;
+      if(document.hidden)return;
+      const y=Math.max(0,window.scrollY||window.pageYOffset||0);
+      const start=hero.offsetHeight*.26;
+      const stop=hero.offsetHeight+stage.offsetHeight*.60;
+      const raw=clamp((y-start)/Math.max(1,stop-start),0,1);
+      scrollProgress=reduceMotion?0:smooth(raw);
+      // Zoom the photograph gently. No scene rebuild and no work between scroll events.
+      const zoom=reduceMotion?1.02:1.025+.18*scrollProgress;
+      root.style.setProperty('--photoZoom',zoom.toFixed(4));
+      root.style.setProperty('--photoShiftX',(-scrollProgress*W*.018+pointerX*W*.005).toFixed(1)+'px');
+      root.style.setProperty('--photoShiftY',(-scrollProgress*H*.034+pointerY*H*.005).toFixed(1)+'px');
+      if(time-lastDraw<32 && lastDraw>=0)return;
+      lastDraw=time;
       ctx.clearRect(0,0,W,H);
-      const w2=W*.5,h2=H*.5;
-      for(const s of stars){
-        const remain=s.z+.76-depth*.92;
-        if(remain<=.10)continue;
-        const perspective=.98/remain;
-        const sx=w2+(s.x-easedMouseX*.07)*W*.38*perspective;
-        const sy=h2+(s.y-easedMouseY*.07)*H*.42*perspective;
-        if(sx<-18||sy<-18||sx>W+18||sy>H+18)continue;
-        const size=clamp(s.r*perspective*.88,.18,3.5);
-        const flicker=reduceMotion?1:.90+.10*Math.sin(time*.00065*s.rate+s.phase);
-        const alpha=Math.min(.88,s.alpha*flicker*(.65+.28*depth));
-        const tone=s.tint<.78?'235,246,255':s.tint<.91?'154,231,230':'205,190,249';
-        if(size>1.0){
-          ctx.fillStyle=`rgba(${tone},${alpha*.055})`;
-          ctx.beginPath();ctx.arc(sx,sy,size*4.0,0,Math.PI*2);ctx.fill();
-        }
-        ctx.fillStyle=`rgba(${tone},${alpha})`;
-        ctx.beginPath();ctx.arc(sx,sy,size,0,Math.PI*2);ctx.fill();
+      if(reduceMotion)return;
+      for(const p of points){
+        const depthScale=1+scrollProgress*(.22+p.z*.38);
+        const x=W*(.5+(p.x-.5)*depthScale)+pointerX*p.z*4;
+        const y=H*(.5+(p.y-.5)*depthScale)+pointerY*p.z*3;
+        if(x<0||x>W||y<0||y>H)continue;
+        const size=p.r*(1+scrollProgress*.75*p.z);
+        ctx.beginPath();ctx.arc(x,y,size,0,Math.PI*2);
+        const tone=p.tint<.77?'236,249,255':p.tint<.91?'176,237,244':'222,202,255';
+        ctx.fillStyle=`rgba(${tone},${Math.min(.60,p.a+.05*scrollProgress)})`;
+        ctx.fill();
       }
     }
-    function tick(t){
-      requestAnimationFrame(tick);
-      if(document.hidden)return;
-      const frameBudget=mobile()?32:24;
-      if(t-lastFrame<frameBudget)return;
-      lastFrame=t;
-      depth+=(scrollTarget-depth)*.085;
-      easedMouseX+=(mouseX-easedMouseX)*.055;
-      easedMouseY+=(mouseY-easedMouseY)*.055;
-      syncPhoto();
-      if(!webglReady)renderFallback(t);
-    }
-    document.addEventListener('visibilitychange',()=>{active=!document.hidden});
-    addEventListener('scroll',syncScroll,{passive:true});
+    function schedule(){if(pending)return;pending=true;requestAnimationFrame(render)}
+    addEventListener('scroll',schedule,{passive:true});
     addEventListener('resize',resize,{passive:true});
+    addEventListener('pageshow',schedule,{passive:true});
     addEventListener('pointermove',e=>{
-      if(e.pointerType==='touch'||mobile())return;
-      mouseX=(e.clientX/Math.max(W,1)-.5)*2;
-      mouseY=(e.clientY/Math.max(H,1)-.5)*2;
+      if(W<=700||e.pointerType==='touch')return;
+      pointerX=e.clientX/W-.5;pointerY=e.clientY/H-.5;
+      schedule();
     },{passive:true});
-    root.classList.add('depth-enabled');
+    root.classList.add('depth-enabled','depth-lite');
     resize();
-    requestAnimationFrame(tick);
-    window.__spaceDepth={
-      get journey(){return depth},
-      get target(){return scrollTarget},
-      get pointer(){return {x:easedMouseX,y:easedMouseY}},
-      get reducedMotion(){return reduceMotion},
-      activateWebGL(){webglReady=true;root.classList.add('depth-webgl');},
-      deactivateWebGL(){webglReady=false;root.classList.remove('depth-webgl');},
-      dimensions(){return {width:W,height:H,dpr:DPR}}
-    };
   })();
   </script>
-
-  <script type="module">
-  // Progressive enhancement: real WebGL depth, one draw call for the entire starfield.
-  // Offline / older iPhones keep the working perspective-Canvas fallback above.
-  const depthEngine=window.__spaceDepth;
-  if(depthEngine && !depthEngine.reducedMotion){
-    try{
-      const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js');
-      const holder=document.getElementById('threeDepthHolder');
-      const renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power'});
-      renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:innerWidth<1100?1.25:innerWidth>1900?1.3:1.45));
-      renderer.setSize(innerWidth,innerHeight,false);
-      renderer.setClearColor(0x000000,0);
-      holder.appendChild(renderer.domElement);
-      const scene=new THREE.Scene();
-      const camera=new THREE.PerspectiveCamera(68,innerWidth/innerHeight,.2,1200);
-      camera.position.z=190;
-      const mobile=innerWidth<700;
-      const n=mobile?1450:innerWidth<1100?2000:2400;
-      const positions=new Float32Array(n*3);
-      const colors=new Float32Array(n*3);
-      const sizes=new Float32Array(n);
-      const phases=new Float32Array(n);
-      const speeds=new Float32Array(n);
-      const strengths=new Float32Array(n);
-      let seed=44097;
-      const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
-      const approxGaussian=()=>rand()+rand()+rand()+rand()-2;
-      for(let i=0;i<n;i++){
-        const t=rand();
-        const band=rand()<.64;
-        const x=(t-.5)*660;
-        const y=band ? (-x*.62+approxGaussian()*52) : (rand()-.5)*440;
-        positions[i*3]=x;
-        positions[i*3+1]=y;
-        positions[i*3+2]=80-rand()*660;
-        const c=rand();
-        let r=1,g=1,b=1;
-        if(c<.76){r=.86;g=.93;b=1}
-        else if(c<.91){r=.64;g=.95;b=.94}
-        else {r=.86;g=.80;b=1}
-        colors[i*3]=r;colors[i*3+1]=g;colors[i*3+2]=b;
-        sizes[i]=(rand()<.018?3.6:1.5)+rand()*1.8;
-        phases[i]=rand()*Math.PI*2;
-        speeds[i]=.55+rand()*1.5;
-        strengths[i]=.36+rand()*.56;
-      }
-      const geometry=new THREE.BufferGeometry();
-      geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
-      geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
-      geometry.setAttribute('aSize',new THREE.BufferAttribute(sizes,1));
-      geometry.setAttribute('aPhase',new THREE.BufferAttribute(phases,1));
-      geometry.setAttribute('aRate',new THREE.BufferAttribute(speeds,1));
-      geometry.setAttribute('aStrength',new THREE.BufferAttribute(strengths,1));
-      const material=new THREE.ShaderMaterial({
-        uniforms:{uTime:{value:0},uPixelRatio:{value:renderer.getPixelRatio()},uJourney:{value:0}},
-        vertexShader:`
-          attribute vec3 color;
-          attribute float aSize;
-          attribute float aPhase;
-          attribute float aRate;
-          attribute float aStrength;
-          uniform float uTime;
-          uniform float uPixelRatio;
-          uniform float uJourney;
-          varying vec3 vColor;
-          varying float vAlpha;
-          void main(){
-            vColor=color;
-            float twinkle=.86+.14*sin(uTime*aRate+aPhase);
-            vAlpha=aStrength*twinkle*(.74+.20*uJourney);
-            vec4 mvPosition=modelViewMatrix*vec4(position,1.0);
-            float distance=max(12.0,-mvPosition.z);
-            gl_PointSize=clamp(aSize*uPixelRatio*160.0/distance,0.72,5.4);
-            gl_Position=projectionMatrix*mvPosition;
-          }
-        `,
-        fragmentShader:`
-          precision mediump float;
-          varying vec3 vColor;
-          varying float vAlpha;
-          void main(){
-            vec2 p=gl_PointCoord-vec2(.5);
-            float d=length(p)*2.0;
-            float soft=1.0-smoothstep(.15,.99,d);
-            float core=1.0-smoothstep(.0,.36,d);
-            float alpha=(soft*.44+core*.64)*vAlpha;
-            if(alpha<.013)discard;
-            gl_FragColor=vec4(vColor,alpha);
-          }
-        `,
-        blending:THREE.AdditiveBlending,
-        transparent:true,depthWrite:false,vertexColors:true
-      });
-      const field=new THREE.Points(geometry,material);
-      field.frustumCulled=false;
-      scene.add(field);
-      let time=0,last=0,contextValid=true;
-      const render=t=>{
-        requestAnimationFrame(render);
-        if(document.hidden||!contextValid)return;
-        if(t-last<(mobile?32:22))return;
-        last=t;
-        const journey=depthEngine.journey;
-        const pointer=depthEngine.pointer;
-        const targetZ=190-114*journey;
-        camera.position.z+=(targetZ-camera.position.z)*.075;
-        camera.position.x+=(pointer.x*7-camera.position.x)*.035;
-        camera.position.y+=(-pointer.y*5-camera.position.y)*.035;
-        camera.lookAt(0,0,-180);
-        field.rotation.z=-journey*.025;
-        material.uniforms.uJourney.value=journey;
-        material.uniforms.uTime.value=t*.0007;
-        renderer.render(scene,camera);
-      };
-      const resize=()=>{
-        camera.aspect=innerWidth/Math.max(1,innerHeight);
-        camera.updateProjectionMatrix();
-        renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1.2:innerWidth<1100?1.25:innerWidth>1900?1.3:1.45));
-        renderer.setSize(innerWidth,innerHeight,false);
-        material.uniforms.uPixelRatio.value=renderer.getPixelRatio();
-      };
-      addEventListener('resize',resize,{passive:true});
-      renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();contextValid=false;depthEngine.deactivateWebGL();},false);
-      renderer.domElement.addEventListener('webglcontextrestored',()=>{contextValid=true;depthEngine.activateWebGL();},false);
-      // First successful render before switching away from the always-working fallback.
-      renderer.render(scene,camera);
-      depthEngine.activateWebGL();
-      requestAnimationFrame(render);
-    }catch(error){
-      console.info('11·11 SPACE: lightweight 3D fallback active.',error);
-    }
-  }
-  </script>
-
 
   <script>
   (()=>{
