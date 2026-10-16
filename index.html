@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="main-3d-adaptive-all-devices-20261015">
+  <meta name="1111space-build" content="six-elemental-worlds-20261016">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1664,6 +1664,105 @@
     .gift-backdrop{-webkit-backdrop-filter:blur(9px)}
     .booking-modal,.privacy-modal{-webkit-backdrop-filter:blur(18px)}
 
+
+    /* ===== Six elemental worlds + separate Early Booking portal ===== */
+    .worlds-intro{max-width:1080px;margin:0 auto 24px;text-align:center;position:relative;z-index:3}
+    .worlds-kicker{color:rgba(226,247,255,.57)}
+    .worlds-directions{
+      margin:13px auto 0;
+      max-width:980px;
+      font-family:"Jost",sans-serif;
+      font-size:clamp(12px,1.45vw,15px);
+      font-weight:300;
+      letter-spacing:.075em;
+      line-height:1.8;
+      color:rgba(236,248,255,.84);
+      text-wrap:balance;
+      text-shadow:0 1px 12px rgba(0,0,0,.65);
+    }
+    .worlds-stage{height:1640px; margin-top:0}
+    .portal-subtitle{
+      position:absolute;z-index:5;
+      left:50%;top:calc(100% + 48px);
+      transform:translateX(-50%);
+      display:block;width:max-content;max-width:210px;
+      text-transform:uppercase;
+      font-family:"Jost",sans-serif;
+      font-size:clamp(10px,1.15vw,12px);
+      font-weight:300;
+      letter-spacing:.18em;
+      line-height:1.25;
+      text-align:center;
+      color:rgba(235,250,255,.77);
+      text-shadow:0 0 10px rgba(0,0,0,.95),0 0 20px rgba(0,0,0,.75);
+      white-space:nowrap;pointer-events:none;
+    }
+    .portal-node:hover .portal-subtitle,.portal-node:focus-visible .portal-subtitle{color:#fff}
+    .portal-label text{fill:rgba(248,251,255,.97);text-shadow:0 0 9px rgba(0,0,0,.8)}
+    .p1{left:28%;top:12.5%;width:clamp(116px,14vw,150px)}
+    .p2{left:71%;top:25%;width:clamp(128px,15.8vw,172px)}
+    .p3{left:32%;top:38%;width:clamp(116px,14.2vw,156px)}
+    .p4{left:71%;top:51%;width:clamp(128px,16vw,172px)}
+    .p5{left:28%;top:64%;width:clamp(126px,15vw,162px)}
+    .p6{left:70%;top:77%;width:clamp(132px,16vw,174px);--speed:66s;--orbit:31s;--orbit-delay:-16s;--ox:6px;--oy:-5px}
+    .p7{left:47%;top:92%;width:clamp(90px,10.5vw,114px);--speed:54s;--orbit:26s;--orbit-delay:-12s;--ox:5px;--oy:4px}
+    .portal-node.fire{--bg:radial-gradient(circle at 39% 34%,rgba(255,247,202,.97) 0%,rgba(255,195,93,.83) 18%,rgba(245,97,52,.66) 37%,rgba(105,32,29,.63) 59%,rgba(19,9,12,.18) 77%,transparent 95%);--overlay:radial-gradient(circle at 43% 50%,rgba(255,244,200,.23),transparent 26%),conic-gradient(from 22deg,transparent 0 14%,rgba(255,185,90,.18) 20% 26%,transparent 34% 59%,rgba(248,109,70,.14) 69% 78%,transparent 90%);--glow1:rgba(254,132,65,.34);--glow2:rgba(192,72,47,.12)}
+    .portal-node.ice{--bg:radial-gradient(circle at 37% 32%,rgba(253,255,255,.99) 0%,rgba(208,248,255,.93) 17%,rgba(104,203,238,.73) 35%,rgba(35,99,166,.60) 60%,rgba(10,22,44,.17) 78%,transparent 95%);--overlay:repeating-linear-gradient(157deg,transparent 0 12%,rgba(225,251,255,.13) 13% 15%,transparent 16% 29%),radial-gradient(circle at 63% 64%,rgba(151,246,255,.16),transparent 37%);--glow1:rgba(115,213,252,.32);--glow2:rgba(65,144,225,.12)}
+    .portal-node.air{--bg:radial-gradient(circle at 38% 32%,rgba(255,255,255,.95) 0%,rgba(219,227,255,.85) 19%,rgba(174,172,239,.55) 39%,rgba(77,97,166,.45) 60%,rgba(19,20,40,.17) 80%,transparent 96%);--overlay:conic-gradient(from 35deg,rgba(255,255,255,.02),rgba(203,219,255,.13),transparent 27%,rgba(244,244,255,.14) 45%,transparent 60%,rgba(175,213,245,.15) 74%,transparent 92%);--glow1:rgba(185,195,253,.27);--glow2:rgba(133,148,213,.11)}
+    .portal-node.earth{--bg:radial-gradient(circle at 39% 33%,rgba(234,254,224,.94) 0%,rgba(137,222,164,.82) 20%,rgba(63,145,118,.72) 39%,rgba(19,70,74,.63) 60%,rgba(10,28,28,.18) 80%,transparent 96%);--overlay:conic-gradient(from 80deg,rgba(155,220,175,.04),rgba(54,155,130,.25) 23%,transparent 34%,rgba(194,234,168,.18) 52%,transparent 69%,rgba(64,168,158,.19) 79%,transparent 100%);--glow1:rgba(83,210,142,.31);--glow2:rgba(61,170,136,.12)}
+    .portal-node.spirit{--bg:radial-gradient(circle at 38% 33%,rgba(255,242,220,.97) 0%,rgba(234,183,170,.84) 18%,rgba(176,105,162,.68) 38%,rgba(78,40,109,.65) 59%,rgba(25,12,40,.19) 78%,transparent 95%);--overlay:conic-gradient(from 38deg,transparent 0 10%,rgba(255,216,162,.16) 18% 24%,transparent 30% 51%,rgba(236,185,229,.19) 61% 69%,transparent 80%);--glow1:rgba(234,157,177,.29);--glow2:rgba(169,103,207,.13)}
+    .portal-node.light{--bg:radial-gradient(circle at 40% 32%,rgba(255,255,255,.99) 0%,rgba(179,252,250,.92) 18%,rgba(112,202,239,.71) 35%,rgba(146,121,222,.61) 57%,rgba(22,38,88,.18) 78%,transparent 95%);--overlay:conic-gradient(from 0deg,transparent 0 12%,rgba(179,249,252,.20) 19% 25%,transparent 34% 47%,rgba(224,190,255,.17) 56% 62%,transparent 70% 83%,rgba(133,237,233,.19) 89% 95%,transparent 100%);--glow1:rgba(128,219,247,.35);--glow2:rgba(150,139,231,.13)}
+    .world-panel{--world-halo:rgba(118,190,223,.16);--world-accent:#b5e8ed;background:radial-gradient(circle at 50% 37%,var(--world-halo),transparent 42%),linear-gradient(180deg,#030712 0%,#01040b 100%)}
+    .world-panel[data-world="1"]{--world-halo:rgba(222,116,63,.18);--world-accent:#ffd6a0}
+    .world-panel[data-world="2"]{--world-halo:rgba(93,192,235,.19);--world-accent:#b6f1ff}
+    .world-panel[data-world="3"]{--world-halo:rgba(164,176,241,.19);--world-accent:#d6deff}
+    .world-panel[data-world="4"]{--world-halo:rgba(93,176,132,.18);--world-accent:#b4ebc3}
+    .world-panel[data-world="5"]{--world-halo:rgba(188,132,183,.18);--world-accent:#ebc6db}
+    .world-panel[data-world="6"]{--world-halo:rgba(140,187,239,.20);--world-accent:#c9eafa}
+    .world-number{color:var(--world-accent);opacity:.67}
+    .world-title{font-family:"Jost",sans-serif;font-size:clamp(40px,8vw,75px);font-weight:300;line-height:1.06;letter-spacing:.14em;margin:18px 0 6px}
+    .world-subtitle{margin:0 auto 24px;color:var(--world-accent);font:400 clamp(13px,1.6vw,17px)/1.35 "Jost",sans-serif;letter-spacing:.18em;text-transform:uppercase}
+    .world-copy{margin:0 auto;max-width:670px;font:400 clamp(16px,2.05vw,21px)/1.65 "Manrope",sans-serif;color:rgba(232,245,251,.84);text-wrap:pretty}
+    .world-back{margin-top:31px}
+    @media (min-width:701px) and (max-width:1180px){
+      .worlds-stage{height:1490px}
+      .p1{left:27%;top:13%}.p2{left:72%;top:25%}.p3{left:33%;top:38%}
+      .p4{left:72%;top:51%}.p5{left:28%;top:64%}.p6{left:71%;top:77%}.p7{left:47%;top:92%}
+      .portal-subtitle{top:calc(100% + 44px)}
+    }
+    @media (min-width:1181px){.worlds-stage{height:1590px}}
+    @media (min-width:1660px){.worlds-stage{height:1600px}}
+    @media (max-width:700px){
+      .worlds-intro{margin:0 auto 8px;padding:0 8px}
+      .worlds-directions{margin:13px auto 0;font-size:12px;letter-spacing:.035em;line-height:1.75;max-width:370px}
+      .worlds-stage{height:1440px;margin-top:0}
+      .p1{left:27%;top:12%;width:106px}
+      .p2{left:73%;top:24.4%;width:118px}
+      .p3{left:27%;top:37.5%;width:112px}
+      .p4{left:72%;top:50.4%;width:126px}
+      .p5{left:27%;top:63%;width:110px}
+      .p6{left:72%;top:75.5%;width:122px}
+      .p7{left:50%;top:90%;width:94px}
+      .portal-subtitle{font-size:10px;letter-spacing:.10em;top:calc(100% + 39px);max-width:175px}
+      .world-panel{padding:20px 22px}
+      .world-title{font-size:clamp(39px,12vw,57px)}
+      .world-subtitle{font-size:12px;margin-bottom:20px}
+      .world-copy{font-size:clamp(15px,4vw,17px);line-height:1.6}
+      .world-back{margin-top:25px}
+    }
+
+    /* Keep decorative miniature light-orbs away from world names. */
+    .m1{left:54%;top:14.5%}
+    .m8{left:12%;top:69%}
+    .s1{left:11%;top:17%}
+    .s9{left:87%;top:56%}
+    .s15{left:82%;top:86%}
+    @media(max-width:700px){
+      .s1{left:3%;top:16%}
+      .s9{left:8%;top:55.5%}
+      .s13{left:16%;top:81%}
+      .s15{left:86%;top:89%}
+    }
   </style>
 </head>
 <body>
@@ -1714,7 +1813,10 @@
     </main>
 
     <section class="worlds" aria-label="11•11 worlds">
-      <div class="worlds-intro"><p class="worlds-kicker" id="worldsKicker">enter the worlds</p></div>
+      <div class="worlds-intro">
+        <p class="worlds-kicker" id="worldsKicker">enter the worlds</p>
+        <p class="worlds-directions" id="worldsDirections">Banya &amp; sauna · Cold plunge · Breathwork · Yoga · Ceremonies · Immersive light &amp; sound</p>
+      </div>
       <div class="worlds-stage" id="worldsStage">
         <canvas id="flowCanvas"></canvas>
 
@@ -1740,31 +1842,43 @@
         <span class="satellite gold s15"></span>
         <span class="satellite starlet cyan s16"></span>
 
-        <button class="portal-node sauna p1" type="button" data-world="1" aria-label="Open Name 1">
+        <button class="portal-node fire p1" type="button" data-world="1" aria-label="Open FIRE · Banya & Sauna">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc1" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc1" startOffset="50%" text-anchor="middle">NAME 1</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc1" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText1" href="#arc1" startOffset="50%" text-anchor="middle">FIRE</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub1">Banya & Sauna</span>
         </button>
 
-        <button class="portal-node water p2" type="button" data-world="2" aria-label="Open Name 2">
+        <button class="portal-node ice p2" type="button" data-world="2" aria-label="Open ICE · Cold Plunge">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc2" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc2" startOffset="50%" text-anchor="middle">NAME 2</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc2" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText2" href="#arc2" startOffset="50%" text-anchor="middle">ICE</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub2">Cold Plunge</span>
         </button>
 
-        <button class="portal-node crystal p3" type="button" data-world="3" aria-label="Open Name 3">
+        <button class="portal-node air p3" type="button" data-world="3" aria-label="Open AIR · Breath">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc3" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc3" startOffset="50%" text-anchor="middle">NAME 3</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc3" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText3" href="#arc3" startOffset="50%" text-anchor="middle">AIR</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub3">Breath</span>
         </button>
 
-        <button class="portal-node social p4" type="button" data-world="4" aria-label="Open Name 4">
+        <button class="portal-node earth p4" type="button" data-world="4" aria-label="Open EARTH · Body & Sound">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc4" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc4" startOffset="50%" text-anchor="middle">NAME 4</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc4" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText4" href="#arc4" startOffset="50%" text-anchor="middle">EARTH</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub4">Body & Sound</span>
         </button>
 
-        <button class="portal-node cosmic p5" type="button" data-world="5" aria-label="Open Name 5">
+        <button class="portal-node spirit p5" type="button" data-world="5" aria-label="Open SPIRIT · Ceremony">
           <span class="portal-core"><span class="inner"></span></span>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc5" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath href="#arc5" startOffset="50%" text-anchor="middle">NAME 5</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc5" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText5" href="#arc5" startOffset="50%" text-anchor="middle">SPIRIT</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub5">Ceremony</span>
         </button>
-        <button class="portal-node promo p6" type="button" data-world="6" aria-label="Open Early booking">
+
+        <button class="portal-node light p6" type="button" data-world="6" aria-label="Open LIGHT · Immersion">
+          <span class="portal-core"><span class="inner"></span></span>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc6" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="portalArcText6" href="#arc6" startOffset="50%" text-anchor="middle">LIGHT</textPath></text></svg>
+          <span class="portal-subtitle" id="portalSub6">Immersion</span>
+        </button>
+
+        <button class="portal-node promo p7" type="button" data-world="7" aria-label="Open Early booking">
           <span class="portal-core"><span class="inner"></span></span>
           <svg class="promo-icon" viewBox="0 0 120 120" aria-hidden="true">
             <circle class="badge-ring" cx="60" cy="60" r="42"></circle>
@@ -1776,7 +1890,7 @@
             <circle class="pct" cx="43" cy="43" r="9"></circle>
             <circle class="pct" cx="77" cy="77" r="9"></circle>
           </svg>
-          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc6" d="M 38 140 A 76 76 0 0 0 182 140"/></defs><text><textPath id="promoArcText" href="#arc6" startOffset="50%" text-anchor="middle">EARLY BOOKING</textPath></text></svg>
+          <svg class="portal-label" viewBox="0 0 220 220" aria-hidden="true"><defs><path id="arc7" d="M 15 98 A 95 95 0 0 0 205 98"/></defs><text><textPath id="promoArcText" href="#arc7" startOffset="50%" text-anchor="middle">EARLY BOOKING</textPath></text></svg>
         </button>
       </div>
     </section>
@@ -1901,10 +2015,11 @@
   </section>
 
   <div class="portal" id="portal" aria-hidden="true"></div>
-  <section class="world-panel" id="worldPanel" aria-hidden="true">
+  <section class="world-panel" id="worldPanel" data-world="1" aria-hidden="true">
     <div class="world-inner">
       <div class="world-number" id="worldNumber">WORLD 1</div>
-      <h2 class="world-title" id="worldTitle">NAME 1</h2>
+      <h2 class="world-title" id="worldTitle">FIRE</h2>
+      <p class="world-subtitle" id="worldSubtitle">Banya &amp; Sauna</p>
       <p class="world-copy" id="worldCopy">This is the doorway into a separate 11•11 universe. Each world can later become a fully custom page with its own atmosphere, gallery, rituals and motion.</p>
       <button class="world-back" id="worldBack" type="button">Back to space</button>
     </div>
@@ -2422,8 +2537,40 @@
         date:'09 · 02 · 2027  at  11:11',reserve:'Reserve your place',belong:'press here to belong',scroll:'scroll to explore',
         worlds:'enter the worlds',end1:'different worlds',end2:'one living space',promo:'EARLY BOOKING',country:'México',privacy:'Privacy policy',close:'Close',
         back:'Back to space',worldWord:'WORLD',
-        mailSubject:'11•11 Space pre-sale',mailBody:"Hi! I'd like to reserve my place at 11•11 Space.",titles:{1:'NAME 1',2:'NAME 2',3:'NAME 3',4:'NAME 4',5:'NAME 5',6:'EARLY BOOKING'},
+        mailSubject:'11•11 Space pre-sale',mailBody:"Hi! I'd like to reserve my place at 11•11 Space.",titles:{"1": "FIRE · Banya & Sauna", "2": "ICE · Cold Plunge", "3": "AIR · Breath", "4": "EARTH · Body & Sound", "5": "SPIRIT · Ceremony", "6": "LIGHT · Immersion", "7": "EARLY BOOKING"},elements:{"1": "FIRE", "2": "ICE", "3": "AIR", "4": "EARTH", "5": "SPIRIT", "6": "LIGHT", "7": "EARLY BOOKING"},subtitles:{"1": "Banya & Sauna", "2": "Cold Plunge", "3": "Breath", "4": "Body & Sound", "5": "Ceremony", "6": "Immersion", "7": ""},directions:"Banya & sauna · Cold plunge · Breathwork · Yoga · Ceremonies · Immersive light & sound",
         privacyTitle:'Privacy Notice',bookingEyebrow:'EARLY ACCESS',bookingTitle:'Reserve your place',bookingLead:'Leave your contact details and we’ll get back to you about early booking and opening access.',bookingName:'Full name *',bookingEmail:'Email *',bookingPhone:'WhatsApp / phone',bookingLanguage:'Preferred language',bookingAge:'I confirm that I am 18 years or older.',bookingConsent:'I have read the Privacy Notice and consent to the processing of my personal data to manage my request and early booking.',bookingMarketing:'I would also like to receive news, offers and event updates from 11·11 SPACE. This is optional and I can withdraw it at any time.',bookingSubmit:'Continue by email',bookingInvalid:'Please complete the required fields and consent boxes.',bookingReady:'Your email app will open with your request pre-filled. Please send the message to complete your request.',
+        privacyBody:[
+
+          "11·11 SPACE is the controller responsible for the personal data collected through this website. Address: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contact for privacy matters and ARCO rights: <a href=\"mailto:iz1111space@gmail.com\">iz1111space@gmail.com</a>.",
+          "Data we may collect: full name, email address, optional WhatsApp/telephone number, preferred language, consent choices, and the content of messages you choose to send us. We do not request health, biometric, financial, political, religious, sexual-orientation or other sensitive personal data through this form.",
+          "Primary purposes: to respond to your request, manage early-booking or pre-sale interest, communicate availability and opening information, and maintain a record of your request. These purposes are necessary to process your request.",
+          "Secondary purpose: if you separately opt in, we may send news, promotions, offers and event updates. You can refuse or withdraw this optional consent at any time by emailing us.",
+          "We do not sell personal data. Service providers used to operate email, hosting or cloud infrastructure may process data on our behalf under their service terms. We may disclose information where required by applicable law or competent authority.",
+          "To limit the use or disclosure of your data, or to exercise your rights of Access, Rectification, Cancellation or Opposition (ARCO), email iz1111space@gmail.com with the subject “ARCO Request” and enough information to identify you and the data/request concerned. We may request reasonable proof of identity before acting on the request.",
+          "We will communicate our determination on an ARCO request within the periods established by the applicable Mexican data-protection law. Where the request is granted, we will implement it within the corresponding legal period.",
+          "We retain personal data only for as long as reasonably necessary for the stated purposes and applicable legal obligations, after which it will be deleted or securely blocked as required.",
+          "Changes to this Privacy Notice will be published on this website. The current version will always be available through the “Privacy policy” link in the footer."
+        
+        ],
+        worldsData:{
+  "1": "Two kinds of heat. The Russian banya, hand-built in cedar, with humid waves of steam infused with eucalyptus, fir and birch. The Finnish sauna, with dry, intense heat that burns clean. Your body softens, your mind goes quiet.",
+  "2": "Step from the heat into water from 3°C to 13°C, so you choose your level, from first-timer to ice-hardened. The shock wakes every cell, and what follows is clarity, energy and calm. This is the moment of contrast.",
+  "3": "Your breath is the bridge between fire and ice. Guided sessions teach you to slow down, meet the cold without panic, and find calm on purpose. A skill you take home with you.",
+  "4": "Return to the ground beneath you. Through yoga, the body opens and lets go. Through sound, the mind follows. Here, everything you felt finds its place.",
+  "5": "Where the experience becomes shared. Cacao to open the heart, tea to slow down, and sharing circles where people truly listen. Arrive as a stranger, leave as part of the circle.",
+  "6": "Walls that breathe. Immersive projections of light and sound turn every room into a living landscape, from glowing embers to drifting ice, forest and stars. Each ritual has its own world. You don't watch it, you step inside it."
+}
+      },
+      es:{
+        tag1:'siéntelo todo',tag2:'no temas nada',kind:'Club social de bienestar · Playa del Carmen',
+        desc1:'Terapia de contraste, ritual y conexión auténtica.',
+        desc2:'Un lugar para conectar y salir transformados.',
+        count:'Abrimos en',days:'Días',hours:'Horas',minutes:'Minutos',seconds:'Segundos',open:'Ya estamos abiertos.',
+        date:'09 · 02 · 2027  a las  11:11',reserve:'Reserva tu lugar',belong:'toca aquí para pertenecer',scroll:'desliza para explorar',
+        worlds:'entra en los mundos',end1:'mundos distintos',end2:'un espacio vivo',promo:'RESERVA ANTICIPADA',country:'México',privacy:'Política de privacidad',close:'Cerrar',
+        back:'Volver al espacio',worldWord:'MUNDO',
+        mailSubject:'Preventa 11•11 Space',mailBody:'¡Hola! Me gustaría reservar mi lugar en 11•11 Space.',titles:{"1": "FUEGO · Banya y sauna", "2": "HIELO · Inmersión fría", "3": "AIRE · Respiración", "4": "TIERRA · Cuerpo y sonido", "5": "ESPÍRITU · Ceremonia", "6": "LUZ · Inmersión", "7": "RESERVA ANTICIPADA"},elements:{"1": "FUEGO", "2": "HIELO", "3": "AIRE", "4": "TIERRA", "5": "ESPÍRITU", "6": "LUZ", "7": "RESERVA ANTICIPADA"},subtitles:{"1": "Banya y sauna", "2": "Inmersión fría", "3": "Respiración", "4": "Cuerpo y sonido", "5": "Ceremonia", "6": "Inmersión", "7": ""},directions:"Banya y sauna · Inmersión fría · Respiración · Yoga · Ceremonias · Luz y sonido inmersivos",
+        privacyTitle:'Aviso de Privacidad',bookingEyebrow:'ACCESO ANTICIPADO',bookingTitle:'Reserva tu lugar',bookingLead:'Déjanos tus datos de contacto y te escribiremos sobre la reserva anticipada y el acceso de apertura.',bookingName:'Nombre completo *',bookingEmail:'Correo electrónico *',bookingPhone:'WhatsApp / teléfono',bookingLanguage:'Idioma preferido',bookingAge:'Confirmo que tengo 18 años o más.',bookingConsent:'He leído el Aviso de Privacidad y consiento el tratamiento de mis datos personales para gestionar mi solicitud y reserva anticipada.',bookingMarketing:'También deseo recibir noticias, ofertas y novedades de eventos de 11·11 SPACE. Es opcional y puedo retirar este consentimiento en cualquier momento.',bookingSubmit:'Continuar por correo',bookingInvalid:'Completa los campos obligatorios y las casillas de consentimiento.',bookingReady:'Se abrirá tu aplicación de correo con la solicitud preparada. Envía el mensaje para completar tu solicitud.',
         privacyBody:[
           '11·11 SPACE es el responsable del tratamiento de los datos personales recabados a través de este sitio web. Domicilio: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contacto para privacidad y derechos ARCO: <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.',
           'Datos que podemos recabar: nombre completo, correo electrónico, número opcional de WhatsApp/teléfono, idioma preferido, decisiones de consentimiento y el contenido de los mensajes que decidas enviarnos. No solicitamos datos de salud, biométricos, financieros, políticos, religiosos, de orientación sexual ni otros datos personales sensibles mediante este formulario.',
@@ -2436,39 +2583,13 @@
           'Las modificaciones a este Aviso de Privacidad se publicarán en este sitio web. La versión vigente estará disponible mediante el enlace “Política de privacidad” del pie de página.',
         ],
         worldsData:{
-          1:'Warm steam, tropical leaves, soft heat and grounding ritual. This world can become the bath and tropical contrast universe.',
-          2:'Ice, rain, water and clean recovery energy. This world can become the cold and rain ritual universe.',
-          3:'Violet crystal energy for yoga, breathwork, meditation and sound healing. This world can become the practice universe.',
-          4:'A social world of glow, gatherings, music and shared atmosphere.',
-          5:'A cosmic ritual world — mysterious, immersive and fluid, for future experiences and events.',
-          6:'Early booking access with a launch discount. Reserve your place in advance and be first inside the 11•11 Space universe.'
-        }
-      },
-      es:{
-        tag1:'siéntelo todo',tag2:'no temas nada',kind:'Club social de bienestar · Playa del Carmen',
-        desc1:'Terapia de contraste, ritual y conexión auténtica.',
-        desc2:'Un lugar para conectar y salir transformados.',
-        count:'Abrimos en',days:'Días',hours:'Horas',minutes:'Minutos',seconds:'Segundos',open:'Ya estamos abiertos.',
-        date:'09 · 02 · 2027  a las  11:11',reserve:'Reserva tu lugar',belong:'toca aquí para pertenecer',scroll:'desliza para explorar',
-        worlds:'entra en los mundos',end1:'mundos distintos',end2:'un espacio vivo',promo:'RESERVA ANTICIPADA',country:'México',privacy:'Política de privacidad',close:'Cerrar',
-        back:'Volver al espacio',worldWord:'MUNDO',
-        mailSubject:'Preventa 11•11 Space',mailBody:'¡Hola! Me gustaría reservar mi lugar en 11•11 Space.',titles:{1:'NAME 1',2:'NAME 2',3:'NAME 3',4:'NAME 4',5:'NAME 5',6:'RESERVA ANTICIPADA'},
-        privacyTitle:'Aviso de Privacidad',bookingEyebrow:'ACCESO ANTICIPADO',bookingTitle:'Reserva tu lugar',bookingLead:'Déjanos tus datos de contacto y te escribiremos sobre la reserva anticipada y el acceso de apertura.',bookingName:'Nombre completo *',bookingEmail:'Correo electrónico *',bookingPhone:'WhatsApp / teléfono',bookingLanguage:'Idioma preferido',bookingAge:'Confirmo que tengo 18 años o más.',bookingConsent:'He leído el Aviso de Privacidad y consiento el tratamiento de mis datos personales para gestionar mi solicitud y reserva anticipada.',bookingMarketing:'También deseo recibir noticias, ofertas y novedades de eventos de 11·11 SPACE. Es opcional y puedo retirar este consentimiento en cualquier momento.',bookingSubmit:'Continuar por correo',bookingInvalid:'Completa los campos obligatorios y las casillas de consentimiento.',bookingReady:'Se abrirá tu aplicación de correo con la solicitud preparada. Envía el mensaje para completar tu solicitud.',
-        privacyBody:[
-          'Este es un aviso de privacidad preliminar para el sitio web de 11·11 SPACE.',
-          'Cuando nos contactas o solicitas una reserva por correo electrónico, podemos recibir la información que decidas proporcionar, como tu nombre, datos de contacto y mensaje. Utilizamos esta información únicamente para responder a tu solicitud, gestionar reservas y comunicarnos contigo sobre 11·11 SPACE.',
-          'No vendemos información personal. Los proveedores de infraestructura web y de correo electrónico pueden tratar datos técnicos limitados cuando sea necesario para prestar estos servicios.',
-          'Puedes solicitar acceso, corrección o eliminación de la información que hayas proporcionado escribiendo a <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.',
-          'Este aviso podrá actualizarse a medida que avance el proyecto y antes de la apertura del espacio al público.'
-        ],
-        worldsData:{
-          1:'Vapor cálido, hojas tropicales, calor suave y rituales que conectan con la tierra. Este mundo puede convertirse en el universo de baño y contraste tropical.',
-          2:'Hielo, lluvia, agua y energía limpia de recuperación. Este mundo puede convertirse en el universo de frío, lluvia y contraste.',
-          3:'Energía de cristal violeta para yoga, respiración, meditación y sound healing. Este mundo puede convertirse en el universo de las prácticas.',
-          4:'Un mundo social de luz, encuentros, música y atmósfera compartida.',
-          5:'Un mundo ritual cósmico — misterioso, inmersivo y fluido — para futuras experiencias y eventos.',
-          6:'Acceso de reserva anticipada con descuento de lanzamiento. Reserva tu lugar con antelación y sé de las primeras personas en entrar al universo de 11•11 Space.'
-        }
+  "1": "Dos tipos de calor. La banya rusa en cedro, con olas de vapor húmedo de eucalipto, abeto y abedul. La sauna finlandesa, con un calor seco e intenso. El cuerpo se suelta, la mente se calma.",
+  "2": "Del calor al agua de 3°C a 13°C: tú eliges tu nivel, desde la primera vez hasta el frío extremo. El impacto despierta cada célula y deja claridad, energía y calma. Aquí ocurre el contraste.",
+  "3": "Tu respiración es el puente entre el fuego y el hielo. Sesiones guiadas para bajar el ritmo, enfrentar el frío sin pánico y encontrar la calma a voluntad. Una habilidad que te llevas a casa.",
+  "4": "Regresa a la tierra bajo tus pies. Con el yoga, el cuerpo se abre y suelta. Con el sonido, la mente lo sigue. Aquí, todo lo que sentiste encuentra su lugar.",
+  "5": "Donde la experiencia se vuelve compartida. Cacao para abrir el corazón, té para bajar el ritmo y círculos donde de verdad nos escuchamos. Llegas como extraño, te vas como parte del círculo.",
+  "6": "Paredes que respiran. Proyecciones inmersivas de luz y sonido convierten cada sala en un paisaje vivo: brasas, hielo, bosque y estrellas. Cada ritual tiene su propio mundo. No lo miras, entras en él."
+}
       }
     };
     let currentLang='en';try{currentLang=localStorage.getItem('1111space-lang')||'en'}catch(_){}
@@ -2493,6 +2614,13 @@
       document.getElementById('belongText').textContent=t.belong;
       document.getElementById('scrollText').textContent=t.scroll;
       document.getElementById('worldsKicker').textContent=t.worlds;
+      document.getElementById('worldsDirections').textContent=t.directions;
+      for(let i=1;i<=6;i++){
+        const title=document.getElementById('portalArcText'+i);
+        const subtitle=document.getElementById('portalSub'+i);
+        if(title)title.textContent=t.elements[i];
+        if(subtitle)subtitle.textContent=t.subtitles[i];
+      }
       document.getElementById('end1').textContent=t.end1;
       document.getElementById('end2').textContent=t.end2;
       const promoArcText=document.getElementById('promoArcText'); if(promoArcText) promoArcText.textContent=t.promo;
@@ -2535,7 +2663,8 @@
       if(panel.classList.contains('open')){
         const n=panel.dataset.world||'1';
         worldNumber.textContent=t.worldWord+' '+n;
-        worldTitle.textContent=(t.titles&&t.titles[n])?t.titles[n]:('NAME '+n);
+        worldTitle.textContent=t.elements[n];
+        worldSubtitle.textContent=t.subtitles[n];
         worldCopy.textContent=t.worldsData[n];
       }
     }
@@ -2653,13 +2782,14 @@
     const panel=document.getElementById('worldPanel');
     const worldNumber=document.getElementById('worldNumber');
     const worldTitle=document.getElementById('worldTitle');
+    const worldSubtitle=document.getElementById('worldSubtitle');
     const worldCopy=document.getElementById('worldCopy');
     document.querySelectorAll('.portal-node').forEach(btn=>btn.addEventListener('click',()=>{
       const n=btn.dataset.world;
-      if(n==='6'){openBooking();return}
+      if(n==='7'){openBooking();return}
       const t=translations[currentLang];
       portal.classList.remove('active');void portal.offsetWidth;portal.classList.add('active');
-      setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent=(t.titles&&t.titles[n])?t.titles[n]:('NAME '+n);worldCopy.textContent=t.worldsData[n];panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
+      setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent=t.elements[n];worldSubtitle.textContent=t.subtitles[n];worldCopy.textContent=t.worldsData[n];panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
     }));
     applyLanguage(currentLang);
     document.getElementById('worldBack').addEventListener('click',()=>{panel.classList.remove('open');panel.setAttribute('aria-hidden','true');panel.dataset.world='';document.body.style.overflow=''});
