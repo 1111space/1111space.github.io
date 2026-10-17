@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="stripe-payment-links-ready-20261017">
+  <meta name="1111space-build" content="brand-portal-audit-20261017">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -747,19 +747,19 @@
       text-transform:uppercase;
     }
 
-    .portal{
-      position:fixed;
-      inset:0;
-      z-index:20;
-      pointer-events:none;
-      opacity:0;
-      display:grid;
-      place-items:center;
-      background:radial-gradient(circle at center,rgba(255,255,255,.96) 0%,rgba(135,245,255,.76) 7%,rgba(118,104,255,.52) 18%,rgba(255,102,205,.26) 34%,rgba(2,5,10,.95) 72%);
-      transform:scale(.75);
-    }
-    .portal.active{animation:portalFlash 1.1s ease both}
-    @keyframes portalFlash{0%{opacity:0;transform:scale(.72)}30%{opacity:1;transform:scale(1.05)}68%{opacity:.95;transform:scale(1.45)}100%{opacity:0;transform:scale(2.25)}}
+    /* Glacial/terracotta lens transition. No video, particles or external library. */
+    .portal{position:fixed;inset:0;z-index:60;pointer-events:none;display:none;overflow:hidden;background:none;transform:none;opacity:1;contain:layout paint}
+    .portal.active{display:block;pointer-events:auto;animation:none}
+    .portal-veil{position:absolute;inset:0;background:#02060e;opacity:0}
+    .portal-lens{position:absolute;left:var(--portal-x,50%);top:var(--portal-y,50%);width:200px;height:200px;margin:-100px;opacity:0;transform:scale(.25);border-radius:50%;background:radial-gradient(circle at 33% 37%,rgba(185,239,248,.88) 0%,rgba(135,212,231,.65) 16%,rgba(170,180,196,.30) 35%,rgba(202,134,105,.44) 48%,rgba(228,162,124,.18) 60%,transparent 74%)}
+    .portal-halo{position:absolute;left:var(--portal-x,50%);top:var(--portal-y,50%);width:180px;height:180px;margin:-90px;border-radius:50%;opacity:0;transform:scale(.7);background:radial-gradient(circle,transparent 58%,rgba(185,239,248,.12) 63%,rgba(185,239,248,.8) 65%,rgba(202,134,105,.6) 67%,rgba(228,162,124,.10) 72%,transparent 77%)}
+    .portal.active .portal-veil{animation:portalVeil 760ms ease both}
+    .portal.active .portal-lens{animation:portalLens 760ms cubic-bezier(.2,.7,.2,1) both}
+    .portal.active .portal-halo{animation:portalHalo 760ms cubic-bezier(.2,.7,.2,1) both}
+    @keyframes portalVeil{0%{opacity:0}32%,54%{opacity:.91}100%{opacity:0}}
+    @keyframes portalLens{0%{opacity:0;transform:scale(.3)}28%{opacity:.82}62%{opacity:.66}100%{opacity:0;transform:scale(var(--portal-scale,8))}}
+    @keyframes portalHalo{0%{opacity:0;transform:scale(.6)}22%{opacity:.92}100%{opacity:0;transform:scale(3.8)}}
+    @media(prefers-reduced-motion:reduce){.portal.active{display:none!important}}
 
     .world-panel{
       position:fixed;
@@ -2135,6 +2135,30 @@
       .gift-action,.booking-submit,.booking-whatsapp,.gift-whatsapp{transition:none;transform:none!important}
     }
 
+  
+    /* Audit fixes: modal order and finite animation workload. */
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    #privacyModal{z-index:80}
+    #bookingModal{z-index:70}
+    #giftPopup{z-index:65}
+    #worldPanel{z-index:50}
+    #worldPanel:focus,#worldTitle:focus{outline:none}
+    #worldClose{width:44px;height:44px}
+    button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--brand-ice,#b9eff8);outline-offset:4px}
+    html[data-ui-paused="true"] .page *,
+    html[data-ui-paused="true"] .page *::before,
+    html[data-ui-paused="true"] .page *::after,
+    html[data-ui-paused="true"] .cosmos *,
+    html[data-ui-paused="true"] .cosmos *::before,
+    html[data-ui-paused="true"] .cosmos *::after,
+    [data-motion-visible="false"],
+    [data-motion-visible="false"] *,
+    [data-motion-visible="false"]::before,
+    [data-motion-visible="false"]::after,
+    [data-motion-visible="false"] *::before,
+    [data-motion-visible="false"] *::after{animation-play-state:paused!important}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
   </style>
 </head>
 <body>
@@ -2155,7 +2179,7 @@
         <button class="lang-btn active" type="button" data-lang="en">EN</button>
         <button class="lang-btn" type="button" data-lang="es">ES</button>
       </div>
-      <div class="logo" aria-label="11•11 SPACE">
+      <div class="logo" aria-label="11•11 SPACE"><h1 class="sr-only">11·11 SPACE</h1>
         <div class="numbers"><span>11</span><span class="signal"></span><span>11</span></div>
         <div class="space-word" aria-hidden="true"><span>S</span><span>P</span><span>A</span><span>C</span><span>E</span></div>
       </div>
@@ -2391,12 +2415,12 @@
     </div>
   </section>
 
-  <div class="portal" id="portal" aria-hidden="true"></div>
-  <section class="world-panel" id="worldPanel" data-world="1" aria-hidden="true">
+  <div class="portal" id="portal" aria-hidden="true"><span class="portal-veil"></span><span class="portal-lens"></span><span class="portal-halo"></span></div>
+  <section class="world-panel" id="worldPanel" data-world="1" role="dialog" aria-modal="true" aria-labelledby="worldTitle" tabindex="-1" aria-hidden="true">
     <button class="world-panel-close" id="worldClose" type="button" aria-label="Close this world">×</button>
     <div class="world-inner">
       <div class="world-number" id="worldNumber">WORLD 1</div>
-      <h2 class="world-title" id="worldTitle">FIRE</h2>
+      <h2 class="world-title" id="worldTitle" tabindex="-1">FIRE</h2>
       <p class="world-subtitle" id="worldSubtitle">Banya &amp; Sauna</p>
       <p class="world-copy" id="worldCopy">This is the doorway into a separate 11•11 universe. Each world can later become a fully custom page with its own atmosphere, gallery, rituals and motion.</p>
       <div class="world-gallery" id="worldGallery" aria-live="polite"></div>
@@ -2506,6 +2530,7 @@
     const meteorBox=document.getElementById('meteors');
     function shoot(){
       if(reduceMotion)return;
+      if(document.hidden||document.documentElement.dataset.uiPaused==='true'){setTimeout(shoot,1800);return;}
       const el=document.createElement('span');
       const reverse=Math.random()<.28;
       let cls='meteor'+(reverse?' rev':'');
@@ -2758,6 +2783,7 @@
 
     function drawFlow(){
       flowQueued=false;
+      if(document.hidden||document.documentElement.dataset.uiPaused==='true')return;
 
       const currentY=window.scrollY;
       if(currentY>lastFlowScrollY+0.5) flowDirection=1;
@@ -3155,6 +3181,7 @@
       }
 
       const name=document.getElementById('bookingName').value.trim();
+      if(!name){bookingStatus.textContent=t.bookingInvalid;document.getElementById('bookingName').focus();return;}
       const email=document.getElementById('bookingEmail').value.trim();
       const phone=document.getElementById('bookingPhone').value.trim();
       const language=document.getElementById('bookingLanguage').value;
@@ -3242,18 +3269,50 @@
         worldGallery.append(figure);
       });
     }
-    document.querySelectorAll('.portal-node').forEach(btn=>btn.addEventListener('click',()=>{
-      const n=btn.dataset.world;
-      if(n==='7'){openBooking();return}
+    let portalPending=null, portalFinish=null, portalBusy=false;
+    function cancelPortalTransition(){
+      clearTimeout(portalPending);clearTimeout(portalFinish);
+      portalPending=null;portalFinish=null;portalBusy=false;
+      portal.classList.remove('active');
+      document.documentElement.dataset.portalActive='false';
+      if(window.spaceModalSync)window.spaceModalSync();
+    }
+    function openWorld(n){
       const t=translations[currentLang];
-      portal.classList.remove('active');void portal.offsetWidth;portal.classList.add('active');
-      setTimeout(()=>{panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;worldTitle.textContent=t.elements[n];worldSubtitle.textContent=t.subtitles[n];worldCopy.textContent=t.worldsData[n];renderWorldGallery(n);panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'},620);
-    }));
+      panel.dataset.world=n;worldNumber.textContent=t.worldWord+' '+n;
+      worldTitle.textContent=t.elements[n];worldSubtitle.textContent=t.subtitles[n];
+      worldCopy.textContent=t.worldsData[n];renderWorldGallery(n);
+      panel.classList.add('open');panel.setAttribute('aria-hidden','false');
+      panel.scrollTop=0;document.body.style.overflow='hidden';
+    }
+    function enterPortal(btn){
+      if(portalBusy||document.querySelector('.world-panel.open,.booking-modal.open,.privacy-modal.open,.gift-backdrop.open'))return;
+      const n=btn.dataset.world;
+      const show=()=>{if(n==='7')openBooking();else openWorld(n)};
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches){show();return}
+      const r=btn.getBoundingClientRect();
+      const x=Math.max(0,Math.min(innerWidth,r.left+r.width/2));
+      const y=Math.max(0,Math.min(innerHeight,r.top+r.height/2));
+      const reach=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
+      portal.style.setProperty('--portal-x',x+'px');portal.style.setProperty('--portal-y',y+'px');
+      portal.style.setProperty('--portal-scale',Math.max(5,Math.min(18,reach/75)).toFixed(2));
+      portalBusy=true;document.documentElement.dataset.portalActive='true';
+      portal.classList.add('active');
+      if(window.spaceModalSync)window.spaceModalSync();
+      portalPending=setTimeout(()=>{portalPending=null;show()},310);
+      portalFinish=setTimeout(cancelPortalTransition,790);
+    }
+    document.querySelectorAll('.portal-node').forEach(btn=>btn.addEventListener('click',()=>enterPortal(btn)));
     applyLanguage(currentLang);
-    function closeWorld(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true');panel.dataset.world='';document.body.style.overflow='';worldGallery.innerHTML=''}
+    function closeWorld(){
+      cancelPortalTransition();
+      panel.classList.remove('open');panel.setAttribute('aria-hidden','true');
+      panel.dataset.world='';worldGallery.replaceChildren();
+      if(window.spaceModalSync)window.spaceModalSync();else document.body.style.overflow='';
+    }
     document.getElementById('worldBack').addEventListener('click',closeWorld);
     document.getElementById('worldClose').addEventListener('click',closeWorld);
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))closeWorld()});
+
   </script>
 
   <script>
@@ -3298,7 +3357,7 @@
     }
     function render(time){
       pending=false;
-      if(document.hidden)return;
+      if(document.hidden||root.dataset.uiPaused==='true')return;
       const y=Math.max(0,window.scrollY||window.pageYOffset||0);
       const start=hero.offsetHeight*.26;
       const stop=hero.offsetHeight+stage.offsetHeight*.60;
@@ -3464,6 +3523,67 @@
     schedule();
     addEventListener('resize',schedule,{passive:true});
     addEventListener('pageshow',schedule,{passive:true});
+  })();
+  </script>
+
+
+  <script>
+  (()=>{
+    'use strict';
+    const root=document.documentElement;
+    const list=['worldPanel','giftPopup','bookingModal','privacyModal'].map(id=>document.getElementById(id)).filter(Boolean);
+    const remembered=new Map();let previousOpen=new Set();let previousTop=null;
+    const regions=[document.querySelector('.page'),document.querySelector('.cosmos'),document.getElementById('giftOrb')].filter(Boolean);
+    const isOpen=el=>el.classList.contains('open');
+    const current=()=>list.filter(isOpen).at(-1)||null;
+    const focusables=el=>[...el.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]')].filter(e=>!e.hidden&&!e.closest('[hidden]')&&e.getClientRects().length);
+    function focusStart(el){
+      const target=el.id==='worldPanel'?document.getElementById('worldTitle'):el.id==='bookingModal'?document.getElementById('bookingName'):el.querySelector('button');
+      (target||el).focus({preventScroll:true});
+    }
+    function sync(){
+      const open=list.filter(isOpen), nextTop=open.at(-1)||null;
+      for(const el of open)if(!previousOpen.has(el))remembered.set(el,document.activeElement);
+      const removed=[...previousOpen].filter(el=>!open.includes(el));
+      const restore=removed.length?remembered.get(removed.at(-1)):null;
+      regions.forEach(el=>{el.inert=!!nextTop});
+      list.forEach(el=>{el.inert=el!==nextTop});
+      root.dataset.uiPaused=String(document.hidden||!!nextTop||root.dataset.portalActive==='true');
+      document.body.style.overflow=nextTop?'hidden':'';
+      if(nextTop!==previousTop){
+        if(nextTop){
+          if(restore&&nextTop.contains(restore)&&restore.isConnected)restore.focus({preventScroll:true});
+          else focusStart(nextTop);
+        }else if(restore&&restore.isConnected&&typeof restore.focus==='function')restore.focus({preventScroll:true});
+      }
+      previousOpen=new Set(open);previousTop=nextTop;
+    }
+    window.spaceModalSync=sync;
+    const observer=new MutationObserver(sync);
+    list.forEach(el=>observer.observe(el,{attributes:true,attributeFilter:['class']}));
+    addEventListener('visibilitychange',sync);
+    document.addEventListener('keydown',e=>{
+      const top=current();
+      if(e.key==='Escape'){
+        if(root.dataset.portalActive==='true'&&typeof cancelPortalTransition==='function')cancelPortalTransition();
+        if(!top)return;
+        e.preventDefault();e.stopImmediatePropagation();
+        const id={worldPanel:'worldClose',giftPopup:'giftClose',bookingModal:'bookingClose',privacyModal:'privacyClose'}[top.id];
+        document.getElementById(id)?.click();sync();return;
+      }
+      if(e.key==='Tab'&&top){
+        const all=focusables(top),first=all[0],last=all.at(-1);
+        if(!first){e.preventDefault();top.focus();return;}
+        if(e.shiftKey&&(document.activeElement===first||!all.includes(document.activeElement))){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&(document.activeElement===last||!top.contains(document.activeElement))){e.preventDefault();first.focus();}
+      }
+    },true);
+    document.addEventListener('focusin',e=>{const top=current();if(top&&!top.contains(e.target))focusStart(top)});
+    if('IntersectionObserver' in window){
+      const motion=new IntersectionObserver(entries=>entries.forEach(e=>{e.target.dataset.motionVisible=String(e.isIntersecting)}),{rootMargin:'100px 0px'});
+      document.querySelectorAll('.hero,.end-copy,.portal-node,.mini-light,.satellite,#flowCanvas').forEach(el=>{el.dataset.motionVisible='false';motion.observe(el)});
+    }
+    sync();
   })();
   </script>
 
