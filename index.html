@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="cosmic-7-brand-whatsapp-20261017">
+  <meta name="1111space-build" content="stripe-payment-links-ready-20261017">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -2050,6 +2050,14 @@
       transition:transform .2s ease,filter .2s ease;
     }
     .booking-whatsapp svg{flex:none}
+    .booking-stripe[hidden]{display:none!important}
+    .booking-stripe{
+      text-decoration:none;
+      background:var(--brand-cta);
+      border:1px solid rgba(221,245,249,.32);
+      color:#07141d;
+    }
+    .booking-stripe:focus-visible{outline:2px solid #b9eff8;outline-offset:3px}
     .gift-whatsapp{
       background:var(--brand-cta);
       border-color:rgba(226,244,247,.42);
@@ -2347,6 +2355,18 @@
         <a class="booking-whatsapp" id="bookingWhatsapp" href="https://wa.me/529992693185" target="_blank" rel="noopener noreferrer" aria-label="Chat with 11·11 SPACE on WhatsApp">
           <svg aria-hidden="true" viewBox="0 0 32 32" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.9a12.1 12.1 0 0 0-10.4 18.2L4 28l5.9-1.6A12.1 12.1 0 1 0 16 3.9Z"/><path d="M11.3 10.2c-.5-.1-.9.1-1.2.6-.7 1.2-.4 2.6.6 4.3 1.5 2.5 3.8 4.6 6.6 5.5 1.4.5 2.9.2 3.8-.9.2-.3.3-.8.1-1.1l-2.8-1.3c-.4-.2-.6-.1-.9.2l-1 1.1c-1.6-.6-2.9-1.6-3.8-3.2l1-1.1c.3-.3.4-.6.2-1Z"/></svg>
           <span id="bookingWhatsappText">Chat on WhatsApp</span>
+        </a>
+        <!-- Stripe checkout is activated ONLY when a verified live Payment Link is configured. -->
+        <a class="booking-whatsapp booking-stripe" id="bookingStripePay" hidden
+           target="_blank" rel="noopener noreferrer" aria-label="Pay securely with Stripe">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"
+               fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10" width="16" height="11" rx="2.6"/>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+            <path d="M12 14v3"/>
+          </svg>
+          <span id="stripePayText">Pay securely with Stripe</span>
         </a>
         <p class="booking-status" id="bookingStatus" aria-live="polite"></p>
       </form>
@@ -2900,7 +2920,7 @@
         worlds:'enter the worlds',end1:'different worlds',end2:'one living space',promo:'EARLY BOOKING',country:'México',privacy:'Privacy policy',close:'Close',
         back:'Back to space',worldWord:'WORLD',
         mailSubject:'11•11 Space pre-sale',mailBody:"Hi! I'd like to reserve my place at 11•11 Space.",titles:{"1": "FIRE · Banya & Sauna", "2": "ICE · Cold Plunge", "3": "AIR · Breath", "4": "EARTH · Body & Sound", "5": "SPIRIT · Ceremony", "6": "LIGHT · Immersion", "7": "EARLY BOOKING"},elements:{"1": "FIRE", "2": "ICE", "3": "AIR", "4": "EARTH", "5": "SPIRIT", "6": "LIGHT", "7": "EARLY BOOKING"},subtitles:{"1": "Banya & Sauna", "2": "Cold Plunge", "3": "Breath", "4": "Body & Sound", "5": "Ceremony", "6": "Immersion", "7": ""},directions:"Banya & sauna · Cold plunge · Breathwork · Yoga · Ceremonies · Immersive light & sound",
-        privacyTitle:'Privacy Notice',bookingEyebrow:'EARLY ACCESS',bookingTitle:'Reserve your place',bookingLead:'Leave your contact details and we’ll get back to you about early booking and opening access.',bookingName:'Full name *',bookingEmail:'Email *',bookingPhone:'WhatsApp / phone',bookingLanguage:'Preferred language',bookingAge:'I confirm that I am 18 years or older.',bookingConsent:'I have read the Privacy Notice and consent to the processing of my personal data to manage my request and early booking.',bookingMarketing:'I would also like to receive news, offers and event updates from 11·11 SPACE. This is optional and I can withdraw it at any time.',bookingSubmit:'Continue by email',bookingInvalid:'Please complete the required fields and consent boxes.',bookingReady:'Your email app will open with your request pre-filled. Please send the message to complete your request.',
+        privacyTitle:'Privacy Notice',bookingEyebrow:'EARLY ACCESS',bookingTitle:'Reserve your place',bookingLead:'Leave your contact details and we’ll get back to you about early booking and opening access.',bookingName:'Full name *',bookingEmail:'Email *',bookingPhone:'WhatsApp / phone',bookingLanguage:'Preferred language',bookingAge:'I confirm that I am 18 years or older.',bookingConsent:'I have read the Privacy Notice and consent to the processing of my personal data to manage my request and early booking.',bookingMarketing:'I would also like to receive news, offers and event updates from 11·11 SPACE. This is optional and I can withdraw it at any time.',bookingSubmit:'Continue by email',bookingInvalid:'Please complete the required fields and consent boxes.',bookingReady:'Your email app will open with your request pre-filled. Please send the message to complete your request.',stripePay:'Pay securely with Stripe',
         privacyBody:[
 
           "11·11 SPACE is the controller responsible for the personal data collected through this website. Address: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contact for privacy matters and ARCO rights: <a href=\"mailto:iz1111space@gmail.com\">iz1111space@gmail.com</a>.",
@@ -2932,7 +2952,7 @@
         worlds:'entra en los mundos',end1:'mundos distintos',end2:'un espacio vivo',promo:'RESERVA ANTICIPADA',country:'México',privacy:'Política de privacidad',close:'Cerrar',
         back:'Volver al espacio',worldWord:'MUNDO',
         mailSubject:'Preventa 11•11 Space',mailBody:'¡Hola! Me gustaría reservar mi lugar en 11•11 Space.',titles:{"1": "FUEGO · Banya y sauna", "2": "HIELO · Inmersión fría", "3": "AIRE · Respiración", "4": "TIERRA · Cuerpo y sonido", "5": "ESPÍRITU · Ceremonia", "6": "LUZ · Inmersión", "7": "RESERVA ANTICIPADA"},elements:{"1": "FUEGO", "2": "HIELO", "3": "AIRE", "4": "TIERRA", "5": "ESPÍRITU", "6": "LUZ", "7": "RESERVA ANTICIPADA"},subtitles:{"1": "Banya y sauna", "2": "Inmersión fría", "3": "Respiración", "4": "Cuerpo y sonido", "5": "Ceremonia", "6": "Inmersión", "7": ""},directions:"Banya y sauna · Inmersión fría · Respiración · Yoga · Ceremonias · Luz y sonido inmersivos",
-        privacyTitle:'Aviso de Privacidad',bookingEyebrow:'ACCESO ANTICIPADO',bookingTitle:'Reserva tu lugar',bookingLead:'Déjanos tus datos de contacto y te escribiremos sobre la reserva anticipada y el acceso de apertura.',bookingName:'Nombre completo *',bookingEmail:'Correo electrónico *',bookingPhone:'WhatsApp / teléfono',bookingLanguage:'Idioma preferido',bookingAge:'Confirmo que tengo 18 años o más.',bookingConsent:'He leído el Aviso de Privacidad y consiento el tratamiento de mis datos personales para gestionar mi solicitud y reserva anticipada.',bookingMarketing:'También deseo recibir noticias, ofertas y novedades de eventos de 11·11 SPACE. Es opcional y puedo retirar este consentimiento en cualquier momento.',bookingSubmit:'Continuar por correo',bookingInvalid:'Completa los campos obligatorios y las casillas de consentimiento.',bookingReady:'Se abrirá tu aplicación de correo con la solicitud preparada. Envía el mensaje para completar tu solicitud.',
+        privacyTitle:'Aviso de Privacidad',bookingEyebrow:'ACCESO ANTICIPADO',bookingTitle:'Reserva tu lugar',bookingLead:'Déjanos tus datos de contacto y te escribiremos sobre la reserva anticipada y el acceso de apertura.',bookingName:'Nombre completo *',bookingEmail:'Correo electrónico *',bookingPhone:'WhatsApp / teléfono',bookingLanguage:'Idioma preferido',bookingAge:'Confirmo que tengo 18 años o más.',bookingConsent:'He leído el Aviso de Privacidad y consiento el tratamiento de mis datos personales para gestionar mi solicitud y reserva anticipada.',bookingMarketing:'También deseo recibir noticias, ofertas y novedades de eventos de 11·11 SPACE. Es opcional y puedo retirar este consentimiento en cualquier momento.',bookingSubmit:'Continuar por correo',bookingInvalid:'Completa los campos obligatorios y las casillas de consentimiento.',bookingReady:'Se abrirá tu aplicación de correo con la solicitud preparada. Envía el mensaje para completar tu solicitud.',stripePay:'Pagar de forma segura con Stripe',
         privacyBody:[
           '11·11 SPACE es el responsable del tratamiento de los datos personales recabados a través de este sitio web. Domicilio: Plaza Ciudad Mayakoba Downtown, Playa del Carmen, Quintana Roo, México. Contacto para privacidad y derechos ARCO: <a href="mailto:iz1111space@gmail.com">iz1111space@gmail.com</a>.',
           'Datos que podemos recabar: nombre completo, correo electrónico, número opcional de WhatsApp/teléfono, idioma preferido, decisiones de consentimiento y el contenido de los mensajes que decidas enviarnos. No solicitamos datos de salud, biométricos, financieros, políticos, religiosos, de orientación sexual ni otros datos personales sensibles mediante este formulario.',
@@ -3022,6 +3042,13 @@
         document.getElementById('bookingPrivacyOpen')?.addEventListener('click',openPrivacyFromBooking);
       }
 
+      const stripePayText=document.getElementById('stripePayText');
+      if(stripePayText){
+        stripePayText.textContent=t.stripePay;
+        const stripeButton=document.getElementById('bookingStripePay');
+        if(stripeButton)stripeButton.setAttribute('aria-label',t.stripePay);
+      }
+
       const bookingWa=document.getElementById('bookingWhatsapp');
       const bookingWaText=document.getElementById('bookingWhatsappText');
       if(bookingWa && bookingWaText){
@@ -3051,6 +3078,35 @@
     function closePrivacy(){privacyModal.classList.remove('open');privacyModal.setAttribute('aria-hidden','true');if(!panel.classList.contains('open'))document.body.style.overflow=''}
     document.getElementById('privacyClose').addEventListener('click',closePrivacy);
     privacyModal.addEventListener('click',e=>{if(e.target===privacyModal)closePrivacy()});
+
+    // --- Stripe Payment Links: ready, NOT enabled until business onboarding ---
+    // Stripe Dashboard -> Payment Links -> Create a payment link.
+    // Put the verified *live* link here after price, currency and refund terms are agreed.
+    // Example format: https://buy.stripe.com/..., never paste a secret API key in HTML.
+    const STRIPE_EARLY_BOOKING_PAYMENT_LINK = '';
+    function setUpStripePayment(){
+      const stripeButton=document.getElementById('bookingStripePay');
+      if(!stripeButton)return;
+      let url=null;
+      try{
+        const candidate=new URL(STRIPE_EARLY_BOOKING_PAYMENT_LINK);
+        if(candidate.protocol==='https:' &&
+           candidate.hostname==='buy.stripe.com' &&
+           candidate.pathname.length>1 &&
+           !candidate.pathname.startsWith('/test_')) url=candidate;
+      }catch(_){ /* Payment has not been configured yet. */ }
+      if(url){
+        stripeButton.href=url.href;
+        stripeButton.hidden=false;
+      }else{
+        stripeButton.hidden=true;
+        stripeButton.removeAttribute('href');
+      }
+    }
+    setUpStripePayment();
+
+    // Payment link is independent of the contact form: it neither sends form
+    // values to Stripe nor verifies/fulfils bookings. Stripe hosts the checkout.
 
     // --- booking / personal data form ---------------------------------------
     const bookingModal=document.getElementById('bookingModal');
