@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#02050a" />
   <meta name="description" content="11•11 Space · immersive wellness social club · Playa del Carmen" />
   <title>11•11 SPACE · Playa del Carmen</title>
-  <meta name="1111space-build" content="cosmic-orbs-seven-20261017">
+  <meta name="1111space-build" content="cosmic-7-brand-whatsapp-20261017">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -2004,6 +2004,129 @@
       .portal-node .orb-photo{filter:none}
     }
 
+  
+    /* ===== 11·11 brand palette: glacial ice blue × sunset terracotta ===== */
+    :root{
+      --brand-ice:#b9eff8;
+      --brand-ice-deep:#87d4e7;
+      --brand-terra:#ca8669;
+      --brand-terra-light:#e4a27c;
+      --brand-cta:linear-gradient(110deg,#b9eff8 0%,#87d4e7 37%,#a9b7d0 58%,#ca8669 82%,#e4a27c 100%);
+      --brand-headline:linear-gradient(106deg,#f6fdff 0%,#c9f2fa 20%,#97deee 38%,#d3c3c0 62%,#db9b7b 81%,#f6d1b8 100%);
+    }
+    .countdown .cta,
+    .gift-action,
+    .booking-submit,
+    .booking-whatsapp{
+      background:var(--brand-cta);
+      background-size:100% 100%;
+      color:#07141d;
+      border:1px solid rgba(221,245,249,.32);
+      box-shadow:0 0 15px rgba(137,214,234,.20),0 0 32px rgba(194,120,90,.13),inset 0 1px 0 rgba(255,255,255,.22);
+      text-shadow:none;
+    }
+    .gift-action:hover,.booking-submit:hover,.booking-whatsapp:hover{
+      filter:brightness(1.07);
+      transform:translateY(-1px);
+    }
+    .gift-action:active,.booking-submit:active,.booking-whatsapp:active{transform:translateY(0)}
+    .booking-submit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .booking-whatsapp{
+      grid-column:1/-1;
+      min-height:46px;
+      padding:11px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      border-radius:999px;
+      font-family:"Jost",sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      text-decoration:none;
+      cursor:pointer;
+      transition:transform .2s ease,filter .2s ease;
+    }
+    .booking-whatsapp svg{flex:none}
+    .gift-whatsapp{
+      background:var(--brand-cta);
+      border-color:rgba(226,244,247,.42);
+      color:#10202a;
+      box-shadow:0 0 15px rgba(135,212,230,.17),0 0 27px rgba(195,122,94,.14);
+      transition:transform .2s ease,filter .2s ease;
+    }
+    .gift-whatsapp:not(:disabled):hover{background:var(--brand-cta);filter:brightness(1.1);transform:scale(1.05)}
+    .booking-whatsapp:focus-visible,.gift-whatsapp:focus-visible,.booking-submit:focus-visible,.gift-action:focus-visible{
+      outline:2px solid #b9eff8;outline-offset:3px;
+    }
+    .tagline span,.end-copy span{
+      background-image:var(--brand-headline);
+      background-size:240% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+    }
+    .tagline::before,.end-copy::before{
+      background:radial-gradient(ellipse at 42% 48%,rgba(150,220,240,.085) 0%,rgba(218,142,106,.040) 46%,transparent 75%);
+    }
+    @keyframes taglineBreath{
+      0%,100%{
+        transform:scale(.985);
+        filter:drop-shadow(0 0 2px rgba(155,225,241,.06));
+        letter-spacing:0;
+      }
+      50%{
+        transform:scale(1.018);
+        filter:drop-shadow(0 0 12px rgba(148,224,243,.15)) drop-shadow(0 0 22px rgba(209,136,103,.11));
+        letter-spacing:.003em;
+      }
+    }
+    /* Small orbiting decorative planets: dual-tone core, ice to terracotta. */
+    .satellite::before{
+      background:radial-gradient(circle at 39% 33%,
+        rgba(255,255,255,.98) 0 3%,
+        rgba(226,252,255,.88) 7%,
+        rgba(171,237,250,.82) 12%,
+        rgba(133,211,234,.68) 21%,
+        rgba(213,150,117,.39) 34%,
+        rgba(193,111,79,.13) 53%,
+        transparent 79%);
+    }
+    .satellite.starlet::before{
+      background:radial-gradient(circle at 40% 32%,
+        rgba(255,255,255,.98) 0 3%,
+        rgba(197,244,251,.86) 9%,
+        rgba(139,210,232,.61) 18%,
+        rgba(211,147,108,.30) 36%,
+        transparent 74%);
+    }
+    .satellite::after{
+      background:radial-gradient(circle,
+        rgba(143,219,236,.17) 0%,
+        rgba(203,130,99,.11) 25%,
+        rgba(255,255,255,.012) 47%,
+        transparent 74%);
+    }
+    .mini-light{
+      background:radial-gradient(circle at 38% 35%,
+        rgba(255,255,255,.97) 0 5%,
+        rgba(190,241,251,.88) 10%,
+        rgba(134,213,234,.50) 25%,
+        rgba(211,139,103,.28) 41%,
+        transparent 78%);
+      box-shadow:none;
+    }
+    .mini-light::before{background:linear-gradient(90deg,transparent,rgba(185,233,242,.38),rgba(222,156,120,.24),transparent)}
+    .mini-light::after{background:linear-gradient(180deg,transparent,rgba(185,233,242,.38),rgba(222,156,120,.24),transparent)}
+    @media(forced-colors:active){
+      .tagline span,.end-copy span{color:CanvasText!important;-webkit-text-fill-color:CanvasText!important;background:none!important}
+      .countdown .cta,.gift-action,.booking-submit,.booking-whatsapp,.gift-whatsapp{background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .gift-action,.booking-submit,.booking-whatsapp,.gift-whatsapp{transition:none;transform:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -2161,8 +2284,8 @@
         <p class="gift-sub" id="giftSub">A little something for those who join us first.</p>
         <button type="button" id="giftContact" class="gift-action">LEAVE MY CONTACT</button>
         <div class="gift-social-row">
-          <span class="gift-social-caption" id="giftSocialCaption">WhatsApp coming soon</span>
-          <button type="button" id="giftWhatsapp" class="gift-whatsapp" disabled aria-label="WhatsApp coming soon" title="WhatsApp coming soon">
+          <span class="gift-social-caption" id="giftSocialCaption">WhatsApp</span>
+          <button type="button" id="giftWhatsapp" class="gift-whatsapp" aria-label="WhatsApp +52 999 269 3185" title="WhatsApp +52 999 269 3185">
             <svg viewBox="0 0 32 32" width="24" height="24" fill="none" aria-hidden="true">
               <path d="M16 3.8A12.1 12.1 0 0 0 5.7 22.2L4 28l6-1.6A12.2 12.2 0 1 0 16 3.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
               <path d="M11.2 10.1c-.5-.3-1.3-.3-1.7.4-1.5 2.2.1 5.6 3.3 8.1 3 2.5 5.9 3.2 7.5 2.4.8-.4 1.8-2.1 1.7-2.5 0-.4-2.2-1.5-2.7-1.6-.5-.1-1 1.3-1.5 1.2-.7-.1-2.6-1.2-3.6-2.3-.8-.9-1.7-2.2-1.6-2.8.1-.5 1-1.2.8-1.7l-1.6-2.8Z" fill="currentColor" opacity=".9"/>
@@ -2221,6 +2344,10 @@
         </div>
 
         <button class="booking-submit" id="bookingSubmit" type="submit">Continue by email</button>
+        <a class="booking-whatsapp" id="bookingWhatsapp" href="https://wa.me/529992693185" target="_blank" rel="noopener noreferrer" aria-label="Chat with 11·11 SPACE on WhatsApp">
+          <svg aria-hidden="true" viewBox="0 0 32 32" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.9a12.1 12.1 0 0 0-10.4 18.2L4 28l5.9-1.6A12.1 12.1 0 1 0 16 3.9Z"/><path d="M11.3 10.2c-.5-.1-.9.1-1.2.6-.7 1.2-.4 2.6.6 4.3 1.5 2.5 3.8 4.6 6.6 5.5 1.4.5 2.9.2 3.8-.9.2-.3.3-.8.1-1.1l-2.8-1.3c-.4-.2-.6-.1-.9.2l-1 1.1c-1.6-.6-2.9-1.6-3.8-3.2l1-1.1c.3-.3.4-.6.2-1Z"/></svg>
+          <span id="bookingWhatsappText">Chat on WhatsApp</span>
+        </a>
         <p class="booking-status" id="bookingStatus" aria-live="polite"></p>
       </form>
     </div>
@@ -2895,6 +3022,18 @@
         document.getElementById('bookingPrivacyOpen')?.addEventListener('click',openPrivacyFromBooking);
       }
 
+      const bookingWa=document.getElementById('bookingWhatsapp');
+      const bookingWaText=document.getElementById('bookingWhatsappText');
+      if(bookingWa && bookingWaText){
+        const es=currentLang==='es';
+        bookingWaText.textContent=es?'Escríbenos por WhatsApp':'Chat on WhatsApp';
+        const message=es
+          ? '¡Hola! Me gustaría saber más sobre 11·11 SPACE y las reservas anticipadas.'
+          : 'Hello! I would like to know more about 11·11 SPACE and early booking.';
+        bookingWa.href='https://wa.me/529992693185?text='+encodeURIComponent(message);
+        bookingWa.setAttribute('aria-label',bookingWaText.textContent+' · +52 999 269 3185');
+      }
+
       document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===currentLang));
       if(panel.classList.contains('open')){
         const n=panel.dataset.world||'1';
@@ -3147,8 +3286,8 @@
   <script>
   (()=>{
     'use strict';
-    // Later replace with the real wa.me/... URL supplied by 11·11 SPACE.
-    const WHATSAPP_URL='';
+    // Official 11·11 SPACE WhatsApp, Mexico.
+    const WHATSAPP_URL='https://wa.me/529992693185';
     const orb=document.getElementById('giftOrb');
     const modal=document.getElementById('giftPopup');
     const close=document.getElementById('giftClose');
@@ -3156,8 +3295,8 @@
     const wa=document.getElementById('giftWhatsapp');
     if(!orb||!modal||!close||!contact||!wa)return;
     const texts={
-      en:{eyebrow:'11·11 SPACE · PRIVATE ACCESS',title:'Leave your contact and receive an exclusive gift',sub:'A little something for those who join us first.',action:'LEAVE MY CONTACT',whatsapp:'WhatsApp coming soon',close:'Close gift offer',booking:'Leave your contact to request your exclusive gift. Your email app will open to send the request.'},
-      es:{eyebrow:'11·11 SPACE · ACCESO PRIVADO',title:'Déjanos tus datos y recibe un regalo exclusivo',sub:'Un detalle para quienes se unan primero.',action:'DEJAR MIS DATOS',whatsapp:'WhatsApp próximamente',close:'Cerrar oferta de regalo',booking:'Déjanos tus datos para solicitar tu regalo exclusivo. Se abrirá tu correo para enviar la solicitud.'}
+      en:{eyebrow:'11·11 SPACE · PRIVATE ACCESS',title:'Leave your contact and receive an exclusive gift',sub:'A little something for those who join us first.',action:'LEAVE MY CONTACT',whatsapp:'WhatsApp',close:'Close gift offer',booking:'Leave your contact to request your exclusive gift. Your email app will open to send the request.'},
+      es:{eyebrow:'11·11 SPACE · ACCESO PRIVADO',title:'Déjanos tus datos y recibe un regalo exclusivo',sub:'Un detalle para quienes se unan primero.',action:'DEJAR MIS DATOS',whatsapp:'WhatsApp',close:'Cerrar oferta de regalo',booking:'Déjanos tus datos para solicitar tu regalo exclusivo. Se abrirá tu correo para enviar la solicitud.'}
     };
     let priorFocus=null;
     let shown=false;
@@ -3178,9 +3317,14 @@
       const u=new URL(WHATSAPP_URL);
       if(u.protocol==='https:' && (u.hostname==='wa.me'||u.hostname==='api.whatsapp.com')){
         wa.disabled=false;
-        wa.title='WhatsApp';
-        wa.setAttribute('aria-label','WhatsApp');
-        wa.addEventListener('click',()=>window.open(u.href,'_blank','noopener,noreferrer'));
+        wa.title='WhatsApp · +52 999 269 3185';
+        wa.setAttribute('aria-label','WhatsApp +52 999 269 3185');
+        wa.addEventListener('click',()=>{
+          const message=lang()==='es'
+            ? '¡Hola! Me gustaría saber más sobre 11·11 SPACE y las reservas anticipadas.'
+            : 'Hello! I would like to know more about 11·11 SPACE and early booking.';
+          window.open(u.href+'?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+        });
         document.getElementById('giftSocialCaption').textContent='WhatsApp';
       }
     }catch(_){/* No WhatsApp link yet; no broken or invented destination. */}
